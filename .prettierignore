@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+
+# Build artifacts
+.next/
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Others
+.DS_Store
+coverage
+.vscode
