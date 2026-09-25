@@ -4,16 +4,16 @@
 
 ## Запуск
 
-Требуются Node.js 20.9+ и pnpm 11.
+Требуются Node.js 20.9+ и Bun 1.3+. Bun устанавливает зависимости и запускает команды проекта; Next.js работает на Node.js.
 
 ```bash
-pnpm install
-pnpm dev
+bun install
+bun run dev
 ```
 
 Откройте http://localhost:3000.
 
-Проверки: `pnpm test`, `pnpm typecheck`, `pnpm lint`, `pnpm build`.
+Проверки: `bun run test`, `bun run typecheck`, `bun run lint`, `bun run format:check`, `bun run build`. Для CI используйте `bun install --frozen-lockfile`.
 
 ## Что реализовано
 
