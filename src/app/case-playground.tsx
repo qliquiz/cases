@@ -8,8 +8,10 @@ import { featuredCase } from '@/game/catalog';
 import { createReel } from '@/game/reel';
 import {
     cardAtMarker,
+    playPreviewSound,
     playResultSound,
     playTickSound,
+    tryPlaySound,
 } from '@/game/reel-audio';
 
 type Drop = (typeof featuredCase.drops)[number];
@@ -30,6 +32,7 @@ export function CasePlayground() {
     const [phase, setPhase] = useState<Phase>('idle');
     const [error, setError] = useState<string | null>(null);
     const [soundOn, setSoundOn] = useState(true);
+    const [soundError, setSoundError] = useState<string | null>(null);
     const [pending, startTransition] = useTransition();
     const viewportRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -71,8 +74,14 @@ export function CasePlayground() {
         finishedRef.current = true;
         setResult(reel.items[reel.winnerIndex]);
         setPhase('complete');
-        if (soundOn && audioRef.current?.state === 'running') {
-            playResultSound(audioRef.current);
+        if (
+            soundOn &&
+            audioRef.current?.state === 'running' &&
+            !tryPlaySound(audioRef.current, playResultSound)
+        ) {
+            setSoundError(
+                'Не удалось воспроизвести звук. Открытие кейса работает.',
+            );
         }
         suspendAudio(350);
     }, [phase, reel, soundOn, suspendAudio]);
@@ -108,8 +117,14 @@ export function CasePlayground() {
                 cardStep,
             );
             if (currentIndex > previousIndex) {
-                if (audioRef.current?.state === 'running')
-                    playTickSound(audioRef.current);
+                if (
+                    audioRef.current?.state === 'running' &&
+                    !tryPlaySound(audioRef.current, playTickSound)
+                ) {
+                    setSoundError(
+                        'Не удалось воспроизвести звук. Открытие кейса работает.',
+                    );
+                }
                 previousIndex = currentIndex;
             }
             frame = window.requestAnimationFrame(followMarker);
@@ -123,12 +138,33 @@ export function CasePlayground() {
             window.clearTimeout(suspendTimerRef.current);
             suspendTimerRef.current = null;
         }
-        if (!window.AudioContext) return;
+        if (!window.AudioContext) {
+            setSoundError('Этот браузер не поддерживает Web Audio.');
+            return;
+        }
         try {
             audioRef.current ??= new AudioContext();
-            void audioRef.current.resume().catch(() => {});
+            const context = audioRef.current;
+            // Первый источник запускается в самом обработчике нажатия: это важно для Safari.
+            const previewReady = tryPlaySound(context, playPreviewSound);
+            void context
+                .resume()
+                .then(() => {
+                    setSoundError(
+                        !previewReady
+                            ? 'Не удалось воспроизвести звук. Открытие кейса работает.'
+                            : context.state === 'running'
+                              ? null
+                              : 'Safari не разрешил воспроизведение. Проверь настройки сайта и вкладки.',
+                    );
+                })
+                .catch(() => {
+                    setSoundError(
+                        'Браузер заблокировал звук. Проверь настройки сайта и вкладки.',
+                    );
+                });
         } catch {
-            // Если Web Audio недоступен, открытие кейса остаётся рабочим.
+            setSoundError('Не удалось запустить звук в этом браузере.');
         }
     }
 
@@ -151,8 +187,14 @@ export function CasePlayground() {
                     finishedRef.current = true;
                     setResult(selected);
                     setPhase('complete');
-                    if (soundOn && audioRef.current?.state === 'running') {
-                        playResultSound(audioRef.current);
+                    if (
+                        soundOn &&
+                        audioRef.current?.state === 'running' &&
+                        !tryPlaySound(audioRef.current, playResultSound)
+                    ) {
+                        setSoundError(
+                            'Не удалось воспроизвести звук. Открытие кейса работает.',
+                        );
                     }
                     suspendAudio(350);
                 } else {
@@ -173,25 +215,46 @@ export function CasePlayground() {
 
     return (
         <div className="rounded-[2rem] border border-white/15 bg-gradient-to-b from-slate-800 to-slate-900 p-5 shadow-2xl shadow-black/30 sm:p-7">
-            <div className="flex items-center justify-between gap-3 text-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
                 <span className="font-semibold">{featuredCase.name}</span>
-                <button
-                    type="button"
-                    aria-pressed={soundOn}
-                    onClick={() => {
-                        if (!soundOn) {
-                            if (phase === 'ready' || phase === 'spinning')
-                                activateAudio();
-                        } else {
-                            suspendAudio();
+                <div className="flex items-center gap-2">
+                    <button
+                        type="button"
+                        disabled={
+                            pending || phase === 'ready' || phase === 'spinning'
                         }
-                        setSoundOn(!soundOn);
-                    }}
-                    className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white"
-                >
-                    Звук: {soundOn ? 'вкл' : 'выкл'}
-                </button>
+                        onClick={() => {
+                            setSoundOn(true);
+                            activateAudio();
+                            suspendAudio(800);
+                        }}
+                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white disabled:cursor-wait disabled:opacity-50"
+                    >
+                        Проверить звук
+                    </button>
+                    <button
+                        type="button"
+                        aria-pressed={soundOn}
+                        onClick={() => {
+                            if (!soundOn) {
+                                if (phase === 'ready' || phase === 'spinning')
+                                    activateAudio();
+                            } else {
+                                suspendAudio();
+                            }
+                            setSoundOn(!soundOn);
+                        }}
+                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white"
+                    >
+                        Звук: {soundOn ? 'вкл' : 'выкл'}
+                    </button>
+                </div>
             </div>
+            {soundError && (
+                <p role="alert" className="mt-2 text-xs text-rose-300">
+                    {soundError}
+                </p>
+            )}
             <div
                 ref={viewportRef}
                 className="relative mt-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80"

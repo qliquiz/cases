@@ -27,12 +27,28 @@ function playTone(
     oscillator.stop(start + duration);
 }
 
+export function tryPlaySound(
+    context: AudioContext,
+    play: (context: AudioContext) => void,
+): boolean {
+    try {
+        play(context);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+export function playPreviewSound(context: AudioContext) {
+    playTone(context, 660, context.currentTime, 0.24, 0.18);
+}
+
 export function playTickSound(context: AudioContext) {
-    playTone(context, 780, context.currentTime, 0.03, 0.035);
+    playTone(context, 780, context.currentTime, 0.04, 0.09);
 }
 
 export function playResultSound(context: AudioContext) {
     const now = context.currentTime;
-    playTone(context, 520, now, 0.11, 0.05);
-    playTone(context, 780, now + 0.07, 0.2, 0.045);
+    playTone(context, 520, now, 0.14, 0.16);
+    playTone(context, 780, now + 0.09, 0.24, 0.14);
 }
