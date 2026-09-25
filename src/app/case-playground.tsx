@@ -1,11 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 
 import { openCase } from '@/app/actions';
 import { featuredCase } from '@/game/catalog';
 import { createReel } from '@/game/reel';
+import {
+    cardAtMarker,
+    playResultSound,
+    playTickSound,
+} from '@/game/reel-audio';
 
 type Drop = (typeof featuredCase.drops)[number];
 type Reel = ReturnType<typeof createReel>;
@@ -24,7 +29,36 @@ export function CasePlayground() {
     const [reel, setReel] = useState<Reel | null>(null);
     const [phase, setPhase] = useState<Phase>('idle');
     const [error, setError] = useState<string | null>(null);
+    const [soundOn, setSoundOn] = useState(true);
     const [pending, startTransition] = useTransition();
+    const viewportRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const audioRef = useRef<AudioContext | null>(null);
+    const suspendTimerRef = useRef<number | null>(null);
+    const finishedRef = useRef(false);
+
+    useEffect(() => {
+        return () => {
+            if (suspendTimerRef.current !== null)
+                window.clearTimeout(suspendTimerRef.current);
+            void audioRef.current?.close();
+        };
+    }, []);
+
+    const suspendAudio = useCallback((delayMs = 0) => {
+        if (suspendTimerRef.current !== null) {
+            window.clearTimeout(suspendTimerRef.current);
+            suspendTimerRef.current = null;
+        }
+        if (delayMs > 0) {
+            suspendTimerRef.current = window.setTimeout(() => {
+                suspendTimerRef.current = null;
+                void audioRef.current?.suspend().catch(() => {});
+            }, delayMs);
+        } else {
+            void audioRef.current?.suspend().catch(() => {});
+        }
+    }, []);
 
     useEffect(() => {
         if (phase !== 'ready') return;
@@ -32,45 +66,104 @@ export function CasePlayground() {
         return () => window.clearTimeout(timer);
     }, [phase]);
 
+    const finishSpin = useCallback(() => {
+        if (phase !== 'spinning' || !reel || finishedRef.current) return;
+        finishedRef.current = true;
+        setResult(reel.items[reel.winnerIndex]);
+        setPhase('complete');
+        if (soundOn && audioRef.current?.state === 'running') {
+            playResultSound(audioRef.current);
+        }
+        suspendAudio(350);
+    }, [phase, reel, soundOn, suspendAudio]);
+
     useEffect(() => {
         if (phase !== 'spinning' || !reel) return;
-        const timer = window.setTimeout(() => {
-            setResult(reel.items[reel.winnerIndex]);
-            setPhase('complete');
-        }, 6000);
+        const timer = window.setTimeout(finishSpin, 6000);
         return () => window.clearTimeout(timer);
-    }, [phase, reel]);
+    }, [phase, reel, finishSpin]);
+
+    useEffect(() => {
+        if (phase !== 'spinning' || !soundOn) return;
+        const viewport = viewportRef.current;
+        const track = trackRef.current;
+        if (!viewport || !track) return;
+
+        const markerX = () => {
+            const rect = viewport.getBoundingClientRect();
+            return rect.left + rect.width / 2;
+        };
+        let previousIndex = cardAtMarker(
+            markerX(),
+            track.getBoundingClientRect().left,
+            cardWidth,
+            cardStep,
+        );
+        let frame = 0;
+        const followMarker = () => {
+            const currentIndex = cardAtMarker(
+                markerX(),
+                track.getBoundingClientRect().left,
+                cardWidth,
+                cardStep,
+            );
+            if (currentIndex > previousIndex) {
+                if (audioRef.current?.state === 'running')
+                    playTickSound(audioRef.current);
+                previousIndex = currentIndex;
+            }
+            frame = window.requestAnimationFrame(followMarker);
+        };
+        frame = window.requestAnimationFrame(followMarker);
+        return () => window.cancelAnimationFrame(frame);
+    }, [phase, soundOn]);
+
+    function activateAudio() {
+        if (suspendTimerRef.current !== null) {
+            window.clearTimeout(suspendTimerRef.current);
+            suspendTimerRef.current = null;
+        }
+        if (!window.AudioContext) return;
+        try {
+            audioRef.current ??= new AudioContext();
+            void audioRef.current.resume().catch(() => {});
+        } catch {
+            // Если Web Audio недоступен, открытие кейса остаётся рабочим.
+        }
+    }
 
     function handleOpen() {
         if (pending || phase === 'ready' || phase === 'spinning') return;
+        if (soundOn) activateAudio();
 
         setError(null);
         startTransition(async () => {
             try {
                 const selected = await openCase(featuredCase.id);
                 const nextReel = createReel(featuredCase, selected);
+                finishedRef.current = false;
                 setReel(nextReel);
 
                 if (
                     window.matchMedia('(prefers-reduced-motion: reduce)')
                         .matches
                 ) {
+                    finishedRef.current = true;
                     setResult(selected);
                     setPhase('complete');
+                    if (soundOn && audioRef.current?.state === 'running') {
+                        playResultSound(audioRef.current);
+                    }
+                    suspendAudio(350);
                 } else {
                     setResult(null);
                     setPhase('ready');
                 }
             } catch {
+                suspendAudio();
                 setError('Не получилось открыть кейс. Попробуйте ещё раз.');
             }
         });
-    }
-
-    function finishSpin() {
-        if (phase !== 'spinning' || !reel) return;
-        setResult(reel.items[reel.winnerIndex]);
-        setPhase('complete');
     }
 
     const targetIndex =
@@ -82,14 +175,31 @@ export function CasePlayground() {
         <div className="rounded-[2rem] border border-white/15 bg-gradient-to-b from-slate-800 to-slate-900 p-5 shadow-2xl shadow-black/30 sm:p-7">
             <div className="flex items-center justify-between gap-3 text-sm">
                 <span className="font-semibold">{featuredCase.name}</span>
-                <span className="text-slate-400">
-                    CS2 · бесплатная симуляция
-                </span>
+                <button
+                    type="button"
+                    aria-pressed={soundOn}
+                    onClick={() => {
+                        if (!soundOn) {
+                            if (phase === 'ready' || phase === 'spinning')
+                                activateAudio();
+                        } else {
+                            suspendAudio();
+                        }
+                        setSoundOn(!soundOn);
+                    }}
+                    className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white"
+                >
+                    Звук: {soundOn ? 'вкл' : 'выкл'}
+                </button>
             </div>
-            <div className="relative mt-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80">
+            <div
+                ref={viewportRef}
+                className="relative mt-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80"
+            >
                 {reel ? (
                     <>
                         <div
+                            ref={trackRef}
                             className="absolute top-8 left-1/2 flex gap-4 will-change-transform"
                             style={{
                                 transform: `translate3d(${-targetIndex * cardStep - cardWidth / 2}px, 0, 0)`,
