@@ -1,9 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Script from 'next/script';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 
-import { openCase } from '@/app/actions';
+import { getAccountState, openCase, startTelegramSession } from '@/app/actions';
+import { CollectionPanel } from '@/app/collection-panel';
 import { featuredCase } from '@/game/catalog';
 import { createReel } from '@/game/reel';
 import {
@@ -17,6 +19,16 @@ import {
 type Drop = (typeof featuredCase.drops)[number];
 type Reel = ReturnType<typeof createReel>;
 type Phase = 'idle' | 'ready' | 'spinning' | 'complete';
+type Account = NonNullable<Awaited<ReturnType<typeof getAccountState>>>;
+type AuthStatus = 'loading' | 'ready' | 'telegram-required' | 'error';
+
+declare global {
+    interface Window {
+        Telegram?: {
+            WebApp?: { initData: string; ready: () => void };
+        };
+    }
+}
 
 const cardWidth = 160;
 const cardStep = 176;
@@ -33,12 +45,20 @@ export function CasePlayground() {
     const [error, setError] = useState<string | null>(null);
     const [soundOn, setSoundOn] = useState(true);
     const [soundError, setSoundError] = useState<string | null>(null);
+    const [account, setAccount] = useState<Account | null>(null);
+    const [authStatus, setAuthStatus] = useState<AuthStatus>('loading');
     const [pending, startTransition] = useTransition();
     const viewportRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const audioRef = useRef<AudioContext | null>(null);
     const suspendTimerRef = useRef<number | null>(null);
     const finishedRef = useRef(false);
+    const bootstrappedRef = useRef(false);
+    const requestIdRef = useRef<string | null>(null);
+    const pendingAccountRef = useRef<Pick<
+        Account,
+        'remaining' | 'collection'
+    > | null>(null);
 
     useEffect(() => {
         return () => {
@@ -47,6 +67,28 @@ export function CasePlayground() {
             void audioRef.current?.close();
         };
     }, []);
+
+    const bootstrap = useCallback(() => {
+        if (bootstrappedRef.current) return;
+        bootstrappedRef.current = true;
+        startTransition(async () => {
+            try {
+                const webApp = window.Telegram?.WebApp;
+                webApp?.ready();
+                const next = webApp?.initData
+                    ? await startTelegramSession(webApp.initData)
+                    : await getAccountState();
+                if (!next) {
+                    setAuthStatus('telegram-required');
+                    return;
+                }
+                setAccount(next);
+                setAuthStatus('ready');
+            } catch {
+                setAuthStatus('error');
+            }
+        });
+    }, [startTransition]);
 
     const suspendAudio = useCallback((delayMs = 0) => {
         if (suspendTimerRef.current !== null) {
@@ -73,6 +115,13 @@ export function CasePlayground() {
         if (phase !== 'spinning' || !reel || finishedRef.current) return;
         finishedRef.current = true;
         setResult(reel.items[reel.winnerIndex]);
+        const nextAccount = pendingAccountRef.current;
+        if (nextAccount) {
+            setAccount((current) =>
+                current ? { ...current, ...nextAccount } : current,
+            );
+            pendingAccountRef.current = null;
+        }
         setPhase('complete');
         if (
             soundOn &&
@@ -168,15 +217,50 @@ export function CasePlayground() {
         }
     }
 
+    function refreshAccount() {
+        startTransition(async () => {
+            try {
+                const next = await getAccountState();
+                if (!next) {
+                    setAuthStatus('telegram-required');
+                    setAccount(null);
+                    return;
+                }
+                setAccount(next);
+                setError(null);
+            } catch {
+                setError('Не удалось обновить лимит. Попробуйте ещё раз.');
+            }
+        });
+    }
+
     function handleOpen() {
-        if (pending || phase === 'ready' || phase === 'spinning') return;
+        if (
+            pending ||
+            authStatus !== 'ready' ||
+            !account ||
+            account.remaining <= 0 ||
+            phase === 'ready' ||
+            phase === 'spinning'
+        )
+            return;
+        requestIdRef.current ??= window.crypto.randomUUID();
         if (soundOn) activateAudio();
 
         setError(null);
         startTransition(async () => {
             try {
-                const selected = await openCase(featuredCase.id);
+                const opened = await openCase(
+                    featuredCase.id,
+                    requestIdRef.current!,
+                );
+                const selected = opened.drop;
                 const nextReel = createReel(featuredCase, selected);
+                requestIdRef.current = null;
+                pendingAccountRef.current = {
+                    remaining: opened.remaining,
+                    collection: opened.collection,
+                };
                 finishedRef.current = false;
                 setReel(nextReel);
 
@@ -186,6 +270,12 @@ export function CasePlayground() {
                 ) {
                     finishedRef.current = true;
                     setResult(selected);
+                    setAccount((current) =>
+                        current && pendingAccountRef.current
+                            ? { ...current, ...pendingAccountRef.current }
+                            : current,
+                    );
+                    pendingAccountRef.current = null;
                     setPhase('complete');
                     if (
                         soundOn &&
@@ -215,6 +305,11 @@ export function CasePlayground() {
 
     return (
         <div className="rounded-[2rem] border border-white/15 bg-gradient-to-b from-slate-800 to-slate-900 p-5 shadow-2xl shadow-black/30 sm:p-7">
+            <Script
+                src="https://telegram.org/js/telegram-web-app.js?63"
+                onReady={bootstrap}
+                onError={bootstrap}
+            />
             <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
                 <span className="font-semibold">{featuredCase.name}</span>
                 <div className="flex items-center gap-2">
@@ -345,10 +440,35 @@ export function CasePlayground() {
                     </p>
                 ) : null}
             </div>
+            {authStatus === 'loading' && (
+                <p className="mb-3 text-center text-sm text-slate-400">
+                    Подключаем Telegram…
+                </p>
+            )}
+            {authStatus === 'telegram-required' && (
+                <p className="mb-3 text-center text-sm text-amber-200">
+                    Откройте Mini App через Telegram, чтобы сохранять предметы.
+                </p>
+            )}
+            {authStatus === 'error' && (
+                <p
+                    role="alert"
+                    className="mb-3 text-center text-sm text-rose-300"
+                >
+                    Не удалось войти через Telegram. Перезапустите Mini App.
+                </p>
+            )}
             <button
                 type="button"
                 onClick={handleOpen}
-                disabled={pending || phase === 'ready' || phase === 'spinning'}
+                disabled={
+                    pending ||
+                    authStatus !== 'ready' ||
+                    !account ||
+                    account.remaining <= 0 ||
+                    phase === 'ready' ||
+                    phase === 'spinning'
+                }
                 className="w-full cursor-pointer rounded-xl bg-amber-300 px-5 py-4 font-bold text-slate-950 transition hover:bg-amber-200 disabled:cursor-wait disabled:opacity-60"
             >
                 {pending || phase === 'ready'
@@ -364,8 +484,16 @@ export function CasePlayground() {
                     {error}
                 </p>
             )}
+            {account && (
+                <CollectionPanel
+                    collection={account.collection}
+                    remaining={account.remaining}
+                    onRefresh={refreshAccount}
+                    refreshing={pending}
+                />
+            )}
             <p className="mt-4 text-center text-xs text-slate-500">
-                Результат виртуальный, не сохраняется и не выдаётся в Steam
+                Результат виртуальный и не выдаётся в Steam
             </p>
         </div>
     );
