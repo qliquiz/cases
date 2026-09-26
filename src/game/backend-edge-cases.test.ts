@@ -19,7 +19,7 @@ import { featuredCase } from './catalog';
 
 const socket = process.env.TEST_PG_SOCKET;
 
-test('исчерпанный лимит можно обновить без перезагрузки Mini App', () => {
+test('лимит можно сбросить до 10 без перезагрузки Mini App', () => {
     const html = renderToStaticMarkup(
         createElement(CollectionPanel, {
             collection: [],
@@ -27,7 +27,8 @@ test('исчерпанный лимит можно обновить без пе�
             onRefresh: () => {},
         }),
     );
-    assert.match(html, /Обновить лимит/);
+    assert.match(html, /Сбросить лимит/);
+    assert.match(html, /из 10 открытий/);
 });
 
 test(

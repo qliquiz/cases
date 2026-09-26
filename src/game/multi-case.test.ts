@@ -148,7 +148,7 @@ test(
                 openCaseForUser(sql, userId, 'crate-4351', requestId),
             );
             const attempts = await Promise.allSettled(
-                Array.from({ length: 8 }, (_, index) =>
+                Array.from({ length: 12 }, (_, index) =>
                     openCaseForUser(
                         sql,
                         userId,
@@ -161,10 +161,10 @@ test(
             assert.equal(
                 attempts.filter((attempt) => attempt.status === 'fulfilled')
                     .length,
-                4,
+                9,
             );
             const collection = await getCollection(sql, userId);
-            assert.equal(collection.length, 5);
+            assert.equal(collection.length, 10);
             for (const entry of collection) {
                 assert.ok(
                     findCase(entry.caseId)!.drops.some(
@@ -174,7 +174,7 @@ test(
             }
             await assert.rejects(
                 openCaseForUser(sql, userId, 'crate-4403', randomUUID()),
-                /Лимит 5/,
+                /Лимит 10/,
             );
         } finally {
             if (userId) await sql`delete from app_users where id = ${userId}`;

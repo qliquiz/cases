@@ -15,7 +15,7 @@ import { featuredCase } from './catalog';
 const socket = process.env.TEST_PG_SOCKET;
 
 test(
-    'повтор запроса не выдаёт второй предмет, а шестое открытие за день отклоняется',
+    'повтор запроса не выдаёт второй предмет, а одиннадцатое открытие отклоняется',
     { skip: !socket },
     async () => {
         const sql = postgres({
@@ -29,7 +29,7 @@ test(
             await migrate(sql);
             userId = await upsertTelegramUser(sql, telegramId, 'Ada');
 
-            const requestIds = Array.from({ length: 6 }, () => randomUUID());
+            const requestIds = Array.from({ length: 11 }, () => randomUUID());
             const first = await openCaseForUser(
                 sql,
                 userId,
@@ -47,7 +47,7 @@ test(
             assert.equal(repeated.drop.id, first.drop.id);
             assert.equal((await getCollection(sql, userId)).length, 1);
 
-            for (const id of requestIds.slice(1, 5)) {
+            for (const id of requestIds.slice(1, 10)) {
                 await openCaseForUser(
                     sql,
                     userId,
@@ -61,12 +61,12 @@ test(
                     sql,
                     userId,
                     featuredCase.id,
-                    requestIds[5],
+                    requestIds[10],
                     () => 0,
                 ),
-                /Лимит 5 открытий/,
+                /Лимит 10 открытий/,
             );
-            assert.equal((await getCollection(sql, userId)).length, 5);
+            assert.equal((await getCollection(sql, userId)).length, 10);
         } finally {
             await sql`delete from app_users where id = ${userId}`;
             await sql.end();

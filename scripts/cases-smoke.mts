@@ -124,7 +124,7 @@ try {
             .getByRole('button', { name: 'Открыть ещё раз', exact: true })
             .waitFor();
         await page
-            .getByText(`${4 - index} из 5 открытий сегодня`, { exact: false })
+            .getByText(`${9 - index} из 10 открытий доступно`, { exact: false })
             .waitFor();
         const collection = await getCollection(sql, userId);
         assert.equal(collection.length, index + 1);
@@ -147,7 +147,7 @@ try {
             String(item.drops.length + item.rareDrops.length),
         );
         await page
-            .getByText('3 из 5 открытий сегодня', { exact: false })
+            .getByText('8 из 10 открытий доступно', { exact: false })
             .waitFor();
     }
     await page.getByText('История открытий', { exact: true }).click();
@@ -186,7 +186,9 @@ try {
         'true',
     );
     await page.reload();
-    await page.getByText('3 из 5 открытий сегодня', { exact: false }).waitFor();
+    await page
+        .getByText('8 из 10 открытий доступно', { exact: false })
+        .waitFor();
     assert.equal((await getCollection(sql, userId)).length, 2);
     assert.deepEqual(errors, []);
     console.log(

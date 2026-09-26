@@ -41,7 +41,7 @@ test(
                 () => 0,
             );
             assert.equal(opened.drop.name, 'Dual Berettas | Hideout');
-            assert.equal(opened.remaining, 4);
+            assert.equal(opened.remaining, 9);
 
             const collection = await getCollection(sql, userId);
             assert.equal(collection.length, 1);

@@ -45,7 +45,7 @@ test(
             await migrate(sql);
             const userId = await upsertTelegramUser(sql, '42', 'Ada');
             assert.equal((await getSession(sql, token))?.userId, userId);
-            assert.equal(await getDailyRemaining(sql, userId), 4);
+            assert.equal(await getDailyRemaining(sql, userId), 9);
             assert.equal(
                 (await getCollection(sql, userId))[0].item.name,
                 'Dual Berettas | Hideout',

@@ -8,6 +8,7 @@ import {
     getCollection,
     getDailyRemaining,
     openCaseForUser,
+    resetOpeningLimit,
     upsertTelegramUser,
 } from '@/server/store';
 
@@ -24,6 +25,13 @@ async function accountStateFor(userId: string, firstName: string) {
 export async function getAccountState() {
     const session = await currentSession();
     if (!session) return null;
+    return accountStateFor(session.userId, session.firstName);
+}
+
+export async function resetCaseLimit() {
+    const session = await currentSession();
+    if (!session) throw new Error('Войдите в аккаунт');
+    await resetOpeningLimit(database(), session.userId);
     return accountStateFor(session.userId, session.firstName);
 }
 

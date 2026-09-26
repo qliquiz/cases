@@ -3,13 +3,13 @@ import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import type { Sql, TransactionSql } from 'postgres';
 
 import { caseCatalog, type CaseDrop, findCase } from '@/game/catalog';
+import { openingLimit } from '@/game/opening-limit';
 
 export type CaseItem = CaseDrop;
 import { openVirtualCase } from '@/game/open-case';
 
 import { authenticateIdentity } from './identities';
 
-const dailyLimit = 5;
 const sessionDays = 30;
 const maxSessionsPerUser = 5;
 const knownDrops = new Map(
@@ -92,13 +92,33 @@ export async function getDailyRemaining(
     userId: string,
 ) {
     const rows = await sql<{ used: number }[]>`
-        select count(*)::int as used
-        from openings
-        where user_id = ${userId}
-          and opened_at >=
-            (date_trunc('day', now() at time zone 'UTC') at time zone 'UTC')
+        select (
+            (select count(*) from openings
+             where user_id = ${userId}
+               and opened_at >= (date_trunc('day', now() at time zone 'UTC') at time zone 'UTC'))
+            - case when quota_reset_day = (now() at time zone 'UTC')::date
+                   then quota_reset_used else 0 end
+        )::int as used
+        from app_users where id = ${userId}
     `;
-    return Math.max(0, dailyLimit - rows[0].used);
+    if (!rows.length) throw new Error('Пользователь не найден');
+    return Math.max(0, Math.min(openingLimit, openingLimit - rows[0].used));
+}
+
+export async function resetOpeningLimit(sql: Sql, userId: string) {
+    await sql.begin(async (tx) => {
+        const users =
+            await tx`select id from app_users where id = ${userId} for update`;
+        if (!users.length) throw new Error('Пользователь не найден');
+        await tx`
+            update app_users
+            set quota_reset_day = (now() at time zone 'UTC')::date,
+                quota_reset_used = (select count(*)::int from openings
+                    where user_id = ${userId}
+                      and opened_at >= (date_trunc('day', now() at time zone 'UTC') at time zone 'UTC'))
+            where id = ${userId}
+        `;
+    });
 }
 
 export async function getCollection(
@@ -192,7 +212,7 @@ export async function openCaseForUser(
 
         const remaining = await getDailyRemaining(tx, userId);
         if (remaining <= 0)
-            throw new Error('Лимит 5 открытий на сегодня исчерпан');
+            throw new Error(`Лимит ${openingLimit} открытий исчерпан`);
 
         const drop = openVirtualCase(caseId, draw);
         const openingId = randomUUID();

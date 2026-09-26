@@ -29,7 +29,7 @@ test(
             await migrate(sql);
             userId = await upsertTelegramUser(sql, telegramId, 'Ada');
             const results = await Promise.allSettled(
-                Array.from({ length: 7 }, () =>
+                Array.from({ length: 12 }, () =>
                     openCaseForUser(
                         sql,
                         userId,
@@ -42,9 +42,9 @@ test(
             assert.equal(
                 results.filter((result) => result.status === 'fulfilled')
                     .length,
-                5,
+                10,
             );
-            assert.equal((await getCollection(sql, userId)).length, 5);
+            assert.equal((await getCollection(sql, userId)).length, 10);
         } finally {
             await sql`delete from app_users where id = ${userId}`;
             await sql.end();

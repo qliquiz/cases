@@ -4,6 +4,7 @@ import type { JWTVerifyGetKey } from 'jose';
 import type { Sql } from 'postgres';
 
 import { authenticateIdentity } from './identities';
+import { telegramFailure, TelegramLoginError } from './telegram-errors';
 import { verifyTelegramIdToken } from './telegram-login';
 
 export type TelegramLoginConfig = {
@@ -75,7 +76,21 @@ async function exchangeAuthorizationCode(
             code_verifier: verifier,
         }),
     });
-    if (!response.ok) throw new Error('Telegram не подтвердил вход');
+    if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        const known = [
+            'invalid_client',
+            'invalid_grant',
+            'invalid_request',
+            'unauthorized_client',
+            'unsupported_grant_type',
+            'invalid_scope',
+        ];
+        throw new TelegramLoginError(
+            'token_exchange',
+            known.includes(body?.error) ? body.error : 'provider_error',
+        );
+    }
     const body: unknown = await response.json();
     if (
         !body ||
@@ -83,7 +98,7 @@ async function exchangeAuthorizationCode(
         !('id_token' in body) ||
         typeof body.id_token !== 'string'
     ) {
-        throw new Error('Telegram не вернул ID token');
+        throw new TelegramLoginError('token_exchange', 'missing_id_token');
     }
     return body.id_token;
 }
@@ -106,16 +121,34 @@ export async function completeTelegramLogin(
         !input.code ||
         input.code.length > 4096
     )
-        throw new Error('Недействительный запрос входа');
+        throw new TelegramLoginError(
+            'state',
+            input.state !== input.cookieState
+                ? 'browser_mismatch'
+                : 'invalid_callback',
+        );
     const rows = await sql<{ verifier: string; link_user_id: string | null }[]>`
         delete from telegram_login_flows
         where state_hash = ${hash(input.state)} and expires_at > now()
         and link_user_id is not distinct from ${input.currentUserId ?? null}::uuid
         returning verifier, link_user_id
     `;
-    if (!rows.length) throw new Error('Запрос входа истёк или уже использован');
-    const token = await exchange(config, input.code, rows[0].verifier);
-    const identity = await verifyTelegramIdToken(token, config.clientId, keys);
+    if (!rows.length)
+        throw new TelegramLoginError('flow', 'expired_used_or_session_changed');
+    let token: string;
+    try {
+        token = await exchange(config, input.code, rows[0].verifier);
+    } catch (error) {
+        const failure = telegramFailure(error, 'token_exchange');
+        throw new TelegramLoginError(failure.stage, failure.reason);
+    }
+    let identity;
+    try {
+        identity = await verifyTelegramIdToken(token, config.clientId, keys);
+    } catch (error) {
+        const failure = telegramFailure(error, 'token_verify');
+        throw new TelegramLoginError(failure.stage, failure.reason);
+    }
     return authenticateIdentity(
         sql,
         identity,

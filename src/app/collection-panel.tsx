@@ -8,6 +8,7 @@ import {
     findCase,
     itemLabel,
 } from '@/game/catalog';
+import { openingLimit } from '@/game/opening-limit';
 import type { CollectionEntry } from '@/server/store';
 
 type AlbumFilter = 'all' | 'owned' | 'missing';
@@ -87,7 +88,7 @@ export function CollectionPanel({
                     </p>
                 </div>
                 <span className="text-xs text-muted">
-                    {remaining} из 5 открытий сегодня
+                    {remaining} из {openingLimit} открытий доступно
                 </span>
             </div>
             <div className="mt-4 rounded-2xl border border-line bg-inset p-4">
@@ -142,16 +143,14 @@ export function CollectionPanel({
                     Повторы не увеличивают прогресс.
                 </p>
             </div>
-            {remaining === 0 && (
-                <button
-                    type="button"
-                    onClick={onRefresh}
-                    disabled={refreshing}
-                    className="mt-3 cursor-pointer rounded-lg border border-accent/50 px-3 py-1 text-xs text-accent hover:border-accent disabled:cursor-wait disabled:opacity-50"
-                >
-                    {refreshing ? 'Обновляем…' : 'Обновить лимит'}
-                </button>
-            )}
+            <button
+                type="button"
+                onClick={onRefresh}
+                disabled={refreshing}
+                className="mt-3 cursor-pointer rounded-lg border border-accent/50 px-3 py-1 text-xs text-accent hover:border-accent disabled:cursor-wait disabled:opacity-50"
+            >
+                {refreshing ? 'Подождите…' : 'Сбросить лимит'}
+            </button>
             <div
                 role="group"
                 aria-label="Фильтр коллекции"
@@ -250,7 +249,8 @@ export function CollectionPanel({
                 </>
             )}
             <p className="mt-3 text-xs text-subtle">
-                Лимит обновляется в 00:00 UTC.
+                Тестовый режим: можно бесплатно сбрасывать лимит сколько угодно.
+                Автоматическое обновление — в 00:00 UTC.
             </p>
         </section>
     );

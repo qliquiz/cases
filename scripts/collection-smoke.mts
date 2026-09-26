@@ -107,10 +107,10 @@ try {
         'true',
     );
     await page
-        .getByRole('button', { name: 'Обновить лимит', exact: true })
+        .getByRole('button', { name: 'Сбросить лимит', exact: true })
         .click();
     assert.equal(
-        await page.getByText('5 из 5 открытий сегодня').isVisible(),
+        await page.getByText('10 из 10 открытий доступно').isVisible(),
         true,
     );
     await page.getByText('История открытий', { exact: true }).click();

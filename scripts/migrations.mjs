@@ -14,6 +14,13 @@ const migrations = [
         '004-analytics',
         new URL('../db/migrations/004-analytics.sql', import.meta.url),
     ],
+    [
+        '005-opening-limit-reset',
+        new URL(
+            '../db/migrations/005-opening-limit-reset.sql',
+            import.meta.url,
+        ),
+    ],
 ];
 
 export async function migrate(sql) {

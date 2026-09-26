@@ -143,7 +143,7 @@ test(
             assert.equal(await authenticateIdentity(sql, email, user), user);
             const webUser = await authenticateIdentity(sql, email);
             assert.equal(webUser, user);
-            assert.equal(await getDailyRemaining(sql, webUser), 4);
+            assert.equal(await getDailyRemaining(sql, webUser), 9);
             assert.equal((await getCollection(sql, webUser)).length, 1);
             const other = await authenticateIdentity(sql, {
                 provider: 'email',

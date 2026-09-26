@@ -56,7 +56,7 @@ function Fixture() {
             <CollectionPanel
                 collection={collection}
                 remaining={remaining}
-                onRefresh={() => setRemaining(5)}
+                onRefresh={() => setRemaining(10)}
             />
         </main>
     );

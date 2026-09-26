@@ -11,7 +11,12 @@ import {
     useTransition,
 } from 'react';
 
-import { getAccountState, openCase, startTelegramSession } from '@/app/actions';
+import {
+    getAccountState,
+    openCase,
+    resetCaseLimit,
+    startTelegramSession,
+} from '@/app/actions';
 import { AuthPanel } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
 import { observeActivity } from '@/browser/activity';
@@ -21,6 +26,7 @@ import {
     featuredCase,
     itemLabel,
 } from '@/game/catalog';
+import { openingLimit } from '@/game/opening-limit';
 import { createReel } from '@/game/reel';
 import {
     cardAtMarker,
@@ -301,6 +307,21 @@ export function CasePlayground({
         });
     }
 
+    function handleResetLimit() {
+        if (pending || authBusy || phase === 'ready' || phase === 'spinning')
+            return;
+        startTransition(async () => {
+            try {
+                const next = await resetCaseLimit();
+                setAccount(next);
+                requestIdRef.current = null;
+                setError(null);
+            } catch {
+                setError('Не удалось сбросить лимит. Попробуйте ещё раз.');
+            }
+        });
+    }
+
     function handleOpen() {
         if (
             pending ||
@@ -443,7 +464,8 @@ export function CasePlayground({
                         ))}
                     </div>
                     <p className="mt-2 text-xs text-subtle">
-                        5 открытий в сутки на все кейсы вместе
+                        {openingLimit} открытий на все кейсы вместе · свободный
+                        сброс в тестовом режиме
                     </p>
                 </fieldset>
             )}
@@ -603,8 +625,13 @@ export function CasePlayground({
                     caseData={caseData}
                     collection={account.collection}
                     remaining={account.remaining}
-                    onRefresh={refreshAccount}
-                    refreshing={pending}
+                    onRefresh={handleResetLimit}
+                    refreshing={
+                        pending ||
+                        authBusy ||
+                        phase === 'ready' ||
+                        phase === 'spinning'
+                    }
                 />
             )}
             <p className="mt-4 text-center text-xs text-subtle">

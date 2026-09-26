@@ -8,6 +8,7 @@ import {
     currentSession,
     telegramFlowCookieName,
 } from '@/server/session';
+import { telegramFailure } from '@/server/telegram-errors';
 import { beginTelegramLogin } from '@/server/telegram-flow';
 
 export async function GET(request: Request) {
@@ -33,7 +34,8 @@ export async function GET(request: Request) {
             maxAge: 10 * 60,
         });
         return NextResponse.redirect(flow.url);
-    } catch {
+    } catch (error) {
+        console.error('[telegram-login]', telegramFailure(error, 'begin'));
         return NextResponse.redirect(
             new URL('/?authError=telegram', appOrigin()),
         );

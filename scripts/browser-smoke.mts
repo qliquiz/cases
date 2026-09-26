@@ -3,7 +3,14 @@ import { randomUUID } from 'node:crypto';
 import { authenticateIdentity } from '../src/server/identities';
 import { chromium } from 'playwright';
 import postgres from 'postgres';
-import { createSession, getSession } from '../src/server/store';
+import {
+    createSession,
+    getSession,
+    getCollection,
+    getDailyRemaining,
+    openCaseForUser,
+} from '../src/server/store';
+import { featuredCase } from '../src/game/catalog';
 import { getAnalyticsReport } from '../src/server/analytics';
 
 const baseUrl = process.env.CASE_TEST_BASE_URL;
@@ -94,7 +101,9 @@ try {
     await page
         .getByRole('button', { name: 'Открыть ещё раз', exact: true })
         .waitFor();
-    await page.getByText('4 из 5 открытий сегодня', { exact: false }).waitFor();
+    await page
+        .getByText('9 из 10 открытий доступно', { exact: false })
+        .waitFor();
     const openedDay = (await getAnalyticsReport(sql)).days.at(-1)!;
     assert.equal(openedDay.firstOpeners, baseline.firstOpeners + 1);
     assert.equal(openedDay.openings, baseline.openings + 1);
@@ -105,6 +114,41 @@ try {
         (await getAnalyticsReport(sql)).days.at(-1)!.firstOpeners,
         baseline.firstOpeners + 1,
     );
+    for (let index = 0; index < 9; index++) {
+        await openCaseForUser(
+            sql,
+            userId,
+            featuredCase.id,
+            randomUUID(),
+            () => 0,
+        );
+    }
+    await page.reload();
+    await page.getByText('0 из 10 открытий доступно').waitFor();
+    assert.equal(
+        await page
+            .getByRole('button', { name: 'Открыть бесплатно', exact: true })
+            .isDisabled(),
+        true,
+    );
+    for (let cycle = 0; cycle < 2; cycle++) {
+        await page
+            .getByRole('button', { name: 'Сбросить лимит', exact: true })
+            .click();
+        await page.getByText('10 из 10 открытий доступно').waitFor();
+        assert.equal(await getDailyRemaining(sql, userId), 10);
+        await page
+            .getByRole('button', {
+                name: cycle === 0 ? 'Открыть бесплатно' : 'Открыть ещё раз',
+                exact: true,
+            })
+            .click();
+        await page.getByText('9 из 10 открытий доступно').waitFor();
+        assert.equal(await getDailyRemaining(sql, userId), 9);
+        assert.equal((await getCollection(sql, userId)).length, 11 + cycle);
+    }
+    await page.reload();
+    await page.getByText('9 из 10 открытий доступно').waitFor();
     await page.getByRole('button', { name: 'Выйти', exact: true }).click();
     await page
         .getByRole('button', { name: 'Войти через Telegram', exact: true })
@@ -120,7 +164,7 @@ try {
     );
     assert.deepEqual(errors, []);
     console.log(
-        'Browser smoke passed: web without Telegram SDK, email form, authenticated opening, real analytics route/report, reload deduplication, logout revocation, OAuth redirect.',
+        'Browser smoke passed: email form, authenticated opening, analytics, persistent 10-attempt quota, repeatable server reset and subsequent real openings, history preserved, logout revocation, OAuth redirect.',
     );
 } finally {
     if (userId) await sql`delete from app_users where id = ${userId}`;
