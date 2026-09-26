@@ -6,6 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "db:migrate": "node scripts/migrate.mjs",
+        "bot:check": "node --import tsx scripts/telegram-bot.mts check",
+        "bot:setup": "node --import tsx scripts/telegram-bot.mts setup",
         "start": "next start",
         "lint": "eslint",
         "lint:fix": "eslint --fix",
