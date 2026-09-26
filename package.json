@@ -19,6 +19,7 @@
         "test:theme": "node --import tsx scripts/theme-smoke.mts",
         "test:collection": "node --import tsx scripts/collection-smoke.mts",
         "test:analytics": "node --import tsx scripts/analytics-browser.mts",
+        "test:leaderboard": "node --import tsx scripts/leaderboard-smoke.mts",
         "analytics:report": "node --import tsx scripts/analytics-report.mts"
     },
     "dependencies": {

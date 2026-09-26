@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { CasePlayground } from '@/app/case-playground';
-import { ThemePicker } from '@/app/theme-picker';
+import { SiteHeader } from '@/app/site-header';
 import {
     type CaseDefinition,
     type CaseDrop,
@@ -63,22 +63,7 @@ export default function Home() {
     const [selectedCase, setSelectedCase] = useState(featuredCase);
     return (
         <main className="mx-auto min-h-screen w-full max-w-6xl px-5 pb-16 pt-6 sm:px-8">
-            <header className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
-                <div className="flex items-center gap-3">
-                    <div className="flex size-9 items-center justify-center rounded-xl bg-amber-400 text-lg font-black text-slate-950">
-                        C
-                    </div>
-                    <span className="text-lg font-bold tracking-tight">
-                        CaseGo
-                    </span>
-                </div>
-                <div className="flex flex-wrap items-center gap-3">
-                    <span className="hidden rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-success sm:inline-flex">
-                        Бесплатный прототип
-                    </span>
-                    <ThemePicker />
-                </div>
-            </header>
+            <SiteHeader active="cases" />
 
             <section className="grid gap-10 py-14 md:grid-cols-[1fr_0.9fr] md:items-center md:py-20">
                 <div>
