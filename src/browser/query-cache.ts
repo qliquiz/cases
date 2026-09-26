@@ -1,5 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 
+import { resetActivityCache } from './activity';
+
 const generations = new WeakMap<QueryClient, number>();
 export function sessionGeneration(client: QueryClient) {
     return generations.get(client) ?? 0;
@@ -34,6 +36,7 @@ export function createQueryClient() {
 
 export async function resetSessionCache(client: QueryClient) {
     generations.set(client, sessionGeneration(client) + 1);
+    resetActivityCache();
     await client.cancelQueries();
     await client.resetQueries();
 }

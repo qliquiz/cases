@@ -4,7 +4,6 @@ import { test } from 'node:test';
 
 import postgres from 'postgres';
 import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 
 import { migrate } from '../../scripts/migrations.mjs';
 import { CollectionPanel } from '../app/collection-panel';
@@ -16,6 +15,7 @@ import {
     upsertTelegramUser,
 } from '../server/store';
 import { featuredCase } from './catalog';
+import { renderToStaticMarkup } from './render-ui';
 
 const socket = process.env.TEST_PG_SOCKET;
 

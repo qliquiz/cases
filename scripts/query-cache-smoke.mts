@@ -38,10 +38,27 @@ page.setDefaultTimeout(15_000);
 let user = '';
 let miniUser = '';
 let reads = 0;
+let routeReads = 0;
+let visits = 0;
+let acknowledgedVisits = 0;
 const errors: string[] = [];
 page.on('pageerror', (error) => errors.push(error.message));
+page.on('response', (response) => {
+    if (
+        new URL(response.url()).pathname === '/api/activity' &&
+        response.request().postData() === 'visit' &&
+        response.status() === 204
+    )
+        acknowledgedVisits++;
+});
 page.on('request', (request) => {
     if (request.headers()['next-action']) reads++;
+    if (new URL(request.url()).searchParams.has('_rsc')) routeReads++;
+    if (
+        new URL(request.url()).pathname === '/api/activity' &&
+        request.postData() === 'visit'
+    )
+        visits++;
 });
 const nav = (name: string) =>
     page
@@ -96,6 +113,8 @@ try {
     await nav('Рейтинг');
     await ownOpenings.filter({ hasText: /^1$/ }).waitFor();
     const beforeNavigation = reads;
+    const routesBeforeNavigation = routeReads;
+    const visitsBeforeNavigation = visits;
     await nav('Кейсы');
     await page.getByRole('button', { name: 'Выйти', exact: true }).waitFor();
     await nav('Рейтинг');
@@ -106,6 +125,19 @@ try {
         beforeNavigation,
         'Fresh account and leaderboard must not refetch on menu navigation',
     );
+    assert.equal(
+        routeReads,
+        routesBeforeNavigation,
+        'Visited menu pages must reuse their RSC payload, not just query data',
+    );
+    // HTTP-only production fixtures can intentionally fail the HTTPS Origin
+    // check; failed telemetry must remain retryable, not count as delivered.
+    if (acknowledgedVisits)
+        assert.equal(
+            visits,
+            visitsBeforeNavigation,
+            'Menu navigation must not send duplicate acknowledged daily visits',
+        );
 
     const input = page.getByLabel('Публичный ник', { exact: true });
     await input.fill('Unsaved draft');

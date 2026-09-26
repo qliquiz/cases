@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { useState, useTransition } from 'react';
 
 import { leaderboardKey, leaderboardQueryOptions } from '@/app/query-options';
+import { LeaderboardSkeleton } from '@/app/skeletons';
 import { sessionGeneration } from '@/browser/query-cache';
 
 import { updateLeaderboardProfile } from './actions';
+import { LeaderboardIntro, RefreshRatingButton } from './leaderboard-intro';
 
 const count = (value: number) => value.toLocaleString('ru-RU');
 const buttonClass =
@@ -54,45 +56,21 @@ export function LeaderboardScreen() {
 
     return (
         <>
-            <section className="py-10 sm:py-14">
-                <div className="flex flex-wrap items-start justify-between gap-5">
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                            Коллекция решает
-                        </p>
-                        <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-                            Рейтинг игроков
-                        </h1>
-                        <p className="mt-4 max-w-2xl leading-7 text-muted">
-                            Собирай новые предметы и поднимайся в топе. Каждый
-                            уникальный предмет — одно очко. Дубликаты не
-                            увеличивают результат.
-                        </p>
-                    </div>
-                    <button
+            <LeaderboardIntro
+                action={
+                    <RefreshRatingButton
                         onClick={refresh}
                         disabled={pending || query.isFetching}
-                        className="cursor-pointer rounded-xl border border-line px-4 py-3 text-sm font-semibold text-muted hover:bg-surface disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-accent"
                     >
                         {pending
                             ? 'Подождите…'
                             : query.isFetching
                               ? 'Обновляем…'
                               : 'Обновить рейтинг'}
-                    </button>
-                </div>
-                <div className="mt-6 rounded-2xl border border-accent/30 bg-amber-400/10 p-4 text-sm leading-6 text-muted">
-                    <strong className="text-accent">Тестовый рейтинг.</strong>{' '}
-                    Сейчас лимит можно сбрасывать без ограничений, поэтому число
-                    открытий не ограничено. Все сохранённые открытия
-                    учитываются; призов и реальной стоимости предметов нет.
-                </div>
-            </section>
-            {query.isPending && (
-                <p role="status" className="py-8 text-muted">
-                    Загружаем рейтинг…
-                </p>
-            )}
+                    </RefreshRatingButton>
+                }
+            />
+            {query.isPending && <LeaderboardSkeleton />}
             {query.isError && (
                 <p
                     role="alert"
@@ -117,7 +95,7 @@ export function LeaderboardScreen() {
                 <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
                     <section
                         aria-label="Топ игроков"
-                        className="min-w-0 overflow-hidden rounded-3xl border border-line bg-surface"
+                        className="min-h-[30rem] min-w-0 overflow-hidden rounded-3xl border border-line bg-surface"
                     >
                         <div className="flex items-center justify-between gap-3 border-b border-line p-5 sm:p-6">
                             <h2 className="text-xl font-bold">Топ-50</h2>
@@ -195,7 +173,7 @@ export function LeaderboardScreen() {
                             каталога, включая повторы.
                         </p>
                     </section>
-                    <aside className="order-first rounded-3xl border border-line bg-surface p-5 sm:p-6 lg:order-last">
+                    <aside className="order-first min-h-[30rem] rounded-3xl border border-line bg-surface p-5 sm:p-6 lg:order-last">
                         <h2 className="text-xl font-bold">Моё место</h2>
                         {mine ? (
                             <>

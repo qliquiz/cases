@@ -2,11 +2,11 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 
 import { CollectionPanel } from '../app/collection-panel';
 import type { CollectionEntry } from '../server/store';
 import { featuredCase, findCase } from './catalog';
+import { renderToStaticMarkup } from './render-ui';
 
 function entry(item: CollectionEntry['item'], id: string): CollectionEntry {
     return {

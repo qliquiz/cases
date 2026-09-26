@@ -5,7 +5,6 @@ import {
     useQuery,
     useQueryClient,
 } from '@tanstack/react-query';
-import Image from 'next/image';
 import Script from 'next/script';
 import {
     useCallback,
@@ -22,13 +21,15 @@ import {
     resetCaseLimit,
     startTelegramSession,
 } from '@/app/actions';
-import { AuthPanel } from '@/app/auth-panel';
+import { AuthPanel, GuestAccountHint } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
+import { ItemImage } from '@/app/item-image';
 import {
     accountKey,
     accountQueryOptions,
     leaderboardKey,
 } from '@/app/query-options';
+import { AccountSkeleton } from '@/app/skeletons';
 import { observeActivity } from '@/browser/activity';
 import {
     announceSessionChange,
@@ -499,12 +500,11 @@ export function CasePlayground({
                                     onCaseChange(item);
                                 }}
                             >
-                                <Image
+                                <ItemImage
                                     src={item.image}
                                     alt=""
                                     width={96}
                                     height={60}
-                                    unoptimized
                                     className="mx-auto mb-1 h-12 w-full object-contain"
                                 />
                                 {item.name}
@@ -557,12 +557,12 @@ export function CasePlayground({
                                         borderBottomWidth: 4,
                                     }}
                                 >
-                                    <Image
+                                    <ItemImage
                                         src={item.image}
                                         alt=""
                                         width={140}
                                         height={105}
-                                        unoptimized
+                                        loading="eager"
                                         className="h-24 w-36 object-contain"
                                     />
                                     <span className="mt-2 max-w-full truncate text-xs font-semibold">
@@ -577,14 +577,13 @@ export function CasePlayground({
                     </>
                 ) : (
                     <div className="flex h-full flex-col items-center justify-center">
-                        <Image
+                        <ItemImage
                             src={caseData.image}
                             alt={caseData.name}
                             width={170}
                             height={150}
-                            unoptimized
                             className="h-36 w-44 object-contain"
-                            priority
+                            preload
                         />
                         <p className="mt-2 text-sm text-slate-400">
                             Нажми, чтобы открыть кейс
@@ -611,25 +610,6 @@ export function CasePlayground({
                     <p className="text-sm text-subtle">Лента прокручивается…</p>
                 ) : null}
             </div>
-            {authStatus === 'loading' && (
-                <p className="mb-3 text-center text-sm text-subtle">
-                    Проверяем вход…
-                </p>
-            )}
-            {authStatus === 'signed-out' && (
-                <p className="mb-3 text-center text-sm text-accent">
-                    Войдите, чтобы открывать кейсы и сохранять коллекцию.
-                </p>
-            )}
-            {authStatus === 'error' && (
-                <p
-                    role="alert"
-                    className="mb-3 text-center text-sm text-danger"
-                >
-                    Не удалось проверить вход. Перезапустите Mini App или
-                    войдите на сайте.
-                </p>
-            )}
             <button
                 type="button"
                 onClick={handleOpen}
@@ -652,6 +632,17 @@ export function CasePlayground({
                         ? 'Открыть ещё раз'
                         : 'Открыть бесплатно'}
             </button>
+            {authStatus === 'signed-out' && <GuestAccountHint />}
+            {authStatus === 'error' && (
+                <p
+                    role="alert"
+                    className="mt-3 text-center text-sm text-danger"
+                >
+                    Не удалось проверить вход. Перезапустите Mini App или
+                    войдите на сайте.
+                </p>
+            )}
+            {authStatus === 'loading' && <AccountSkeleton />}
             {(error || authFlowMessage) && (
                 <p className="mt-3 text-center text-sm text-danger">
                     {error || authFlowMessage}

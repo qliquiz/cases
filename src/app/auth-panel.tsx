@@ -9,6 +9,14 @@ type Account = {
     identities: { provider: 'telegram' | 'email'; subject: string }[];
 };
 
+export function GuestAccountHint() {
+    return (
+        <p className="mt-3 text-center text-sm text-accent">
+            Войдите, чтобы открывать кейсы и сохранять коллекцию.
+        </p>
+    );
+}
+
 export function AuthPanel({
     account,
     onChanged,

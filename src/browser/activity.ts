@@ -1,11 +1,19 @@
 import type { ActivityEvent } from '@/game/analytics-events';
 
+const deliveredDays = new Map<ActivityEvent, string>();
+let generation = 0;
+
+export function resetActivityCache() {
+    generation++;
+    deliveredDays.clear();
+}
+
 // Best-effort signals only. Identity, UTC day and durable deduplication are server-owned.
 export function observeActivity(event: ActivityEvent, target?: Element | null) {
+    const sessionGeneration = generation;
     let inViewport = event === 'visit';
     let stopped = false;
     let pending = false;
-    let sentDay = '';
     let attemptDay = '';
     let attemptedAt = 0;
     let midnightTimer: number | undefined;
@@ -19,7 +27,8 @@ export function observeActivity(event: ActivityEvent, target?: Element | null) {
             pending ||
             !inViewport ||
             document.visibilityState !== 'visible' ||
-            sentDay === today
+            sessionGeneration !== generation ||
+            deliveredDays.get(event) === today
         )
             return;
         if (attemptDay === today && Date.now() - attemptedAt < 60_000) return;
@@ -36,7 +45,8 @@ export function observeActivity(event: ActivityEvent, target?: Element | null) {
                 body: event,
                 signal: controller.signal,
             });
-            if (response.ok) sentDay = today;
+            if (response.ok && sessionGeneration === generation)
+                deliveredDays.set(event, today);
         } catch {
             // Network/analytics failures must not affect authentication or opening.
         } finally {

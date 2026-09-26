@@ -26,7 +26,7 @@ export function SiteHeader({ active }: { active: 'cases' | 'leaderboard' }) {
                     <Link
                         key={key}
                         href={href}
-                        prefetch={false}
+                        prefetch={true}
                         aria-current={active === key ? 'page' : undefined}
                         className={`rounded-lg px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-accent ${active === key ? 'bg-amber-400 text-slate-950' : 'text-muted hover:bg-inset'}`}
                     >

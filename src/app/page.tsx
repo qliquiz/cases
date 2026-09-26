@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 
 import { CasePlayground } from '@/app/case-playground';
+import { ItemImage } from '@/app/item-image';
 import { SiteHeader } from '@/app/site-header';
 import {
     type CaseDefinition,
@@ -31,12 +31,11 @@ function ItemCard({
             style={{ borderBottomColor: accent, borderBottomWidth: 3 }}
         >
             <div className="mb-4 flex h-28 items-center justify-center rounded-xl bg-slate-900">
-                <Image
+                <ItemImage
                     src={item.image}
                     alt=""
                     width={190}
                     height={110}
-                    unoptimized
                     className="h-24 w-full object-contain"
                 />
             </div>

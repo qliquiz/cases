@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
+import { ItemImage } from '@/app/item-image';
 import { observeActivity } from '@/browser/activity';
 import {
     type CaseDefinition,
@@ -274,12 +274,11 @@ function AlbumCard({
                 style={{ borderBottomColor: rare ? '#e4ae39' : item.accent }}
             >
                 {item.image && (
-                    <Image
+                    <ItemImage
                         src={item.image}
                         alt=""
                         width={120}
                         height={75}
-                        unoptimized
                         className={`h-16 w-full object-contain ${count ? '' : 'opacity-40 grayscale'}`}
                     />
                 )}
