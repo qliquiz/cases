@@ -26,15 +26,15 @@ export function CollectionPanel({
     }
 
     return (
-        <section className="mt-6 border-t border-white/10 pt-5">
+        <section className="mt-6 border-t border-line pt-5">
             <div className="flex flex-wrap items-end justify-between gap-2">
                 <div>
                     <h2 className="text-lg font-bold">Моя коллекция</h2>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-subtle">
                         Общая для сайта и Telegram
                     </p>
                 </div>
-                <span className="text-xs text-slate-300">
+                <span className="text-xs text-muted">
                     {remaining} из 5 открытий сегодня · {collection.length}{' '}
                     предметов
                 </span>
@@ -44,13 +44,13 @@ export function CollectionPanel({
                     type="button"
                     onClick={onRefresh}
                     disabled={refreshing}
-                    className="mt-3 cursor-pointer rounded-lg border border-amber-300/50 px-3 py-1 text-xs text-amber-200 hover:border-amber-200 disabled:cursor-wait disabled:opacity-50"
+                    className="mt-3 cursor-pointer rounded-lg border border-accent/50 px-3 py-1 text-xs text-accent hover:border-accent disabled:cursor-wait disabled:opacity-50"
                 >
                     {refreshing ? 'Обновляем…' : 'Обновить лимит'}
                 </button>
             )}
             {collection.length === 0 ? (
-                <p className="mt-4 text-sm text-slate-400">
+                <p className="mt-4 text-sm text-subtle">
                     Открой кейс, чтобы начать коллекцию.
                 </p>
             ) : (
@@ -60,7 +60,7 @@ export function CollectionPanel({
                             return (
                                 <div
                                     key={itemId}
-                                    className="rounded-xl border border-white/10 bg-slate-950/50 p-2 text-center"
+                                    className="rounded-xl border border-line bg-inset p-2 text-center"
                                 >
                                     {item.image && (
                                         <Image
@@ -75,14 +75,14 @@ export function CollectionPanel({
                                     <p className="mt-1 truncate text-xs font-medium">
                                         {item.name}
                                     </p>
-                                    <p className="text-xs text-slate-400">
+                                    <p className="text-xs text-subtle">
                                         ×{count}
                                     </p>
                                 </div>
                             );
                         })}
                     </div>
-                    <details className="mt-4 text-xs text-slate-400">
+                    <details className="mt-4 text-xs text-subtle">
                         <summary className="cursor-pointer">
                             История открытий
                         </summary>
@@ -99,7 +99,7 @@ export function CollectionPanel({
                     </details>
                 </>
             )}
-            <p className="mt-3 text-xs text-slate-500">
+            <p className="mt-3 text-xs text-subtle">
                 Лимит обновляется в 00:00 UTC.
             </p>
         </section>

@@ -30,14 +30,6 @@ type Phase = 'idle' | 'ready' | 'spinning' | 'complete';
 type Account = NonNullable<Awaited<ReturnType<typeof getAccountState>>>;
 type AuthStatus = 'loading' | 'ready' | 'signed-out' | 'error';
 
-declare global {
-    interface Window {
-        Telegram?: {
-            WebApp?: { initData: string; ready: () => void };
-        };
-    }
-}
-
 const cardWidth = 160;
 const cardStep = 176;
 const rareItemIds = new Set(featuredCase.rareDrops.map((item) => item.id));
@@ -366,11 +358,16 @@ export function CasePlayground() {
             : 0;
 
     return (
-        <div className="rounded-[2rem] border border-white/15 bg-gradient-to-b from-slate-800 to-slate-900 p-5 shadow-2xl shadow-black/30 sm:p-7">
+        <div className="rounded-[2rem] border border-line bg-gradient-to-b from-raised to-surface p-5 shadow-2xl shadow-black/10 sm:p-7">
             {isMiniApp && (
                 <Script
                     src="https://telegram.org/js/telegram-web-app.js?63"
-                    onReady={() => bootstrap(true)}
+                    onReady={() => {
+                        window.dispatchEvent(
+                            new Event('casego:telegram-ready'),
+                        );
+                        bootstrap(true);
+                    }}
                     onError={() => setAuthStatus('error')}
                 />
             )}
@@ -389,20 +386,20 @@ export function CasePlayground() {
                             }
                             setSoundOn(!soundOn);
                         }}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white"
+                        className="cursor-pointer rounded-lg border border-line px-3 py-1 text-xs text-muted transition hover:border-line-strong hover:text-foreground"
                     >
                         Звук: {soundOn ? 'вкл' : 'выкл'}
                     </button>
                 </div>
             </div>
             {soundError && (
-                <p role="alert" className="mt-2 text-xs text-rose-300">
+                <p role="alert" className="mt-2 text-xs text-danger">
                     {soundError}
                 </p>
             )}
             <div
                 ref={viewportRef}
-                className="relative mt-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80"
+                className="relative mt-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-slate-950 text-slate-100"
             >
                 {reel ? (
                     <>
@@ -473,37 +470,35 @@ export function CasePlayground() {
                 {result ? (
                     <>
                         <p
-                            className="font-bold"
+                            className="inline-block rounded-lg bg-slate-950 px-3 py-1 font-bold"
                             style={{ color: itemAccent(result) }}
                         >
                             {result.name}
                         </p>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-subtle">
                             {rareItemIds.has(result.id)
                                 ? 'Редкий особый предмет'
                                 : result.rarity}
                         </p>
                     </>
                 ) : phase === 'spinning' ? (
-                    <p className="text-sm text-slate-400">
-                        Лента прокручивается…
-                    </p>
+                    <p className="text-sm text-subtle">Лента прокручивается…</p>
                 ) : null}
             </div>
             {authStatus === 'loading' && (
-                <p className="mb-3 text-center text-sm text-slate-400">
+                <p className="mb-3 text-center text-sm text-subtle">
                     Проверяем вход…
                 </p>
             )}
             {authStatus === 'signed-out' && (
-                <p className="mb-3 text-center text-sm text-amber-200">
+                <p className="mb-3 text-center text-sm text-accent">
                     Войдите, чтобы открывать кейсы и сохранять коллекцию.
                 </p>
             )}
             {authStatus === 'error' && (
                 <p
                     role="alert"
-                    className="mb-3 text-center text-sm text-rose-300"
+                    className="mb-3 text-center text-sm text-danger"
                 >
                     Не удалось проверить вход. Перезапустите Mini App или
                     войдите на сайте.
@@ -532,7 +527,7 @@ export function CasePlayground() {
                         : 'Открыть бесплатно'}
             </button>
             {(error || authFlowMessage) && (
-                <p className="mt-3 text-center text-sm text-rose-300">
+                <p className="mt-3 text-center text-sm text-danger">
                     {error || authFlowMessage}
                 </p>
             )}
@@ -554,7 +549,7 @@ export function CasePlayground() {
                     refreshing={pending}
                 />
             )}
-            <p className="mt-4 text-center text-xs text-slate-500">
+            <p className="mt-4 text-center text-xs text-subtle">
                 Результат виртуальный и не выдаётся в Steam
             </p>
         </div>

@@ -42,14 +42,14 @@ export function AuthPanel({
         (item) => item.provider === 'email',
     )?.subject;
     const button =
-        'cursor-pointer rounded-lg border border-white/20 px-3 py-2 text-sm hover:border-amber-200 disabled:cursor-wait disabled:opacity-50';
+        'cursor-pointer rounded-lg border border-line-strong px-3 py-2 text-sm hover:border-accent disabled:cursor-wait disabled:opacity-50';
     const input =
-        'w-full rounded-lg border border-white/20 bg-slate-950 px-3 py-2 text-sm text-white';
+        'w-full rounded-lg border border-line-strong bg-inset px-3 py-2 text-sm text-foreground';
 
     return (
         <fieldset
             disabled={pending || disabled}
-            className="mt-4 rounded-xl border border-white/10 p-4 disabled:opacity-70"
+            className="mt-4 rounded-xl border border-line p-4 disabled:opacity-70"
         >
             <legend className="px-2 text-sm font-semibold">
                 {account ? 'Ваш аккаунт' : 'Вход и регистрация'}
@@ -135,7 +135,7 @@ export function AuthPanel({
                     }}
                     className="space-y-2"
                 >
-                    <label className="block space-y-1 text-xs text-slate-300">
+                    <label className="block space-y-1 text-xs text-muted">
                         <span>
                             {account
                                 ? 'Привязать email'
@@ -154,7 +154,7 @@ export function AuthPanel({
                         />
                     </label>
                     {sent && (
-                        <label className="block space-y-1 text-xs text-slate-300">
+                        <label className="block space-y-1 text-xs text-muted">
                             <span>Код из письма</span>
                             <input
                                 name="code"
@@ -181,7 +181,7 @@ export function AuthPanel({
                     {sent && (
                         <button
                             type="button"
-                            className="cursor-pointer text-xs text-slate-300 underline"
+                            className="cursor-pointer text-xs text-muted underline"
                             onClick={() => {
                                 setSent(false);
                                 setCode('');
@@ -192,7 +192,7 @@ export function AuthPanel({
                         </button>
                     )}
                     {!account && (
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-subtle">
                             При первом входе аккаунт создастся автоматически.
                             Уже играли через Telegram? Войдите через него и
                             привяжите почту в аккаунте.
@@ -201,7 +201,7 @@ export function AuthPanel({
                 </form>
             )}
             {message && (
-                <p role="status" className="mt-2 text-xs text-amber-200">
+                <p role="status" className="mt-2 text-xs text-accent">
                     {message}
                 </p>
             )}
