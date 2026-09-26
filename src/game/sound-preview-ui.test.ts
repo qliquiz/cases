@@ -6,7 +6,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import { CasePlayground } from '../app/case-playground';
 
-test('игрок может проверить звук до открытия кейса', () => {
+test('проверка звука скрыта, но управление игровыми звуками доступно', () => {
     const html = renderToStaticMarkup(createElement(CasePlayground));
-    assert.match(html, /Проверить звук/);
+    assert.doesNotMatch(html, /Проверить звук/);
+    assert.match(html, /Звук: вкл/);
 });

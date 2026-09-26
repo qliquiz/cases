@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Case Lab — бесплатный симулятор кейсов',
+    title: 'CaseGo — бесплатный симулятор кейсов',
     description:
         'Открывай виртуальные кейсы с прозрачными шансами и без ставок.',
 };

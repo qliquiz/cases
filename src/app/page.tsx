@@ -50,7 +50,7 @@ export default function Home() {
                         C
                     </div>
                     <span className="text-lg font-bold tracking-tight">
-                        Case Lab
+                        CaseGo
                     </span>
                 </div>
                 <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
@@ -125,7 +125,7 @@ export default function Home() {
             <footer className="pt-8 text-sm leading-6 text-slate-500">
                 Неофициальный прототип, не связан с Valve. Изображения предметов
                 и кейса принадлежат их правообладателям. Коллекция сохраняется в
-                аккаунте Case Lab; предметы не передаются в Steam.
+                аккаунте CaseGo; предметы не передаются в Steam.
             </footer>
         </main>
     );

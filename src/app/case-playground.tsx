@@ -379,20 +379,6 @@ export function CasePlayground() {
                 <div className="flex items-center gap-2">
                     <button
                         type="button"
-                        disabled={
-                            pending || phase === 'ready' || phase === 'spinning'
-                        }
-                        onClick={() => {
-                            setSoundOn(true);
-                            activateAudio();
-                            suspendAudio(800);
-                        }}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs text-slate-300 transition hover:border-white/30 hover:text-white disabled:cursor-wait disabled:opacity-50"
-                    >
-                        Проверить звук
-                    </button>
-                    <button
-                        type="button"
                         aria-pressed={soundOn}
                         onClick={() => {
                             if (!soundOn) {

@@ -34,7 +34,7 @@ export async function sendLoginCode(email: string, code: string) {
     await transport.sendMail({
         from,
         to: { address: email, name: '' },
-        subject: 'Код входа в Case Lab',
+        subject: 'Код входа в CaseGo',
         text:
             'Ваш код: ' +
             code +
