@@ -31,7 +31,7 @@ export function CollectionPanel({
                 <div>
                     <h2 className="text-lg font-bold">Моя коллекция</h2>
                     <p className="text-xs text-slate-400">
-                        Сохранена в аккаунте Telegram
+                        Общая для сайта и Telegram
                     </p>
                 </div>
                 <span className="text-xs text-slate-300">

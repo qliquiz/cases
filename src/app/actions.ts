@@ -1,31 +1,30 @@
 'use server';
 
-import { cookies } from 'next/headers';
-
 import { verifyTelegramInitData } from '@/game/telegram-auth';
 import { database } from '@/server/db';
-import { currentSession, sessionCookieName } from '@/server/session';
+import { getIdentities } from '@/server/identities';
+import { currentSession, establishSession } from '@/server/session';
 import {
-    createSession,
     getCollection,
     getDailyRemaining,
     openCaseForUser,
     upsertTelegramUser,
 } from '@/server/store';
 
-async function accountStateFor(telegramId: string, firstName: string) {
+async function accountStateFor(userId: string, firstName: string) {
     const sql = database();
-    const [remaining, collection] = await Promise.all([
-        getDailyRemaining(sql, telegramId),
-        getCollection(sql, telegramId),
+    const [remaining, collection, identities] = await Promise.all([
+        getDailyRemaining(sql, userId),
+        getCollection(sql, userId),
+        getIdentities(sql, userId),
     ]);
-    return { firstName, remaining, collection };
+    return { firstName, remaining, collection, identities };
 }
 
 export async function getAccountState() {
     const session = await currentSession();
     if (!session) return null;
-    return accountStateFor(session.telegramId, session.firstName);
+    return accountStateFor(session.userId, session.firstName);
 }
 
 export async function startTelegramSession(rawInitData: string) {
@@ -34,32 +33,29 @@ export async function startTelegramSession(rawInitData: string) {
 
     const identity = verifyTelegramInitData(rawInitData, botToken);
     const sql = database();
-    await upsertTelegramUser(sql, identity.id, identity.firstName);
+    const userId = await upsertTelegramUser(
+        sql,
+        identity.id,
+        identity.firstName,
+    );
     const existing = await currentSession();
-    if (existing?.telegramId === identity.id) {
-        return accountStateFor(identity.id, identity.firstName);
+    if (existing?.userId === userId) {
+        return accountStateFor(userId, identity.firstName);
     }
-    const token = await createSession(sql, identity.id);
-    (await cookies()).set(sessionCookieName, token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 30 * 24 * 60 * 60,
-    });
-    return accountStateFor(identity.id, identity.firstName);
+    await establishSession(userId);
+    return accountStateFor(userId, identity.firstName);
 }
 
 export async function openCase(caseId: string, requestId: string) {
     const session = await currentSession();
-    if (!session) throw new Error('Откройте приложение через Telegram');
+    if (!session) throw new Error('Войдите в аккаунт');
     const sql = database();
     const opened = await openCaseForUser(
         sql,
-        session.telegramId,
+        session.userId,
         caseId,
         requestId,
     );
-    const collection = await getCollection(sql, session.telegramId);
+    const collection = await getCollection(sql, session.userId);
     return { ...opened, collection };
 }

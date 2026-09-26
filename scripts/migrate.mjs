@@ -1,7 +1,7 @@
-import { readFile } from 'node:fs/promises';
-
 import nextEnv from '@next/env';
 import postgres from 'postgres';
+
+import { migrate } from './migrations.mjs';
 
 nextEnv.loadEnvConfig(process.cwd());
 const databaseUrl = process.env.DATABASE_URL;
@@ -12,12 +12,8 @@ if (!databaseUrl) {
 
 const sql = postgres(databaseUrl, { max: 1 });
 try {
-    const schema = await readFile(
-        new URL('../db/schema.sql', import.meta.url),
-        'utf8',
-    );
-    await sql.unsafe(schema).simple();
-    console.log('Схема PostgreSQL готова');
+    await migrate(sql);
+    console.log('Миграции PostgreSQL применены');
 } finally {
     await sql.end();
 }

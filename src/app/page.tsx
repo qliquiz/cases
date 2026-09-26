@@ -125,7 +125,7 @@ export default function Home() {
             <footer className="pt-8 text-sm leading-6 text-slate-500">
                 Неофициальный прототип, не связан с Valve. Изображения предметов
                 и кейса принадлежат их правообладателям. Коллекция сохраняется в
-                аккаунте Telegram; предметы не передаются в Steam.
+                аккаунте Case Lab; предметы не передаются в Steam.
             </footer>
         </main>
     );

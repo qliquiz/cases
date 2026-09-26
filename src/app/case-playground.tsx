@@ -2,9 +2,17 @@
 
 import Image from 'next/image';
 import Script from 'next/script';
-import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
+import {
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+    useSyncExternalStore,
+    useTransition,
+} from 'react';
 
 import { getAccountState, openCase, startTelegramSession } from '@/app/actions';
+import { AuthPanel } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
 import { featuredCase } from '@/game/catalog';
 import { createReel } from '@/game/reel';
@@ -20,7 +28,7 @@ type Drop = (typeof featuredCase.drops)[number];
 type Reel = ReturnType<typeof createReel>;
 type Phase = 'idle' | 'ready' | 'spinning' | 'complete';
 type Account = NonNullable<Awaited<ReturnType<typeof getAccountState>>>;
-type AuthStatus = 'loading' | 'ready' | 'telegram-required' | 'error';
+type AuthStatus = 'loading' | 'ready' | 'signed-out' | 'error';
 
 declare global {
     interface Window {
@@ -38,6 +46,18 @@ function itemAccent(item: Drop) {
     return rareItemIds.has(item.id) ? '#e4ae39' : item.accent;
 }
 
+const subscribeLaunch = () => () => {};
+const serverLaunch = () => null;
+function browserLaunch() {
+    const mini =
+        Boolean(window.Telegram?.WebApp?.initData) ||
+        new URLSearchParams(window.location.hash.slice(1)).has('tgWebAppData');
+    return (
+        (mini ? 'mini:' : 'web:') +
+        (new URLSearchParams(window.location.search).get('authError') ?? '')
+    );
+}
+
 export function CasePlayground() {
     const [result, setResult] = useState<Drop | null>(null);
     const [reel, setReel] = useState<Reel | null>(null);
@@ -46,6 +66,21 @@ export function CasePlayground() {
     const [soundOn, setSoundOn] = useState(true);
     const [soundError, setSoundError] = useState<string | null>(null);
     const [account, setAccount] = useState<Account | null>(null);
+    const [authBusy, setAuthBusy] = useState(false);
+    const launch = useSyncExternalStore(
+        subscribeLaunch,
+        browserLaunch,
+        serverLaunch,
+    );
+    const isMiniApp = launch?.startsWith('mini:') ?? false;
+    const [dismissedAuthError, setDismissedAuthError] = useState(false);
+    const authFlowError = !dismissedAuthError && launch?.split(':')[1];
+    const authFlowMessage =
+        authFlowError === 'conflict'
+            ? 'Этот способ входа уже связан с другим аккаунтом. Автоматическое объединение недоступно.'
+            : authFlowError
+              ? 'Не удалось завершить вход через Telegram. Попробуйте ещё раз или используйте email.'
+              : null;
     const [authStatus, setAuthStatus] = useState<AuthStatus>('loading');
     const [pending, startTransition] = useTransition();
     const viewportRef = useRef<HTMLDivElement>(null);
@@ -68,27 +103,49 @@ export function CasePlayground() {
         };
     }, []);
 
-    const bootstrap = useCallback(() => {
-        if (bootstrappedRef.current) return;
-        bootstrappedRef.current = true;
-        startTransition(async () => {
-            try {
-                const webApp = window.Telegram?.WebApp;
-                webApp?.ready();
-                const next = webApp?.initData
-                    ? await startTelegramSession(webApp.initData)
-                    : await getAccountState();
-                if (!next) {
-                    setAuthStatus('telegram-required');
-                    return;
+    const bootstrap = useCallback(
+        (miniApp: boolean) => {
+            if (bootstrappedRef.current) return;
+            bootstrappedRef.current = true;
+            startTransition(async () => {
+                try {
+                    const webApp = window.Telegram?.WebApp;
+                    if (miniApp && !webApp?.initData)
+                        throw new Error('Нет данных Telegram');
+                    if (miniApp) webApp?.ready();
+                    const next = miniApp
+                        ? await startTelegramSession(webApp!.initData)
+                        : await getAccountState();
+                    if (!next) {
+                        setAuthStatus('signed-out');
+                        return;
+                    }
+                    setAccount(next);
+                    setAuthStatus('ready');
+                } catch {
+                    setAuthStatus('error');
                 }
-                setAccount(next);
-                setAuthStatus('ready');
-            } catch {
-                setAuthStatus('error');
-            }
-        });
-    }, [startTransition]);
+            });
+        },
+        [startTransition],
+    );
+
+    useEffect(() => {
+        if (launch && !isMiniApp) bootstrap(false);
+    }, [launch, isMiniApp, bootstrap]);
+
+    async function accountChanged() {
+        setDismissedAuthError(true);
+        const next = await getAccountState();
+        setAccount(next);
+        setAuthStatus(next ? 'ready' : 'signed-out');
+        setResult(null);
+        setReel(null);
+        setPhase('idle');
+        setError(null);
+        requestIdRef.current = null;
+        pendingAccountRef.current = null;
+    }
 
     const suspendAudio = useCallback((delayMs = 0) => {
         if (suspendTimerRef.current !== null) {
@@ -222,7 +279,7 @@ export function CasePlayground() {
             try {
                 const next = await getAccountState();
                 if (!next) {
-                    setAuthStatus('telegram-required');
+                    setAuthStatus('signed-out');
                     setAccount(null);
                     return;
                 }
@@ -237,6 +294,7 @@ export function CasePlayground() {
     function handleOpen() {
         if (
             pending ||
+            authBusy ||
             authStatus !== 'ready' ||
             !account ||
             account.remaining <= 0 ||
@@ -271,8 +329,12 @@ export function CasePlayground() {
                     finishedRef.current = true;
                     setResult(selected);
                     setAccount((current) =>
-                        current && pendingAccountRef.current
-                            ? { ...current, ...pendingAccountRef.current }
+                        current
+                            ? {
+                                  ...current,
+                                  remaining: opened.remaining,
+                                  collection: opened.collection,
+                              }
                             : current,
                     );
                     pendingAccountRef.current = null;
@@ -305,11 +367,13 @@ export function CasePlayground() {
 
     return (
         <div className="rounded-[2rem] border border-white/15 bg-gradient-to-b from-slate-800 to-slate-900 p-5 shadow-2xl shadow-black/30 sm:p-7">
-            <Script
-                src="https://telegram.org/js/telegram-web-app.js?63"
-                onReady={bootstrap}
-                onError={bootstrap}
-            />
+            {isMiniApp && (
+                <Script
+                    src="https://telegram.org/js/telegram-web-app.js?63"
+                    onReady={() => bootstrap(true)}
+                    onError={() => setAuthStatus('error')}
+                />
+            )}
             <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
                 <span className="font-semibold">{featuredCase.name}</span>
                 <div className="flex items-center gap-2">
@@ -442,12 +506,12 @@ export function CasePlayground() {
             </div>
             {authStatus === 'loading' && (
                 <p className="mb-3 text-center text-sm text-slate-400">
-                    Подключаем Telegram…
+                    Проверяем вход…
                 </p>
             )}
-            {authStatus === 'telegram-required' && (
+            {authStatus === 'signed-out' && (
                 <p className="mb-3 text-center text-sm text-amber-200">
-                    Откройте Mini App через Telegram, чтобы сохранять предметы.
+                    Войдите, чтобы открывать кейсы и сохранять коллекцию.
                 </p>
             )}
             {authStatus === 'error' && (
@@ -455,7 +519,8 @@ export function CasePlayground() {
                     role="alert"
                     className="mb-3 text-center text-sm text-rose-300"
                 >
-                    Не удалось войти через Telegram. Перезапустите Mini App.
+                    Не удалось проверить вход. Перезапустите Mini App или
+                    войдите на сайте.
                 </p>
             )}
             <button
@@ -463,6 +528,7 @@ export function CasePlayground() {
                 onClick={handleOpen}
                 disabled={
                     pending ||
+                    authBusy ||
                     authStatus !== 'ready' ||
                     !account ||
                     account.remaining <= 0 ||
@@ -479,10 +545,20 @@ export function CasePlayground() {
                         ? 'Открыть ещё раз'
                         : 'Открыть бесплатно'}
             </button>
-            {error && (
+            {(error || authFlowMessage) && (
                 <p className="mt-3 text-center text-sm text-rose-300">
-                    {error}
+                    {error || authFlowMessage}
                 </p>
+            )}
+            {authStatus !== 'loading' && (
+                <AuthPanel
+                    account={account}
+                    onChanged={accountChanged}
+                    onBusyChange={setAuthBusy}
+                    disabled={
+                        pending || phase === 'ready' || phase === 'spinning'
+                    }
+                />
             )}
             {account && (
                 <CollectionPanel

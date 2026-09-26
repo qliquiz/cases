@@ -7,6 +7,8 @@ import { featuredCase } from '@/game/catalog';
 export type CaseItem = (typeof featuredCase.drops)[number];
 import { openVirtualCase } from '@/game/open-case';
 
+import { authenticateIdentity } from './identities';
+
 const dailyLimit = 5;
 const sessionDays = 30;
 const maxSessionsPerUser = 5;
@@ -34,34 +36,34 @@ export async function upsertTelegramUser(
     telegramId: string,
     firstName: string,
 ) {
-    await sql`
-        insert into app_users (telegram_id, first_name)
-        values (${telegramId}, ${firstName})
-        on conflict (telegram_id) do update set first_name = excluded.first_name
-    `;
+    return authenticateIdentity(sql, {
+        provider: 'telegram',
+        subject: telegramId,
+        name: firstName,
+    });
 }
 
-export async function createSession(sql: Sql, telegramId: string) {
+export async function createSession(sql: Sql, userId: string) {
     const token = randomBytes(32).toString('base64url');
     await sql.begin(async (tx) => {
         await tx`
-            select telegram_id from app_users
-            where telegram_id = ${telegramId}
+            select id from app_users
+            where id = ${userId}
             for update
         `;
         await tx`
             delete from sessions
-            where telegram_id = ${telegramId} and expires_at <= now()
+            where user_id = ${userId} and expires_at <= now()
         `;
         await tx`
-            insert into sessions (token_hash, telegram_id, expires_at)
-            values (${tokenHash(token)}, ${telegramId},
+            insert into sessions (token_hash, user_id, expires_at)
+            values (${tokenHash(token)}, ${userId},
                     now() + ${sessionDays} * interval '1 day')
         `;
         await tx`
             delete from sessions where token_hash in (
                 select token_hash from sessions
-                where telegram_id = ${telegramId}
+                where user_id = ${userId}
                 order by created_at desc, token_hash desc
                 offset ${maxSessionsPerUser}
             )
@@ -72,28 +74,28 @@ export async function createSession(sql: Sql, telegramId: string) {
 
 export async function getSession(sql: Sql, token: string) {
     if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return null;
-    const rows = await sql<{ telegram_id: string; first_name: string }[]>`
-        select users.telegram_id::text as telegram_id, users.first_name
+    const rows = await sql<{ user_id: string; first_name: string }[]>`
+        select users.id::text as user_id, users.first_name
         from sessions
-        join app_users as users on users.telegram_id = sessions.telegram_id
+        join app_users as users on users.id = sessions.user_id
         where sessions.token_hash = ${tokenHash(token)}
           and sessions.expires_at > now()
     `;
     if (!rows.length) return null;
     return {
-        telegramId: rows[0].telegram_id,
+        userId: rows[0].user_id,
         firstName: rows[0].first_name,
     };
 }
 
 export async function getDailyRemaining(
     sql: Sql | TransactionSql,
-    telegramId: string,
+    userId: string,
 ) {
     const rows = await sql<{ used: number }[]>`
         select count(*)::int as used
         from openings
-        where telegram_id = ${telegramId}
+        where user_id = ${userId}
           and opened_at >=
             (date_trunc('day', now() at time zone 'UTC') at time zone 'UTC')
     `;
@@ -102,7 +104,7 @@ export async function getDailyRemaining(
 
 export async function getCollection(
     sql: Sql,
-    telegramId: string,
+    userId: string,
 ): Promise<CollectionEntry[]> {
     const rows = await sql<
         {
@@ -118,7 +120,7 @@ export async function getCollection(
                openings.opened_at
         from inventory_items
         join openings on openings.id = inventory_items.opening_id
-        where inventory_items.telegram_id = ${telegramId}
+        where inventory_items.user_id = ${userId}
         order by openings.opened_at desc, inventory_items.id desc
     `;
     return rows.map((row) => ({
@@ -138,7 +140,7 @@ export async function getCollection(
 
 export async function openCaseForUser(
     sql: Sql,
-    telegramId: string,
+    userId: string,
     caseId: string,
     requestId: string,
     draw?: (maxExclusive: number) => number,
@@ -154,8 +156,8 @@ export async function openCaseForUser(
 
     return sql.begin(async (tx) => {
         const users = await tx`
-            select telegram_id from app_users
-            where telegram_id = ${telegramId}
+            select id from app_users
+            where id = ${userId}
             for update
         `;
         if (!users.length) throw new Error('Пользователь не найден');
@@ -168,7 +170,7 @@ export async function openCaseForUser(
             }[]
         >`
             select item_id, case_id, item_snapshot from openings
-            where telegram_id = ${telegramId} and request_id = ${requestId}
+            where user_id = ${userId} and request_id = ${requestId}
         `;
         if (prior.length) {
             if (prior[0].case_id !== caseId) {
@@ -181,11 +183,11 @@ export async function openCaseForUser(
             if (!drop) throw new Error('Предмет открытия больше не найден');
             return {
                 drop,
-                remaining: await getDailyRemaining(tx, telegramId),
+                remaining: await getDailyRemaining(tx, userId),
             };
         }
 
-        const remaining = await getDailyRemaining(tx, telegramId);
+        const remaining = await getDailyRemaining(tx, userId);
         if (remaining <= 0)
             throw new Error('Лимит 5 открытий на сегодня исчерпан');
 
@@ -193,14 +195,14 @@ export async function openCaseForUser(
         const openingId = randomUUID();
         await tx`
             insert into openings
-                (id, telegram_id, request_id, case_id, item_id, item_snapshot, drop_table_version)
+                (id, user_id, request_id, case_id, item_id, item_snapshot, drop_table_version)
             values
-                (${openingId}, ${telegramId}, ${requestId}, ${caseId},
+                (${openingId}, ${userId}, ${requestId}, ${caseId},
                  ${drop.id}, ${sql.json(drop)}, ${dropTableVersion})
         `;
         await tx`
-            insert into inventory_items (id, opening_id, telegram_id, item_id)
-            values (${randomUUID()}, ${openingId}, ${telegramId}, ${drop.id})
+            insert into inventory_items (id, opening_id, user_id, item_id)
+            values (${randomUUID()}, ${openingId}, ${userId}, ${drop.id})
         `;
         return { drop, remaining: remaining - 1 };
     });

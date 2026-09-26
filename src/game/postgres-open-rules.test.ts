@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 
 import postgres from 'postgres';
 
+import { migrate } from '../../scripts/migrations.mjs';
 import {
     getCollection,
     openCaseForUser,
@@ -24,32 +24,33 @@ test(
             user: process.env.USER,
         });
         const telegramId = '900000000002';
+        let userId = '';
         try {
-            await sql.unsafe(await readFile('db/schema.sql', 'utf8')).simple();
-            await upsertTelegramUser(sql, telegramId, 'Ada');
+            await migrate(sql);
+            userId = await upsertTelegramUser(sql, telegramId, 'Ada');
 
             const requestIds = Array.from({ length: 6 }, () => randomUUID());
             const first = await openCaseForUser(
                 sql,
-                telegramId,
+                userId,
                 featuredCase.id,
                 requestIds[0],
                 () => 0,
             );
             const repeated = await openCaseForUser(
                 sql,
-                telegramId,
+                userId,
                 featuredCase.id,
                 requestIds[0],
                 () => 9999,
             );
             assert.equal(repeated.drop.id, first.drop.id);
-            assert.equal((await getCollection(sql, telegramId)).length, 1);
+            assert.equal((await getCollection(sql, userId)).length, 1);
 
             for (const id of requestIds.slice(1, 5)) {
                 await openCaseForUser(
                     sql,
-                    telegramId,
+                    userId,
                     featuredCase.id,
                     id,
                     () => 0,
@@ -58,16 +59,16 @@ test(
             await assert.rejects(
                 openCaseForUser(
                     sql,
-                    telegramId,
+                    userId,
                     featuredCase.id,
                     requestIds[5],
                     () => 0,
                 ),
                 /Лимит 5 открытий/,
             );
-            assert.equal((await getCollection(sql, telegramId)).length, 5);
+            assert.equal((await getCollection(sql, userId)).length, 5);
         } finally {
-            await sql`delete from app_users where telegram_id = ${telegramId}`;
+            await sql`delete from app_users where id = ${userId}`;
             await sql.end();
         }
     },

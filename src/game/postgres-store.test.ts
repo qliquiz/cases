@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 
 import postgres from 'postgres';
 
+import { migrate } from '../../scripts/migrations.mjs';
 import {
     createSession,
     getCollection,
@@ -26,19 +26,16 @@ test(
             user: process.env.USER,
         });
         const telegramId = '900000000001';
+        let userId = '';
         try {
-            const schema = await readFile('db/schema.sql', 'utf8');
-            await sql.unsafe(schema).simple();
-            await upsertTelegramUser(sql, telegramId, 'Ada');
-            const token = await createSession(sql, telegramId);
-            assert.equal(
-                (await getSession(sql, token))?.telegramId,
-                telegramId,
-            );
+            await migrate(sql);
+            userId = await upsertTelegramUser(sql, telegramId, 'Ada');
+            const token = await createSession(sql, userId);
+            assert.equal((await getSession(sql, token))?.userId, userId);
 
             const opened = await openCaseForUser(
                 sql,
-                telegramId,
+                userId,
                 featuredCase.id,
                 randomUUID(),
                 () => 0,
@@ -46,11 +43,11 @@ test(
             assert.equal(opened.drop.name, 'Dual Berettas | Hideout');
             assert.equal(opened.remaining, 4);
 
-            const collection = await getCollection(sql, telegramId);
+            const collection = await getCollection(sql, userId);
             assert.equal(collection.length, 1);
             assert.equal(collection[0].itemId, opened.drop.id);
         } finally {
-            await sql`delete from app_users where telegram_id = ${telegramId}`;
+            await sql`delete from app_users where id = ${userId}`;
             await sql.end();
         }
     },
