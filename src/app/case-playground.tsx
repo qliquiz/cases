@@ -55,7 +55,6 @@ export function CasePlayground() {
     const [reel, setReel] = useState<Reel | null>(null);
     const [phase, setPhase] = useState<Phase>('idle');
     const [error, setError] = useState<string | null>(null);
-    const [soundOn, setSoundOn] = useState(true);
     const [soundError, setSoundError] = useState<string | null>(null);
     const [account, setAccount] = useState<Account | null>(null);
     const [authBusy, setAuthBusy] = useState(false);
@@ -173,7 +172,6 @@ export function CasePlayground() {
         }
         setPhase('complete');
         if (
-            soundOn &&
             audioRef.current?.state === 'running' &&
             !tryPlaySound(audioRef.current, playResultSound)
         ) {
@@ -182,7 +180,7 @@ export function CasePlayground() {
             );
         }
         suspendAudio(350);
-    }, [phase, reel, soundOn, suspendAudio]);
+    }, [phase, reel, suspendAudio]);
 
     useEffect(() => {
         if (phase !== 'spinning' || !reel) return;
@@ -191,7 +189,7 @@ export function CasePlayground() {
     }, [phase, reel, finishSpin]);
 
     useEffect(() => {
-        if (phase !== 'spinning' || !soundOn) return;
+        if (phase !== 'spinning') return;
         const viewport = viewportRef.current;
         const track = trackRef.current;
         if (!viewport || !track) return;
@@ -229,7 +227,7 @@ export function CasePlayground() {
         };
         frame = window.requestAnimationFrame(followMarker);
         return () => window.cancelAnimationFrame(frame);
-    }, [phase, soundOn]);
+    }, [phase]);
 
     function activateAudio() {
         if (suspendTimerRef.current !== null) {
@@ -295,7 +293,7 @@ export function CasePlayground() {
         )
             return;
         requestIdRef.current ??= window.crypto.randomUUID();
-        if (soundOn) activateAudio();
+        activateAudio();
 
         setError(null);
         startTransition(async () => {
@@ -332,7 +330,6 @@ export function CasePlayground() {
                     pendingAccountRef.current = null;
                     setPhase('complete');
                     if (
-                        soundOn &&
                         audioRef.current?.state === 'running' &&
                         !tryPlaySound(audioRef.current, playResultSound)
                     ) {
@@ -371,27 +368,7 @@ export function CasePlayground() {
                     onError={() => setAuthStatus('error')}
                 />
             )}
-            <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
-                <span className="font-semibold">{featuredCase.name}</span>
-                <div className="flex items-center gap-2">
-                    <button
-                        type="button"
-                        aria-pressed={soundOn}
-                        onClick={() => {
-                            if (!soundOn) {
-                                if (phase === 'ready' || phase === 'spinning')
-                                    activateAudio();
-                            } else {
-                                suspendAudio();
-                            }
-                            setSoundOn(!soundOn);
-                        }}
-                        className="cursor-pointer rounded-lg border border-line px-3 py-1 text-xs text-muted transition hover:border-line-strong hover:text-foreground"
-                    >
-                        Звук: {soundOn ? 'вкл' : 'выкл'}
-                    </button>
-                </div>
-            </div>
+            <p className="text-sm font-semibold">{featuredCase.name}</p>
             {soundError && (
                 <p role="alert" className="mt-2 text-xs text-danger">
                     {soundError}

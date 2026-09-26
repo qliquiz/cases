@@ -35,42 +35,82 @@ try {
     });
     await page.goto(baseUrl);
     await expectTheme(page, 'light');
-    const picker = page.getByRole('combobox', { name: 'Тема оформления' });
+    const picker = page.getByRole('radiogroup', { name: 'Тема оформления' });
     await page
         .getByRole('button', { name: 'Войти через Telegram', exact: true })
         .waitFor();
-    assert.equal(await picker.inputValue(), 'system');
+    await page.emulateMedia({ forcedColors: 'active' });
+    if (
+        await page.evaluate(() => matchMedia('(forced-colors: active)').matches)
+    ) {
+        const selectedOutline = await picker
+            .getByRole('radio', { name: 'Авто', exact: true })
+            .evaluate(
+                (input) =>
+                    getComputedStyle(input.parentElement!.lastElementChild!)
+                        .outlineStyle,
+            );
+        assert.notEqual(
+            selectedOutline,
+            'none',
+            'selected theme must remain visible in forced colors',
+        );
+    }
+    await page.emulateMedia({ forcedColors: 'none' });
+    assert.equal(
+        await picker
+            .getByRole('radio', { name: 'Авто', exact: true })
+            .isChecked(),
+        true,
+    );
+    await picker.getByRole('radio', { name: 'Авто', exact: true }).focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(
+        await picker
+            .getByRole('radio', { name: 'Светлая', exact: true })
+            .isChecked(),
+        true,
+    );
+    await page.keyboard.press('ArrowRight');
+    await expectTheme(page, 'dark');
+    await picker.getByRole('radio', { name: 'Авто', exact: true }).check();
+    assert.equal(await page.getByRole('button', { name: /Звук:/ }).count(), 0);
     await page.emulateMedia({ colorScheme: 'dark' });
     await expectTheme(page, 'dark');
-    await picker.selectOption('light');
+    await picker.getByRole('radio', { name: 'Светлая', exact: true }).check();
     await expectTheme(page, 'light');
     await page.reload();
     await expectTheme(page, 'light');
     await page.waitForFunction(
-        () => document.querySelector('select')?.value === 'light',
+        () => document.querySelector('input[value="light"]:checked') !== null,
     );
-    await picker.selectOption('dark');
+    await picker.getByRole('radio', { name: 'Тёмная', exact: true }).check();
     await page.emulateMedia({ colorScheme: 'light' });
     await expectTheme(page, 'dark');
 
     const second = await context.newPage();
     await second.goto(baseUrl);
     await expectTheme(second, 'dark');
-    await picker.selectOption('system');
+    await picker.getByRole('radio', { name: 'Авто', exact: true }).check();
     await expectTheme(page, 'light');
     await expectTheme(second, 'light');
     assert.equal(sdkRequests, 0, 'ordinary web must not load Telegram SDK');
     await page.screenshot({
+        animations: 'disabled',
         path: '/private/tmp/casego-theme-light.png',
         fullPage: true,
     });
-    await picker.selectOption('dark');
+    await picker.getByRole('radio', { name: 'Тёмная', exact: true }).check();
     await page.screenshot({
+        animations: 'disabled',
         path: '/private/tmp/casego-theme-dark.png',
         fullPage: true,
     });
+    await page
+        .locator('header')
+        .screenshot({ path: '/private/tmp/casego-switcher-dark.png' });
     await page.setViewportSize({ width: 390, height: 844 });
-    await picker.selectOption('light');
+    await picker.getByRole('radio', { name: 'Светлая', exact: true }).check();
     assert.equal(
         await page.evaluate(
             () => document.documentElement.scrollWidth <= innerWidth,
@@ -78,9 +118,20 @@ try {
         true,
     );
     await page.screenshot({
+        animations: 'disabled',
         path: '/private/tmp/casego-theme-mobile.png',
-        fullPage: true,
+        fullPage: false,
     });
+    await page
+        .locator('header')
+        .screenshot({ path: '/private/tmp/casego-switcher-mobile.png' });
+    await page.setViewportSize({ width: 320, height: 720 });
+    assert.equal(
+        await page.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+        true,
+    );
     await context.close();
 
     const restricted = await browser.newContext({ colorScheme: 'light' });
@@ -99,8 +150,9 @@ try {
         .getByRole('button', { name: 'Войти через Telegram', exact: true })
         .waitFor();
     await restrictedPage
-        .getByRole('combobox', { name: 'Тема оформления' })
-        .selectOption('dark');
+        .getByRole('radiogroup', { name: 'Тема оформления' })
+        .getByRole('radio', { name: 'Тёмная', exact: true })
+        .check();
     await expectTheme(restrictedPage, 'dark');
     await restricted.close();
 
@@ -125,15 +177,17 @@ try {
     });
     await expectTheme(miniPage, 'dark');
     await miniPage
-        .getByRole('combobox', { name: 'Тема оформления' })
-        .selectOption('light');
+        .getByRole('radiogroup', { name: 'Тема оформления' })
+        .getByRole('radio', { name: 'Светлая', exact: true })
+        .check();
     await miniPage.evaluate(() =>
         window.dispatchEvent(new Event('test:themeChanged')),
     );
     await expectTheme(miniPage, 'light');
     await miniPage
-        .getByRole('combobox', { name: 'Тема оформления' })
-        .selectOption('system');
+        .getByRole('radiogroup', { name: 'Тема оформления' })
+        .getByRole('radio', { name: 'Авто', exact: true })
+        .check();
     await expectTheme(miniPage, 'dark');
     await mini.close();
 
