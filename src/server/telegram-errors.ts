@@ -23,15 +23,26 @@ export class TelegramLoginError extends Error {
 export function telegramFailure(error: unknown, fallback: TelegramLoginStage) {
     if (error instanceof TelegramLoginError)
         return { stage: error.stage, reason: error.reason };
-    if (error instanceof errors.JWTClaimValidationFailed) {
+    const details = error && typeof error === 'object' ? error : {};
+    const code =
+        'code' in details && typeof details.code === 'string'
+            ? details.code
+            : '';
+    // A production bundle can contain separate JOSE class instances. Classify by
+    // allowlisted codes only; this affects diagnostics, never token acceptance.
+    if (code === 'ERR_JWT_CLAIM_VALIDATION_FAILED') {
+        const rawClaim =
+            'claim' in details && typeof details.claim === 'string'
+                ? details.claim
+                : '';
         const claim = ['iss', 'aud', 'exp', 'iat', 'sub', 'id'].includes(
-            error.claim,
+            rawClaim,
         )
-            ? error.claim
+            ? rawClaim
             : 'other';
         return { stage: fallback, reason: `claim_${claim}` };
     }
-    if (error instanceof errors.JOSEError) {
+    {
         const allowed = [
             'ERR_JWT_EXPIRED',
             'ERR_JWS_SIGNATURE_VERIFICATION_FAILED',
@@ -41,9 +52,30 @@ export function telegramFailure(error: unknown, fallback: TelegramLoginStage) {
             'ERR_JWS_INVALID',
             'ERR_JWT_INVALID',
         ];
+        if (allowed.includes(code)) return { stage: fallback, reason: code };
+    }
+    if (error instanceof errors.JOSEError)
+        return { stage: fallback, reason: 'invalid_token' };
+    if (error instanceof TypeError) {
+        const cause = error.cause;
+        const networkCodes = [
+            'ECONNRESET',
+            'ECONNREFUSED',
+            'ENOTFOUND',
+            'EAI_AGAIN',
+            'ETIMEDOUT',
+            'UND_ERR_CONNECT_TIMEOUT',
+            'UND_ERR_SOCKET',
+        ];
+        const isNetwork =
+            cause &&
+            typeof cause === 'object' &&
+            'code' in cause &&
+            typeof cause.code === 'string' &&
+            networkCodes.includes(cause.code);
         return {
             stage: fallback,
-            reason: allowed.includes(error.code) ? error.code : 'invalid_token',
+            reason: isNetwork ? 'network_error' : 'type_error',
         };
     }
     return { stage: fallback, reason: 'failed' };

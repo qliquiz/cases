@@ -6,6 +6,7 @@ import { generateKeyPair, SignJWT } from 'jose';
 import postgres from 'postgres';
 
 import { migrate } from '../../scripts/migrations.mjs';
+import { upsertTelegramUser } from '../server/store';
 import {
     beginTelegramLogin,
     completeTelegramLogin,
@@ -96,7 +97,8 @@ test(
                 }),
             );
             const { privateKey, publicKey } = await generateKeyPair('RS256');
-            const token = await new SignJWT({ id: 900000000007, name: 'Ada' })
+            userId = await upsertTelegramUser(sql, '900000000007', 'Ada');
+            const token = await new SignJWT({ id: '900000000007', name: 'Ada' })
                 .setProtectedHeader({ alg: 'RS256' })
                 .setIssuer('https://oauth.telegram.org')
                 .setAudience('1234')
@@ -104,7 +106,7 @@ test(
                 .setIssuedAt()
                 .setExpirationTime('5m')
                 .sign(privateKey);
-            userId = await completeTelegramLogin(
+            const webUserId = await completeTelegramLogin(
                 sql,
                 config,
                 { state: flow.state, cookieState: flow.state, code: 'code' },
@@ -120,7 +122,11 @@ test(
                 },
                 async () => publicKey,
             );
-            assert.match(userId, /^[0-9a-f-]{36}$/);
+            assert.equal(
+                webUserId,
+                userId,
+                'web login preserves the existing Telegram account',
+            );
             await assert.rejects(
                 completeTelegramLogin(sql, config, {
                     state: flow.state,
