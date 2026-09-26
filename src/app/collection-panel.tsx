@@ -2,25 +2,32 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 import { observeActivity } from '@/browser/activity';
-import { featuredCase } from '@/game/catalog';
+import {
+    type CaseDefinition,
+    featuredCase,
+    findCase,
+    itemLabel,
+} from '@/game/catalog';
 import type { CollectionEntry } from '@/server/store';
 
 type AlbumFilter = 'all' | 'owned' | 'missing';
-const catalogIds = new Set(
-    [...featuredCase.drops, ...featuredCase.rareDrops].map((item) => item.id),
-);
 
 export function CollectionPanel({
+    caseData = featuredCase,
     collection,
     remaining,
     onRefresh,
     refreshing = false,
 }: {
+    caseData?: CaseDefinition;
     collection: CollectionEntry[];
     remaining: number;
     onRefresh: () => void;
     refreshing?: boolean;
 }) {
+    const catalogIds = new Set(
+        [...caseData.drops, ...caseData.rareDrops].map((item) => item.id),
+    );
     const [filter, setFilter] = useState<AlbumFilter>('all');
     const headingRef = useRef<HTMLHeadingElement>(null);
     useEffect(
@@ -46,10 +53,10 @@ export function CollectionPanel({
     const archived = [...counts].filter(([id]) => !catalogIds.has(id));
     const percent = Math.floor((owned / total) * 100);
     const groups = [
-        { name: 'Обычные предметы', items: featuredCase.drops, rare: false },
+        { name: 'Обычные предметы', items: caseData.drops, rare: false },
         {
             name: 'Редкие особые предметы',
-            items: featuredCase.rareDrops,
+            items: caseData.rareDrops,
             rare: true,
         },
     ];
@@ -76,7 +83,7 @@ export function CollectionPanel({
                         Моя коллекция
                     </h2>
                     <p className="text-xs text-subtle">
-                        {featuredCase.name} · Общая для сайта и Telegram
+                        {caseData.name} · Общая для сайта и Telegram
                     </p>
                 </div>
                 <span className="text-xs text-muted">
@@ -210,8 +217,9 @@ export function CollectionPanel({
                         Вне текущего альбома · {archived.length}
                     </summary>
                     <p className="my-2">
-                        Сохранённые предметы вне каталога. Учтены в общем
-                        количестве и дубликатах, но не в прогрессе альбома.
+                        Предметы, не входящие в выбранный кейс. Учтены в общем
+                        количестве и дубликатах, но не в прогрессе этого
+                        альбома.
                     </p>
                     <ul className="grid max-h-72 grid-cols-2 gap-2 overflow-y-auto">
                         {archived.map(([id, { item, count }]) => (
@@ -232,7 +240,9 @@ export function CollectionPanel({
                                     {new Date(entry.openedAt).toLocaleString(
                                         'ru-RU',
                                     )}{' '}
-                                    — {entry.item.name}
+                                    — {itemLabel(entry.item)} ·{' '}
+                                    {findCase(entry.caseId)?.name ??
+                                        entry.caseId}
                                 </li>
                             ))}
                         </ol>
@@ -281,7 +291,7 @@ function AlbumCard({
             </div>
             <div className="p-2">
                 <p className="break-words text-xs font-semibold leading-4">
-                    {item.name}
+                    {itemLabel(item)}
                 </p>
                 <p
                     className={`mt-1 text-[11px] ${count ? 'text-success' : 'text-subtle'}`}

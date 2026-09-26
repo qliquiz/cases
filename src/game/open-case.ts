@@ -1,17 +1,16 @@
 import { randomInt } from 'node:crypto';
 
-import { featuredCase } from './catalog';
+import { type CaseDrop, findCase } from './catalog';
 import { drawSimulatedDrop } from './simulation';
-
-type CaseDrop = (typeof featuredCase.drops)[number];
 
 export function openVirtualCase(
     caseId: string,
     draw: (maxExclusive: number) => number = randomInt,
 ): CaseDrop {
-    if (caseId !== featuredCase.id) {
+    const selectedCase = findCase(caseId);
+    if (!selectedCase) {
         throw new Error('Неизвестный кейс');
     }
 
-    return drawSimulatedDrop(featuredCase, draw);
+    return drawSimulatedDrop(selectedCase, draw);
 }

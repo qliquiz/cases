@@ -1,0 +1,1394 @@
+{
+    "sourceCommit": "4734df478335bb09bba52cfca9d4023167394e0c",
+    "cases": [
+        {
+            "id": "crate-4061",
+            "name": "Chroma Case",
+            "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fq2wP7qr6bqI5cvHDCzfBlbcv57JqF3zrxRkj4W6Dwo34dy6QPQAoC5ZyW6dU5cxvklfG",
+            "drops": [
+                {
+                    "id": "skin-db73213412f6",
+                    "name": "Glock-18 | Catacombs",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2kpnj9h1Y-s2pZKtuK8-XC2aEyfp5vO1WQyC0nQlptWWDzIz8dy6QalMgXsMiQbEJtRjskdW2M7nn71Dcj49Fm3qsiClB7jErvbhnnfwjgw",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-4c2aae5b0b8d",
+                    "name": "M249 | System Lock",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8zMK5wiFO0P_8PP1SM_WYGmiC_uJ_t-l9AXzhzEt25Wjcn4n4dHKebgMlCMB2RO5b40S-x9TnN-KztFDf3ohDzirgznQedTUXMuU",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-f982be094874",
+                    "name": "MP9 | Deadly Poison",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f_jdk4uL3V6BoIfSfF1iAzudlv-9WQyC0nQlpsm3Vy9f4eXvEPwcoCcNyQOBY5EWxwN3gNru0tFGK2d5Mny__iS8c5zErvbjRwweEJA",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-d38eab775911",
+                    "name": "SCAR-20 | Grotto",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLinZfyr3Jk7uORe6dsMqLDMWuVwOVJvOhuRz39zRtx62uGm9z8JHnFaFR0AsAjRuQI40Sww9HvNunqtQTego5MmSX4izQJsHiOao_ijg",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-024f8ae1278e",
+                    "name": "XM1014 | Quicksilver",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKk8cKHHMXSZxuJ3j-1gSCGn20oksGTXy4yrIC3GbwYpCJF1RuQMtkG-koCyNO22tVSIiY1GxXn6iyhXrnE8nW2Det4",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-25ead8f88d62",
+                    "name": "Dual Berettas | Urban Shock",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL0kp_0-B1Y-s2rZK15JeOsG3WSwOBlpO57Qha_nBovp3PQzI6pc3iRZ1cjC5dzQe4CsxPtwdHjMevq41CLjIpMm3_5jypN7Cxp_a9cBoxgoAoS",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-75138a0c07b3",
+                    "name": "Desert Eagle | Naga",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7uORbKFsJ_yWMWmRxu9JvOhuRz39zEx06jjWm4n8Ii6WPFQhA5YjE7MJskPrwdTuZb7htlHbg9oTzCn2hjQJsHhQd9ynBw",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-4938e7b7b6cd",
+                    "name": "MAC-10 | Malachite",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1a4s2jaac8cM-eD2uRwuZ_pORWQyC0nQlpt27Uw4yrJy_FOlQpCJp2Te5Y5hPqw9HuYePksVaKjt0TmS_2hihJuDErvbgNFzWT1Q",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-43a9e7d8242e",
+                    "name": "Sawed-Off | Serenity",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2tfZt-IeeWCmiWx9FytfdocCW6khUz_W2Dwtv6cXLFZgUnD5VzQrMPtxjrx9K0Ye637wzYj4gXzimqiH9KuC91o7FV9mPR2UI",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-2a8ebacc14e8",
+                    "name": "AK-47 | Cartel",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uJ_t-l9ASuywktwtW3dwt79eX6fZlUiCJJ1RbUPtkW8w4LiZe_i4ATYjN8WmH7gznQeZkk4ehM",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-d6f2e7995a15",
+                    "name": "M4A4 | 龍王 (Dragon King)",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSIf6QC3SE0-96j-1gSCGn20x062mAwtb8cX3CaAMoApV3EeFZ50Wwk9fuM-vqtAHW3opHn3iqiSxXrnE8PytIGFg",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-add7770f46d1",
+                    "name": "P250 | Muertos",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhzMOwwiFO0OL8PfRSLfGdCmacwNF6ueZhW2e1lh51sm3UmN37cHuUbQQhXJtwQO4C4BXsxtHjM-624A3a2IoWySiskGoXuSIJMqiP",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-67b936c9cb52",
+                    "name": "AWP | Man-o'-war",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_C9k7uW-V6NhL-KKMWuZxuZi_uM5HXG3xhh_t2iBnI2ucn3EZwEjDpJ0Q-dY5EPrxNTiYevj7gXa2IhbjXKpQIFOiXU",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                },
+                {
+                    "id": "skin-94878071c8d9",
+                    "name": "Galil AR | Chatterbox",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V6NsLPmfMWaS0-9lue5ncCS2kRQyvnPXnIn7eSrEZ1AnD5NxTeII4ESwxN3jN7zl5QHXjdhAnyuo2y9Nv3xs_a9cBuAhdjfO",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                }
+            ],
+            "rarePool": "chroma"
+        },
+        {
+            "id": "crate-4089",
+            "name": "Chroma 2 Case",
+            "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqmwOuKD2PqI6caDBWDeUkO8uteM9SnDglklw6miEn9j6IHKfblNxA5pxW6dU5UH4LtBe",
+            "drops": [
+                {
+                    "id": "skin-ea4e27f0cd16",
+                    "name": "AK-47 | Elite Build",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSLfGAGmKC2NF6ueZhW2e2wh9y5GjTztirdSqfP1dyCpclR7FZ5xe9wNbhZei25FGPjokXxC2vkGoXuQLr5jvs",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-0789e14af0b1",
+                    "name": "MP7 | Armor Core",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8jsHf_DNk4uL5V7FhNOKSA2iUxPx4j-1gSCGn2xhw6zjSzYysICiUOgV0Cpd1TORe5BW9w922Nrux5gKLitpGz3irhnlXrnE866qixJk",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-7698ea25d00a",
+                    "name": "Desert Eagle | Bronze Deco",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7v-RarZiLuqWMXSAwPx9vORWQyC0nQlp4zzdydqtJXuTOgZzW5F4QbNZ4UK7l9e1N-Pq5AeNj9hHmH783S9J6zErvbgcMfnnyA",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-4b8851edb204",
+                    "name": "P250 | Valence",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhzMOwwiNK0OL8PfRSI_-dGmiF09F6ueZhW2fiwUx14zmDnNagcC-WagUkApslQuBYsUW_ktexPry3swPfiogTyyiqkGoXuQius2mt",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-fd5699e808a0",
+                    "name": "Negev | Man-o'-war",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1a4s2gbaNoNs-UAmiC2NF6ueZhW2fikBh352vQyt-sI3mRbQ8lDJpxTLVfuxC5k4W0MLvm5VfeithHnij5kGoXuSdORNFb",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-628ddc6f56d0",
+                    "name": "Sawed-Off | Origami",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2tfZt-IeeWCmiWx9F5ouhuTiS6qhEutDWR1IutIyqSalBzWZQjQbUD4UaxltCzNuLgslTejYwTxSn2jCIc5n1jtbscEf1yxjZ09aw",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-c97e27944006",
+                    "name": "AWP | Worm God",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_DNk7uW-V7B6Kf6WMWuZxuZi_uRoGH3iw0wh4j7cnt6ucSqSZwUkCMB5TLIPsES_kNbuYeOwtgXai4NbjXKpZ4kj0o0",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-fadb57cf0d51",
+                    "name": "MAG-7 | Heat",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5G3wiFO0P-vb_NSMvWXBmiE_uJ_t-l9AX7nzBsk623dm46odHmUbFd1Dcd2RbINtBXtkNDjMbzj5AGKjt4UyijgznQe8JftFTE",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-e2e874d00715",
+                    "name": "CZ75-Auto | Pole Position",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLyhMG1_B1Y-s2tcvM4H-CBC2SZ0ud5vt5lRi67gVNy4mTdzdmgc33COg90DcB2FuMPtxLpldSxZeLn4w2K34NCzXj9hnsY8G81tCL36RK-",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-162f16955942",
+                    "name": "UMP-45 | Grand Prix",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkk4a0qB1a4s27ZbRSMvGQC3WvzOtyufRkASjjxU1x42nVyo2rdnKQbA9xX5ohRrYMtBntmtW1N7zj5lDZgthFzC3gznQezoUeLLY",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-b2a5203033ee",
+                    "name": "Five-SeveN | Monkey Business",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL3l4Dl7idN6vyRa7FSJvmFC3SV1-t4j-NoQSi9lCIrujqNjsGheXmXPQcoWMFzEO5ZtUOwkILjY7yzsg3ci91DySiohn4buCht4eYET-N7rZVO80Su",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-5224ccf55371",
+                    "name": "Galil AR | Eco",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V6NsLPmfMWKTztF6ueZhW2exwExw4WrcyImrcHmTbQAlWcQkQudYt0O5lNfgP-nh5AOL3otAziz7kGoXua-HTb4P",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-4fa9c490db80",
+                    "name": "FAMAS | Djinn",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL3n5vh7h1a_s2oaalsM8-ZB2me_uJ_t-l9AXzhwxt-5TiAzdmgd3yeaQ50DZRxEe5b4BXrm4HkPr7kslfcg9pCznjgznQepOOy8CM",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-7b1351c2adba",
+                    "name": "M4A1-S | Hyper Beast",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGMWrEwL9JuPh5SjuMlxgmoCm6lob-KT-JbwF1WZEjR-YJskK9k9XiYePltAeNjYlAxSn5j34dvCZstb4LB6Ut-7qX0V8Xkv5_2A",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                },
+                {
+                    "id": "skin-bb6ba9602776",
+                    "name": "MAC-10 | Neon Rider",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-dC2ie0-dytfNWQyC0nQlp5DzTntmgdC7COABxX5NxQrUOtUS5w4LgMu6zsVCK2IJCmyisjitM6DErvbicsEA0SQ",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                }
+            ],
+            "rarePool": "chroma"
+        },
+        {
+            "id": "crate-4351",
+            "name": "Spectrum Case",
+            "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_frHQV7qCra_JscqPGCzLCl78ktuAxHSzmzUh_sjvWzdqoI33CaQF2DscjR_lK7EeF3oM7TA",
+            "drops": [
+                {
+                    "id": "skin-f945b5be9ee1",
+                    "name": "PP-Bizon | Jungle Slipstream",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzl4zv8x1T9s2sYb5iLs-HAXWe_ulkteRncCW6khUz_WjQn9msInvFOlIjCZJyFuMKsEG-l4blY-zh5lDWi4lFnCr53S1Juip1o7FVTY_WZWI",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-2501d2df72d4",
+                    "name": "SCAR-20 | Blueprint",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLinZfyr3Jk7OeRaqh4JeCBB2mE_v11sfNWQyC0nQlp4jvQn92oJX-VaVIgW5QkQuYM5kLswNTnNL-w4QaK2YNFmXqqjSxJuzErvbi8Z0332w",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-8f997b65f837",
+                    "name": "Desert Eagle | Oxide Blaze",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7OeRbKF-JeKHMWKRxuJzj-JmXTu8kRgpjDGMnYftb32UPwJxDJokRuUIsRi_lNPhM7izsgXZi49GySiq2nxNuCdttbtUB_A7uvqAjSk2l_c",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-32ee365f968a",
+                    "name": "Five-SeveN | Capillary",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL3l4Dl7idN6vyRa7FSJvmFC3SV1-t4j_dsRieMmRQguynLmY79IinFbA90CZN2Q-Bc4UW6x9KyZLnjtQCMjo8WyXr7jy1O6Ck_sfFCD_SqR6qLvA",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-fa522c8e6ebb",
+                    "name": "MP7 | Akoben",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8jsHf7jJk4uL5V7B_KfKSAliJxOJ6v_ZWQyC0nQlpsWmHyIquci7EPQQgCZMkE7FZsUXpx9y2Mu6wsgbWjINFyir9iXlNujErvbjY0_iNfw",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-bce064b53f43",
+                    "name": "P250 | Ripple",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhzMOwwiNW0OL8PfRSM-CGGmmZytF6ueZhW2fnlht-5juGyY2vIC2SalQjX8Z1RbVesUG4m9XlN-_ntQPa3YNBn332kGoXubXJFvZo",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-68e37aff8fd3",
+                    "name": "Sawed-Off | Zander",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2veZt-IeeWCmiWx9Fsse9tSjvhqhEutDWR1N79dXrBbFUgXpt4QrJb5hfuktTgYuLrtAXXiNpGySuvjS8b6i9j4escEf1ycSPZoqI",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-1f899f97bd99",
+                    "name": "Galil AR | Crimson Tsunami",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OG-V6NsLPmfMXCR1-tJvOhuRz39x0Qm6mjQzo6qeHLGOg8nXJUiE-UKtxa5mtPgZu3rtFGMiIwXxH-viDQJsHh48m4KFg",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-61f4c5cf38a6",
+                    "name": "M249 | Emerald Poison Dart",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8zMK5wjFL0P_8PP1SJuKcCVif0-dxue9oQxa_nBovp3PRzNb8JX2VO1IpDsclRrEPtxXtxNSxYuuw4QHai9gWyCT2j3gYuHlt_a9cBlcR8wa2",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-d3caeffc5ec8",
+                    "name": "MAC-10 | Last Dive",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1a7s2jaac8cM-HBmKvze9lpN5tRj-2qhEutDWR1N76Iy_BblUnCZd5QLFesEXrmtWzMui05wPc3o4TnnqojS8au3094ekcEf1ydsF2boo",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-b0c874f3f971",
+                    "name": "UMP-45 | Scaffold",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkk4a0qB1c_M27ZbRSIfKKHXSvzedxuPUnGi2ywBwhsmuDnNn9cX_EbA4mCcF1QbJZ5BPtm9fjZejnslDciNgUzTK-0H2MLp31Hw",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-bc2d596ca9ca",
+                    "name": "XM1014 | Seasons",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKlSLPWSCFiWwOpzj-1gSCGn200i6mvRn4mpdCiVblRxDJd3FuILuxi7ktHuNb-04wzW2dpGzin-2ihXrnE8PcTco88",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-d85f6159fe4a",
+                    "name": "AWP | Fever Dream",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V7R-OfObAXeR1eZJvOhuRz39kE1w4jiAzNiod3qTOgcgXpAlQ-ML5hjqxtHjZOrrtlHWit9EyCj9iDQJsHhCZP-wUg",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-d1f0620f06f3",
+                    "name": "CZ75-Auto | Xiangliu",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLyhMG1_B1c_M2tcpt-LvGYC3Sv0ftkoO1scCW6khUz_WTcw9r7JH7BOgApApojQuBb5kO5lNO1ZO_h4VaM2o5Gm36s3HgbvH51o7FVgkdxNDg",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-7b3af96bd1e4",
+                    "name": "M4A1-S | Decimator",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_eAMWrEwL9JtORqRiSygRI1jDGMnYftb3iUb1dxW5ImFLNftxCxktflZLm2tgaP2otGyn_-hytOvy9q5elQV_A7uvqA6CRSoZY",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-ba052cf18c66",
+                    "name": "AK-47 | Bloodsport",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSIvycAWOD0eFkpN5lRi67gVN15mmDw9egci_EPFAkDMQlTeZe4EXplNa0Yrvr5wbd345GyHioiC4b8G81tFuqg_k_",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                },
+                {
+                    "id": "skin-0770dabcd885",
+                    "name": "USP-S | Neo-Noir",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA0tF4v-h7cCW6khUz_WXdmd-vI3uRPwEkApR4QuBcu0Xrk4biYr_mtQXdidlCz3r63Ska7Hx1o7FVWuokIcU",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                }
+            ],
+            "rarePool": "spectrum"
+        },
+        {
+            "id": "crate-4403",
+            "name": "Spectrum 2 Case",
+            "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_frHoVu6D7PaA0JaDACjKUwOom47VrTSzrw0Vx4W_Sydz9JC7FZgckCZYjRPlK7EcPuDAQzw",
+            "drops": [
+                {
+                    "id": "skin-9be5df6c224c",
+                    "name": "Sawed-Off | Morris",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2veZt-IeeWCiqfx-hJtu1mWCyhqhEutDWR1NypJSnDPQF2C8N2EOEL4xjqkd20Ze7q4APW3dkWxSit2i4a7Ctp4LkcEf1yx89MV8Y",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-9ecc088bd04a",
+                    "name": "AUG | Triqua",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwi5Hf_jdk7uepV6t_If6UC1iE0-d3vuZlSha_nBovp3OGyd-hdXzDZwApApYjF7UJtUK5l9LnYe_g4wDWjd5NmHqojnxJuCw-_a9cBrjnwKiq",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-b2c0d4a8e5c4",
+                    "name": "G3SG1 | Hunter",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2zYXnrB1c_M2pO7dqcc-QC3OdxNFkteV8Vxa_nBovp3Pdw9arJCrCP1N1DZFyR7EDskO4wd3mYr_ltVHa2oNNziWshn5Nunlp_a9cBi4_3bmx",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-bd5f006d65a3",
+                    "name": "Glock-18 | Off World",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2kpnj9h1Y-s2pZKtuK8-aAGOZxuFJvOhuRz39xRly4WSDm4z9dHvCOg8iC5pxQrZethbsk4C1MbnnsQTag4pFyy_9hzQJsHjSW_TM0g",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-9b16f88ae206",
+                    "name": "MAC-10 | Oceanic",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1a4s2jaac8cM-cDWKRz-dJvOhuRz39lh4h52qGm9z7cCjBZ1IpCJp5QbRZtxXql9LnPrnr5wLXiY5EzX_2jjQJsHjZHPDEEg",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-45168379dce2",
+                    "name": "Tec-9 | Cracked Opal",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLlm5W5wiFO0Oara_1SI-KSDWyVxdF5oOBlcCW6khUz_WvSwo2geHiUbFAkD8EkTOFetxi4w9ThZLnm5lfdj4JDznmqjixA6Sd1o7FVGUODCFM",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-5c7aa5998b21",
+                    "name": "SCAR-20 | Jungle Slipstream",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLinZfyr3Jk5-uRe6dsMqLDMW2Fz-l6td56QyCjhgk1tjyIpYPwJiPTcFIgX5tyFOEJtxm_wdDkZOrq5gHcjIIRzyX_hiJP7io55O9WUKUgr_fJz1aWgsoiFrs",
+                    "rarity": "Mil-Spec Grade",
+                    "accent": "#4b69ff"
+                },
+                {
+                    "id": "skin-679351fdbe47",
+                    "name": "MP9 | Goo",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f_jdk4uL3V6NiL8-fB2CY1aAv5LYwSn23xE4l5GrXn9aqIH-SZlMiD8MjEbYK4UW_x9TmM-Lh4FHYlcsbmqGCM0DC",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-a3acd40fcd30",
+                    "name": "SG 553 | Phantom",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLimcO1qx1c_M29b_E4c8-DBmae1eF7j-1gSCGn204k5WXSz4ysJSnDPQ5xDsZ0Ru4PtUKxw9XhMO-0tAON3YpMyS-v23lXrnE80YpLcJc",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-0ba56fdaa179",
+                    "name": "CZ75-Auto | Tacticat",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLyhMG1_B1c_M2tcvM4H-SSDXOZwu9ij-1gSCGn2x4k5zvVm9z8IH7FZwFyCJckR7NfshSwwNGyMLzn41fejINHn3r6jy5XrnE8D8_CCNo",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-fe7065d1a17d",
+                    "name": "UMP-45 | Exposure",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkk4a0qB1Y-s27ZbQ5dc-LQ3WR2NF7seJhRie2qhEutDWR1Nutci2WbwBzWZFyF-Fetka_ltbgM7nh5AKKiYoRmXr73H4b7ilvsekcEf1y88bI5DM",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-56ee85216316",
+                    "name": "XM1014 | Ziggy",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKk8cKHHMX2Zxulvj-BnTjuwnQQYvzSCkpu3In6XPA4lAsZ5E-JbukWwwd3nY-zn4gLe2thNmCiv2ixK6SZs5ucHVb1lpPO5jVz-xA",
+                    "rarity": "Restricted",
+                    "accent": "#8847ff"
+                },
+                {
+                    "id": "skin-a0695188a122",
+                    "name": "PP-Bizon | High Roller",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzl4zv8x1Y-s2sYb5iLs-SAmuvyOBJvOhuRz39kEx1smnczomgJX2XbA4hC8BzRe9etxntldblMuyx5wfc2ooWni7_3DQJsHhZ08njvA",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-c9be0566433c",
+                    "name": "M4A1-S | Leaded Glass",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_eAMWrEwL9Jo-loWz22hyIrujqNjsH8dn6ePwB2DpEmFuAMt0HulYa1Nu2z4QWPjt9NnCX63H9M5ys96r1QT-N7rZDTLd1E",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-4cb968c36e88",
+                    "name": "R8 Revolver | Llama Cannon",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLjm4Dv8TRe_c2pe5t_eM-fAmadwO13vu9mQRa_nBovp3OEz9n7JH-UPwEoA5t2TLFYtBmxlNzhYuOztgHZjo9Mzyqq3C9O63o5_a9cBr5nn1G8",
+                    "rarity": "Classified",
+                    "accent": "#d32ce6"
+                },
+                {
+                    "id": "skin-1b3ca668024e",
+                    "name": "AK-47 | The Empress",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF6ueZhW2exxEt152rWzI7_Ii-Ubw90DMB0Ee4C5xOwx9GxZbjk71PXgogWn36tkGoXudZeYvlo",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                },
+                {
+                    "id": "skin-491a70af3255",
+                    "name": "P250 | See Ya Later",
+                    "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhzMOwwiFO0OL8PfRSI-mRC3WT0-F1j-1gSCGn2x9ytmzWnN6pInjGOwMlDZp0EORe5BHsx93lP7zr5wzbiI5AyXr_jS9XrnE8gQrIgng",
+                    "rarity": "Covert",
+                    "accent": "#eb4b4b"
+                }
+            ],
+            "rarePool": "spectrum"
+        }
+    ],
+    "rarePools": {
+        "chroma": [
+            {
+                "id": "skin-352633fab46b",
+                "name": "★ Bayonet | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6lsMvKfC1iWwOpzj-1gSCGn2xhysWrTn42rdH2SawQnDccjE-ELsxa-mtTjMejr7wXZgoxFn3n2hnhXrnE8oMvxYMA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-65d7965e0e39",
+                "name": "★ Bayonet | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POgV7BkJ_WBMWiCwOBxtd5lRi67gVMhsGrTntn4ci-ROAYlXMBwE7YL5BaxxIHjY-vq7w3X398RxS78iylK8G81tBow9RWL",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-d6f209a51abb",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV7Z4IumsA2aCw-JzuftsSxa_nBovp3PWnomsdn2QPVN0D5UiEOUP50LtltTvY-Ll4g3YjItFmSv-2i9A6X4-_a9cBu2YVmHc",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-b28c8d3ffc15",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV7dsMOCbB3WV_uN3ouNlSiCpkBkYvzSCkpu3d3_FaFUnXpRwEO4O50G5xoW1Y7zn5wLe3oxBxHn6jiwf7XposO8LBb1lpPPeBvHrwA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-d466b1683b88",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6ZhIfOYHmKR0-JJveB7TSW2nAcitwKJk4jxNWWVZ1AmDJIlQuZcu0btx9e0Y-205gOL3dhGzS333CpBvHxi6ucEBfcg5OSJ2MqXuBCE",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-941c11783314",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6BiMOCfC3Wv0eZ3o-Q4cCW6khUz_TvWmIygcnnGaVIlC5N5QOINt0S8lYDkMOu2sgTWgoxExCmqi3hN7i11o7FV2n5aQD4",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-85646e9ca45c",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6BiMOCfC3Wv0eZ3o-Q7cCW6khUz_TjRnNesInvCZ1chXsZ0FLZfsEKxltOyZOzitQLdj40WnCSq3SpO5yt1o7FVDNJZV5E",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-6f5d1311fcae",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6BiMOCfC3Wv0eZ3o-Q6cCW6khUz_T_TydyheXmVZwYoXpR5R-YIsRe6lIazP-7h4Qzbj4hEzSyq3HgY7ix1o7FVS1Hc8lA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-99a43a7b51ee",
+                "name": "★ Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0POjV6BiMOCfC3Wv0eZ3o-Q9cCW6khUz_WvQmNaqcHvDPVUpC8B5E7ICtkW-wYK0NO204FbW2t1NxC_72y4d53l1o7FVWhjV62M",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-6bf08149269b",
+                "name": "★ Bayonet | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0PO_V6BsLfGADXKD_uJ_t-l9ASu2zE904DnQyY34JSrGPQAmDsdxQ7MKsRK7k9CxNLnnswDY2tpNmCzgznQe52NAd0k",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-3b12660de9ef",
+                "name": "★ Bayonet | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0OGhV7R4MuCfC1icyOl-pK9rGy-1kEtx5miHmN79c3qSOgAkX5dzEbZbsBXtwIe1YeLg5QPZ2ogR02yg2Ups3adF",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-8b02c7193eec",
+                "name": "★ Bayonet | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0PO_V7d5JfWfMWyeyOhzj-xsSyCmmFN0tWzXntuhJHyROw8jWMAhQeFf4ELrlYC1Me_r4QCN3d1HyX38hn8b8G81tKs8v05y",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-c6d244df9c44",
+                "name": "★ Flip Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_2SHGWcxNFwseVscCW6khUz_WqBnt2qIyrBPwMoCcN1R7YCtRa7kofhY7nk4gzajNhEzyT43HhK6CZ1o7FVaZCrJoQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-7a40ba207ae9",
+                "name": "★ Flip Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VjH-SaCWKC_uFkse9uSha_nBovp3OBztqpI3yTbAIgDZslQbFbtUbuw9y2Y7y37gDcjooQxH__h39B5yxt_a9cBoXwL4KP",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-55c076549857",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH-KGDH6vzO9ksu1sRjO2kSIrujqNjsGhcinBZ1dzD5AlE7Nb4ES4wdTvMem37gDb2IlMmXj43HxK6yxt4L0FT-N7rWpcwuJP",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-513cb8f9233c",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH-OSHneYyPxzj-xoXSu_kBQ9tjm6lob-KT-JOgYjXJEmR7Jbs0S8mtSzZezg5wSMit5BzyX7ii9L63455ewFUvAg-LqX0V_ipKFLBg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-90511e74f417",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_KfD2Sb0et3ou1WQiihlxEiuieAnrD1KCzPKhh0CpN4FuICtEK4xoKxNbjq4gaM3dhCzSn-2i5I7346sesBVqF3_a3SkUifZq_j0qfR",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-42475fda0b01",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_ScHnecxPxJoOloXCziqhEutDWR1Nf6JHmfPw4kDsQkEeBbtRTsw9CyMu_nslPeg4wRmH2qhy9K7nxp4ukcEf1yIYwwFPU",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-cdee260faab7",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_ScHnecxPxJoOloXCzhqhEutDWR1NesJX_BPQV0CsckQeMLtRbrlNOzY-3i41DbitlEzyv2jiob6CZt5ekcEf1ySivHiG0",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-f6818bb7cb50",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_ScHnecxPxJoOloXCzgqhEutDWR1N79dy2RbgUhCZZ4Q-ALukS4m9PlNbi25wLfjo5GnyT7jSNJ7Cc4suYcEf1yV0vEDxY",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-fe0c683eb115",
+                "name": "★ Flip Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_ScHnecxPxJoOloXCznqhEutDWR1IuudniQZgMiApAlFLJftRjqkYfuNOKx4lfejtoUzCSvjH5PvSo56rwcEf1y_87DeTE",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-2c8f433e1746",
+                "name": "★ Flip Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6V8H_SSA2aDwvtlj-1gSCGn20lx52ncwtn_eXyQb1JzXJR3FOEPsRO5xoDmM77n7gHeiIpCyC6tjyhXrnE8njKBWnQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-6bfda02174ab",
+                "name": "★ Flip Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V7diH-CGHHecxNF6ueZhW2fqkxghsDmBydb8JXKXO1QgA8F0RO4KshDrkYblZumz5VGLgt9MxSr2kGoXufZKGhe-",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-57b42777d395",
+                "name": "★ Flip Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6V8H-OHC2Kc_uV4uedscCS2kRQyvnPXmImsIC3DawJxWcN4RuQPuka7xNHhZuzqtgTcjN1FmH36jShL6S9r_a9cBvssjBEP",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-a5ee841493d7",
+                "name": "★ Gut Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSLfGBDGuV_uh3tORWQyC0nQlp4TzTnNz_cHifawAiW8QjTe8Lu0K9w9HjY77m4lTXjI1FyCz9hnxBvDErvbgdMZDtHA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-bd3422fa907e",
+                "name": "★ Gut Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaapSNPmUC3Wvzvx3vuZscCW6khUz_WyGyIv7I3nBOlchDZV3RO8JsEa7wYXnNr_n4AeI39pNyX_22yxO6id1o7FVdgPDjag",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-83fcea8883e0",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSMuWRF1idwPx0vORgVSy3qhEutDWR1I2pcC2WaQclWZAlQrVe5ES5k9XgMOzm4wXXiokRmC6v2ypNu3pr5-kcEf1yqhk6dhc",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-9bd22462a312",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSM_GDHm-Z0-tJveB7TSW2nAcitwKJk4jxNWWQO1IjW5d4RLUOsEG_lYCxZbjq5QDejYlBnn6o2y9LvCti4OtRUfUl5OSJ2CIbbpiB",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-acfbb1341406",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSIvySDWyAxO9kvN5kTjuxmRguqTiBpYPwJiPTcFInDpVyELMOshO9wYHvZujk5VPagotHnC6viixLui5jsr1XWKcgqKTJz1aW4QQYg2A",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-03613511fcf8",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJP-DHmuV09FmuOB6SniMmRQguynLmYmpeCjEPwYhDJF4R-AMsEO-l9exPrjm5gzWjowWmSz323lNuCY65_FCD_QON0IPhg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-f489e258578a",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJP-DHmuV09FmuOB6SnuMmRQguynLzYqtd3uXawNxAsAmReINt0S9kNW1N-Pk5lOIiNlNnCio2yNN6Hs-sfFCD_S11dClsg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-a07dad6154a3",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJP-DHmuV09FmuOB6SnqMmRQguynLw96hIC2VagV0W5dzQ7VYsBiwldyyZO3m5VaLiN8WxXmt33sd5y5j4vFCD_RERtuZEw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-9ab6bdaf448a",
+                "name": "★ Gut Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJP-DHmuV09FmuOB6Sn2MmRQguynLzo74JX_EbgIlW5YjEeAKsRntkdbhNe_jtFTXgo0RxS-rj38cuHo95fFCD_S45FzBKg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-3d2819b666d2",
+                "name": "★ Gut Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRabVSJPGeD3ST1P1JvOhuRz39xhl06zvWmYn9dnuePVVzXJYlQeFZ4Bfpk4XuY-PnsgfcitpDyi_4iTQJsHiloP4S4w",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-9f78ed49c640",
+                "name": "★ Gut Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRe6tSMOWBHmuV_uJ_t-l9ASvhkRhw4GiDnN2hcXrGOAYgDZFwQrVYs0XtxtDgZu3ktVDXiYgRyy3gznQex8McCSA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-432c5e3957be",
+                "name": "★ Gut Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRabVSM-SWC2uvyuB_tuRWQiy3nAgq_WvTnNr4cnqfPQEpDZB1ReBftEG_kde2P-zl4gzciYsXzC2o2Hgd7n11o7FVh370TBM",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-cc03bb38269b",
+                "name": "★ Karambit | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1idwPx0vORWSSi3kCIrujqNjsGveH2RaVRxX5ohEe4Juhawm4fiM-ji4APf2YMXmSz_hyoduytv4uhWT-N7rfLHGBJ4",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-672713e8a04e",
+                "name": "★ Karambit | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SAFiEyOlzot5mXSi9khgYvzSCkpu3eC3BbwUmCcMlQbMD4xG_w9zkPu7gsQXe2YJFzHqqjixL5ylr4ukAWb1lpPNV9oeSnQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-e9fb2b0e49e8",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iC1Oxvj-xoXSu_kBQ9tjm6lob-KT-JbgMoW8Z5Ee8Isha9k9K1YeLr7wXci4wQzyqsjCxBuytssrkLV6Ek-LqX0V8zRrFpiQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-18a2a3a04055",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMRxFuEM5hi_xNXhMbmx5VCMjd9MyCv6jigc6n064ucLAvZ3_6bViV3fcepqpLtspE0",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-525ac56c082c",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iSze91u_FsTju_qhAmoT-Jn4bjJC_4Ml93UtZuRLQPsBawkNfiMbnl5AKMiopCnin7iCJBv31j4rkBBKEg-6zUjV3GY6p9v8dpLWT3Fg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-a7465b45d267",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iUzv5mvOR7cDm7lA4i4gKJk4jxNWXFb1cpDJR2FOFbsBTql9bjYbzq7gPZiN1MxH7_2ytNuCdpte1UB_Ui5OSJ2GbkVqni",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-e7fd9a1907bb",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iUzv5mvOR7cDm7lA4i4QKJk4jxNWWXawUgA8dxRLEO40KwkobnMbnj5QKL348Qmy-sji5K7i466uxUUKQn5OSJ2KBZjkQR",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-1905a0ed952b",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iUzv5mvOR7cDm7lA4i4AKJk4jxNWWebgAlA8dwQLMOshmwm9y0Puni5Qba3ohEni-r33xA7X5o4uZTV6ch5OSJ2C8W7sST",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-d79f9a05870e",
+                "name": "★ Karambit | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1iUzv5mvOR7cDm7lA4i5wKJk4jxNWXCaQQnA5B5Q-8O4xnpltazNri37gGPgtlDzin7iXhN6y44tb0GUaYg5OSJ2A0QBM1-",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-d1da7a632cfe",
+                "name": "★ Karambit | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SH1iUwON3o-J8XBa_nBovp3PUmdetJHyUblInCZF5TeID40bum9znMeKwtleKi4pCyC-q2CofuCxq_a9cBl9itWvl",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-26cdcb9587dd",
+                "name": "★ Karambit | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-AAViA1PxmvORWQyC0nQlpt2uHwtqvdS6WZlUjXJt2RrFbuhC5wYG0MOKz41Hc2IIRm36sjnwf7jErvbiyCF9_ug",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-9d759b84ad90",
+                "name": "★ Karambit | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SH1iD1etzvN5iQSC1kCIqtjmMj4K3cC2TZgQgWJUjR7QIukK7lNO0Prjk41PXjdgXySj4iCJMvH5p4rlRUL1lpPMtop-Pnw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-fd0ac7570eb0",
+                "name": "★ M9 Bayonet | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_uN3ouNlSha1lBkijDGMnYftb3OTbVRyD8Z1RrNctkS6kobkZLzi7gTW2NpFxH33hi9Nuno65uxXAqs7uvqA7lyFHH4",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-3bc3ff53883a",
+                "name": "★ M9 Bayonet | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWae_vp_t-R7cCahlBMgtgKJk4jxNWWTa1QhDMMmQOMJ5BPtkYHuM-KwsVTYjIoQy3n-iStL7yxj57wDB_cs5OSJ2H8uCzPz",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-16a419afb52b",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_vxjsvhWQiihlxEiuieAnrD1KCzPKhhyX5sjE7MLtRnuxNbjYb-x7gDWiYMTmCms2HlI7H065bsCUPF0-afUkUifZqukeTAH",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-6e3025b02bdd",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_v13oPFhRju2qhAmoT-Jn4bjJC_4Ml93UtZuQrZfuhi5lYC1Pujr7lDd2YNAmy2siHlJ6Htu5r5TUqcm-6De2wiUOap9v8cDcIwcZw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-ae0ce77b8db7",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf3qr3czxb49KzgL-Kmsj2P7rSnXtU6dd9teTA5475jV2urhcDPzCkfMKLcAE-aV3R-lO5l-e61sfqvZ2fyiBgvikqsXiMyRGw1U1Ja-dm06adSULeWfJvEZCxug",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-59d8a0cf228a",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_up5oPFlSjuMhRUmoDjUpYPwJiPTcA8nCcZ1EOcDu0Lum9CzZO6w4Fbeg4wQxX392ykb6yc4troKAPIm-6fJz1aWPFsIQnE",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-61b68868699d",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_up5oPFlSjuMhRUmoDjXpYPwJiPTcFR0D8Z3F-Nb4xS6x4DjNe2x5A3eiNpMzyr6jCpPvHk95O0GAKpz-fbJz1aWGfxjapk",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-70dacd344f35",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_up5oPFlSjuMhRUmoDjWpYPwJiPTcFBzDcQhFuJf4BiwmtzmP7iw5QXc3YsUzn6oiikauCg44uoEAqQl_6bJz1aWfAW50lg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-dcf3de3cc401",
+                "name": "★ M9 Bayonet | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_up5oPFlSjuMhRUmoDjRpYPwJiPTcAAnC8R2FLQD4BG6w4LuZunhswLXjIpGzS7333xPv3ls5e9RUPYkrPbJz1aWcLZcvps",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-c3fedbe62633",
+                "name": "★ M9 Bayonet | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWaB_up3veB6TDygqkR3jDGMnYftb3-ePQEjCMQkQuUDsUW7lN22Ze_mtADa3o0RyH3_hyMY6CY94b0GAPU7uvqAmF9xxno",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-049129e06871",
+                "name": "★ M9 Bayonet | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMXSf_v5jovFlSha_nBovp3OAzd6qcX6ROFd1X5QkF7MDuxDpxIDgNb_msVTbiI4XzCit2iMfvH1v_a9cBqI-pjxG",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-e0db2b025d4a",
+                "name": "★ M9 Bayonet | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWaB_v1iteRlcCK9nBsijDCAnobsLGXCPVV1XpB4ELYIsEbqktbjN-_k71GKjotAyS6sjn8d63pj4ewGUaci5OSJ2GrdBJ84",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            }
+        ],
+        "spectrum": [
+            {
+                "id": "skin-fcaadd7c92cc",
+                "name": "★ Bowie Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5kTjuxmRgYtTyBn7D1KCzPKhgpXMdyTeBb5BPuktPvZOi2sgWM2d9HmSr-i3xAuidssO8HBKcsrvLXkUifZhxP_T8X",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-90d3cf089321",
+                "name": "★ Bowie Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vt59Ri62hyIooTyLnYrGLSLANkI-XJJ0FLNY5BOxw4XjNu-zsQDd2IpFyy32jS0b7Ss95L5RVaIk_qyE3RaBb-Pz4OFuTg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-3ca96a918c35",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd57WiuqqhAmoT-Jn4bjJC_4Ml93UtZuQe5Y50O-wNzhMuji5w3e344Rny-q3H5K7iZtsekLU6El-6eBi1vHY6p9v8dqQrLELQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-dfd71b7017a4",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd56TjmjnRQ1tgKIm537LS7OJFN0Zc4pEr9OrBaxl4KxNr7r5VHZiYtBzH-qiShJ7y1v4roHAvZ2qfLTjlvDOLw_sMIdZKHwjx9VvzI",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-793b9eb6b4b7",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5rQyiwng0isi-JpYL4MynLO19qX8YfGb5d6lSmxt2yZeLq5QeI2dgWzSmsjiMauyxr5O4LB6Ej-6PXjVyQZLc54pZRJOHnE0pg4-kgmA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-c458ae57ce73",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5tQDmjmRg1jC2Nm5z8cBTLN1F4TowmEeFct0WxkIayNe7ksQOKiIwXyH35jCIb63xo47kAB6Vz8qPR2lmQL_Rjti6PPai2",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-f7693da65ea4",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5tQDmjmRg1jC2Nm5z8cxTLN1F4TowiELQMtkG_ldDvNOri4VDXioMTxC6s2CJN7C1osOtXAqMk__eCiV2UL_RjtoCtKbyV",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-a03383d1c1a8",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5tQDmjmRg1jC2Nm5z8chTLN1F4ToxwQ7FbtxXuldSyZuuztVHWiYlCxC75hnlO6ic_secAV6dxqaPQjQ3FL_RjtlsVJsRA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-c9f45eb5657e",
+                "name": "★ Bowie Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3vd5tQDmjmRg1jC2Nm5z8dRTLN1F4Tox3E-cOukLuk9W0NLjr7g2Pj4lAzy782ytO6Sdv5e4GVKQl8qTRiQGSL_Rjtvx55ayw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-7243492200ab",
+                "name": "★ Bowie Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3od5tTiSyhh4yoALcyrD1KCzPKhhxX5RxTeYN4BnuxtPgMurg5Qbbjt4UxC2sjS1N7ntv5-lRB_YsqPHekUifZkcTPu2g",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-2a4a5474d917",
+                "name": "★ Bowie Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNFlv955WjujmRgYvzSCkpu3dHKePw8oW8N5QOYLshW-wdC1N--0tAHajoNCmCj7iStI6Hw-tegBU71lpPP9HYRDsQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-556822409332",
+                "name": "★ Bowie Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNF3od56Wyy2mSIsvTSDn7D0JC_OK1s-C5F1RO4Ktka_kofuMevjtgWMjI8QmSj7iStM7itv6-hXUfEnqKHQ2xaBb-ObX0d6iA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-c14ef2ceee15",
+                "name": "★ Butterfly Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvzO9ksu1scC-ykRgYvzSCkpu3JCrBPVMkCZIiFLUC40S-l9DkZerg4Qfc3Y9DzCuo3SlK6ydv5e9UA71lpPNwsjHPzA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-9f5234d3821f",
+                "name": "★ Butterfly Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2mv1edxtfNWQDuymxoijDGMnYftb3mfOg8hAsFzRrYCtxKxxtPlZOnl5gaM3ogQmX_7jnkdvHppseoGVvI7uvqAJhUGkWs",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-e0c77218a563",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qv0_t0qd5kTjuxmRguqTiBpYPwJiPTcAcnCsF0FLFcsRHtwNy0Neji41aKiNhAzyqsjyxK7X5o4u8GB_UmrPDJz1aWz8iftUI",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-e11ce6f6e025",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qv0u9moOlgXSyMmBw1sTGAk5X8JRTFAVp5Xco0W-ENtRXswYC1Mu_ks1fdjN9EyiqthiMbvHtv5btQBPck-KbT2gnHM-Ajoc5Ufn65u8U",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-89f34e17d8b4",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvw-J3s-p5SiihmSIqsi-HlorwOy7DAVRPVssnHaMUuhe9xIHlMuvqtgPf2IoTyC383Sod7CY-sr4DVfZ2qKPU3g-TNuE-545DeqjFvb87vg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-fe2b6114d2ac",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvxeFmoO1sXRajnRw0tmy6lob-KT-JOgRzAsZ3RuNfs0a5x9HhYuLj4gbbg99NySr6iy4d6C9t4r0EUqF0qLqX0V8wFp5G5A",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-c5c8a3b9df72",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvxeFmoO1sXRajnRw0tm-6mLD1KCzPKhh2DMckEeYNshC6koe1Munq5AbbitgTyyX6jixL7i5qteYLA6Mh-vWGkUifZkSF3e67",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-9c3fcfde3cf3",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvxeFmoO1sXRajnRw0tm66lob-KT-JaAJzD5FxELELtRa4lIe2M7mw7wLfjY9DzSj6jXxA6X0-5-wDAqst_bqX0V_xuMbXZA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-c625bfd7788d",
+                "name": "★ Butterfly Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD2qvxeFmoO1sXRajnRw0tmm6lob-KT-JPVQpA5d3Q7IM4Ra_ltLgN7jn4wKPi41Nyyir3CpK6H1vt7xWAKt0qLqX0V-7tNsN5g",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-da19db61f316",
+                "name": "★ Butterfly Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD3avxe97sfJqWjqMzE0YvzSCkpu3J32VZgF1CZN1QLULsUWwkNTjNrnhtALYjo1Cnn762H4f5io9t-gBBL1lpPNt-MvFbw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-0063b0378b5b",
+                "name": "★ Butterfly Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsHWiv0ftkoO1scCW6khUz_WuHyor4cnLEPAMjD5F2FOcLt0O-ktLgMLvg7wbYjIJNmH-viX9A6351o7FVdgPZdkU",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-466c6dee0868",
+                "name": "★ Butterfly Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsD3av0vpzte1WRCe6kxgYvjiBk5r0by7EbQMjDcdwF-UC4BG4l9C1ZO7q4VbYj49AySmt339LvH1ptupXUKA7uvqA1J4Dodk",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-cee45806a6bf",
+                "name": "★ Falchion Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1idwPx0vORWSSi3kCIrujqNjsGqdXrFbFIlA8QjTO8Lu0O7m921ZLy05gfXj99Aziz_2nscuic6sr4AT-N7rSTjmXt5",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-b5876a624edd",
+                "name": "★ Falchion Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SAFiEyOlzot5mXSi9khgYvzSCkpu3cCiRZwIiDcZ2ReEO4EW5xtXlMuO05weKjYNBxS-tjytOvC495u0BWb1lpPPh4hsqrQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-04fb5d07991f",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iC1Oxvj-xoXSu_kBQ9tjm6lob-KT-JagN2CZV4QbYPtBe9ktDvYeLrsgLaiYtCmyT2j38aunpq47sEUfVx-LqX0V96C3cwag",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-4376543d7181",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMB1TeAIsxi5w4K0Y7_jtVTc3d1MzX_3iSxAuy85seYDA6Bxq6eCjV7fcepqbrrX6Yc",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-17a57bfea011",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iSze91u_FsTju_qhAmoT-Jn4bjJC_4Ml93UtZuQLECtxDrkIHlMem041aP2ohHmymsjSkaun49te9UAKp3-PWBjg-QNqp9v8frwaFCRg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-01c43b6ae7d3",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iUzv5mvOR7cDm7lA4i4gKJk4jxNWXBaQMpDZMjRu4ItxTsmoa0PrjrtQHWj4NNnH38hi1A7Xpt5-kBB_Zw5OSJ2M_vVPun",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-7f6c571d7493",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iUzv5mvOR7cDm7lA4i4QKJk4jxNWXBaAEnX5R0ELJb5EK5moa1MOyw7gSNj4tBnyT4hi4d5idr4O4GA6px5OSJ2IVStUtw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-b2a571ffd94e",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iUzv5mvOR7cDm7lA4i4AKJk4jxNWXDPFV2CMckRLRc5BG5xIa1Ne3qtFfe2doTnC743yxL7Sxv6rtWVqst5OSJ2F-BiodS",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-f76fab053a4b",
+                "name": "★ Falchion Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iUzv5mvOR7cDm7lA4i5wKJk4jxNWWWPFRyWZF0QbII5hDpl9fiNerh5gKKgt8Wyy6riC5Ov3tjsrsHBKR25OSJ2EkYY4Ju",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-ee8e81caeed3",
+                "name": "★ Falchion Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SH1iUwON3o-J8XBbqxSIrujqNjsH7eXjGPwAkXJR2QLMJtRe5kN2xYu7k5QHcio0XyX-o3S4duH5u4eYFT-N7rR0fzt1P",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-2efdd1c3c3ba",
+                "name": "★ Falchion Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-AAViA1PxmvORWSSi_lhUuvDO6lob-KT-JOAQiCpJyRu4PsxPsk4fkNerjs1bXjtpCyCqri39BuH094OgKWfUn-LqX0V-hhcTrMg",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-7ab6b7fb14f9",
+                "name": "★ Falchion Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SH1iD1etzvN5iQSC1kCIqtjmMj4K3Ii3DbgAnCMBwQbRZtEG9wILlZu_nswyI345FxCSvjyMc6XxvtrxTUr1lpPMD9UqAWA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-618b9c495102",
+                "name": "★ Huntsman Knife | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1idwPx0vORWSSi3kCIrujqNjsH8JXvCZgEiDZVwEeUK40W6ldaxZOnn7g3Zj4gUmySoi39A7SxqsrsET-N7rT4plPHN",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-243a437e4586",
+                "name": "★ Huntsman Knife | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SAFiEyOlzot5mXSi9khgYvzSCkpu3JHmWZwFzWZB1R-RbtxC_kofvMLzg51SLj41Nmyuqjyoc5nxi5ekLUr1lpPOee5ognQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-255b6eff4914",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iC1Oxvj-xoXSu_kBQ9tjm6lob-KT-JaAV1W8ZzEecL4RXtwYHkZry25lSMj95GxCj_3CMc6is5sb4GAPBx-rqX0V9XRKLfoA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-cb96c4362f57",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMN5Qe8CshbrltLlNOqxsgLc2t8Uzyv9jSNLuC9r4-oEVfB2r_GFjg3fcepqRzB392E",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-76b081082456",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iSze91u_FsTju_qhAmoT-Jn4bjJC_4Ml93UtZuE7UDuhC-mtbnNb-xtFfZ3YtGzSv6hisauns-5b5WVqIgqKDfjwjEYKp9v8eb6jzRvA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-0ccbf1273a6f",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iUzv5mvOR7cDm7lA4i4gKJk4jxNWXEa1V1CpR1FOQD4xK4xNzhN-6w5AXX3opCn3ivjy1N6C9t67xUU_Jw5OSJ2AqihnPi",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-d8eb214e2fb6",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iUzv5mvOR7cDm7lA4i4QKJk4jxNWXBag91D5JxRu8N5hC_mtflP-6x7gSMio5Nnius2i1Avypisr0CVadx5OSJ2A8DtsQk",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-d4901eccfb03",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iUzv5mvOR7cDm7lA4i4AKJk4jxNWWROAEmX5omROIPskTtmobkZrvjtgzajIwRmSn723xK6Shr4LpXV6Yh5OSJ2Po9oSed",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-500ce7426a18",
+                "name": "★ Huntsman Knife | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iUzv5mvOR7cDm7lA4i5wKJk4jxNWXBOFcmWMN0QLJbuxXrwNTiMejm7weKiIhEzCqo2i5JuClt5u0EBKZw5OSJ2Df-bXry",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-929cf4619d5d",
+                "name": "★ Huntsman Knife | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SH1iUwON3o-J8XBbqxSIrujqNjsGpIn_GbA8pA5J5Q7Jesxm5w9flZezi5FHXgo9Fzy_2iX8c7yhu47oCT-N7rcl4-qvl",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-96f043f8ad7c",
+                "name": "★ Huntsman Knife | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-QG1iA1PxmvORWRzy9gQ4qsjO6lob-KT-JbFQlC5YhFrQN4xe4m4ezNL7g4QyLiItFyS772C5I7ilq6rpWUaYh-rqX0V82KISxGQ",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-a074d7f6a461",
+                "name": "★ Huntsman Knife | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SH1iD1etzvN5iQSC1kCIqtjmMj4K3cXiUbFd1ApZwQ-Bb5Ba5kYfjMu3hslSI2oNDyi6shy4bvy1i5-hWU71lpPPSsstkpw",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-210ec6e164ee",
+                "name": "★ Shadow Daggers | Marble Fade",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_2SHGWcxNFwseVscCW6khUz_T_dyI2tJXrFbQN2X5MjTLUCtEa5kYXnYuPh5QGLjowUxXitjixA7nl1o7FVu7_YRqU",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-ea86d4fa2fe4",
+                "name": "★ Shadow Daggers | Tiger Tooth",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VjH-SaCWKC_uFkse9uSha_nBovp3PUwt-uJHjFOgYlXpt4EbQJshS8loCxP7vr7gDZiItMnir-iC1O7X1s_a9cBp8PQ5hi",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-6c1f2c508ea4",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH-KGDH6vzO9ksu1sRjO2kSIrujqNjsGgJXPFaA4kC8RxE7MPshO6lda0M-Kw7lPaiooWmX6sj35N7y495OdRT-N7remj_pWP",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Ruby"
+            },
+            {
+                "id": "skin-b6ff5d2a32c1",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH-OSHneYyPxzj-xoXSu_kBQ9tjm6mLD1KCzPKhghX5N4EOBfthfsw4LnYuvh5AbfioNHmyms3Cgf6Sk54e4CVvIl_qOEkUifZuDD3SRj",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Sapphire"
+            },
+            {
+                "id": "skin-13ba5ff075a8",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_KfD2Sb0et3ou1WQiihlxEiuieAnrD7HifOOV5kFJZ2TbMNtES-xobhY-rj4lTd39gRny_2jiIf6C5u67oHBasm-PXRjADfcepqXuISEy4",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Black Pearl"
+            },
+            {
+                "id": "skin-9ba70ce83b22",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_ScHnecxPxJoOloXCziqhEutDWR1Nmgd3yUZwMgCZQmRuVfthW8x9WxNOi05g2Ij48UnC323SxPu3s5t-ocEf1yJR6gz8E",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 1"
+            },
+            {
+                "id": "skin-04bf1ce6e381",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_ScHnecxPxJoOloXCzhqh8YvzSCkpu3I37BOAAiCZR1RbUO5BLtwNzhZOy04VeKg44WmCWq3CJB73xp4rkFVr1lpPNoRdm_rA",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 2"
+            },
+            {
+                "id": "skin-2a1edbf6e60a",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_ScHnecxPxJoOloXCzgqhEutDWR1N6vJ3yeOw91Dpp1TeMItRK7kYe0Yuyx7gDegtoQzXr43H8Y6Cdt4-ccEf1ysB-0XEk",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 3"
+            },
+            {
+                "id": "skin-11b9292c6907",
+                "name": "★ Shadow Daggers | Doppler",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6VgH_ScHnecxPxJoOloXCznqhEutDWR1Nv9J3PDOFN1X5AmTO8NsRO4x9fuYe-07gLWgopDzH3_jnsYuilt4rscEf1y5zaZlV8",
+                "rarity": "Covert",
+                "accent": "#eb4b4b",
+                "phase": "Phase 4"
+            },
+            {
+                "id": "skin-7672f2725a54",
+                "name": "★ Shadow Daggers | Damascus Steel",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6V8H_SSA2aDwvtlj7g5cCW6khUz_WvXz9j8JHjBaAZ2ApMhRLVZtUK4w9ziNerr4QDYjotBynmqjSlM7Ct1o7FVMY__Aoc",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-67ede78bc88d",
+                "name": "★ Shadow Daggers | Ultraviolet",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV7diH-CGHHecxNF6ueZhW2e2wk9y4jiBntn7cy2XPwMgD8BxF7MN4BK5l9KzZu3kswTaj4kTxST6kGoXuU3Nl_sm",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            },
+            {
+                "id": "skin-aa2508738ee6",
+                "name": "★ Shadow Daggers | Rust Coat",
+                "image": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1L-uGmV6V8H-OHC2Kc_uV4uedscCS2kRQyvnPQzdn6dSiUbw4jX8MmROdbskHpwde2Yu-x4VGKiYtBni__hisf63ti_a9cBjfCVlsL",
+                "rarity": "Covert",
+                "accent": "#eb4b4b"
+            }
+        ]
+    }
+}

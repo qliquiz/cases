@@ -15,7 +15,12 @@ import { getAccountState, openCase, startTelegramSession } from '@/app/actions';
 import { AuthPanel } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
 import { observeActivity } from '@/browser/activity';
-import { featuredCase } from '@/game/catalog';
+import {
+    caseCatalog,
+    type CaseDefinition,
+    featuredCase,
+    itemLabel,
+} from '@/game/catalog';
 import { createReel } from '@/game/reel';
 import {
     cardAtMarker,
@@ -33,7 +38,11 @@ type AuthStatus = 'loading' | 'ready' | 'signed-out' | 'error';
 
 const cardWidth = 160;
 const cardStep = 176;
-const rareItemIds = new Set(featuredCase.rareDrops.map((item) => item.id));
+const rareItemIds = new Set(
+    caseCatalog.flatMap((caseData) =>
+        caseData.rareDrops.map((item) => item.id),
+    ),
+);
 
 function itemAccent(item: Drop) {
     return rareItemIds.has(item.id) ? '#e4ae39' : item.accent;
@@ -51,7 +60,13 @@ function browserLaunch() {
     );
 }
 
-export function CasePlayground() {
+export function CasePlayground({
+    caseData = featuredCase,
+    onCaseChange,
+}: {
+    caseData?: CaseDefinition;
+    onCaseChange?: (caseData: CaseDefinition) => void;
+} = {}) {
     const [result, setResult] = useState<Drop | null>(null);
     const [reel, setReel] = useState<Reel | null>(null);
     const [phase, setPhase] = useState<Phase>('idle');
@@ -304,11 +319,11 @@ export function CasePlayground() {
         startTransition(async () => {
             try {
                 const opened = await openCase(
-                    featuredCase.id,
+                    caseData.id,
                     requestIdRef.current!,
                 );
                 const selected = opened.drop;
-                const nextReel = createReel(featuredCase, selected);
+                const nextReel = createReel(caseData, selected);
                 requestIdRef.current = null;
                 pendingAccountRef.current = {
                     remaining: opened.remaining,
@@ -373,7 +388,66 @@ export function CasePlayground() {
                     onError={() => setAuthStatus('error')}
                 />
             )}
-            <p className="text-sm font-semibold">{featuredCase.name}</p>
+            {onCaseChange && (
+                <fieldset
+                    disabled={
+                        pending ||
+                        authBusy ||
+                        phase === 'ready' ||
+                        phase === 'spinning'
+                    }
+                    aria-label="Выбор кейса"
+                    className="mb-5"
+                >
+                    <legend className="mb-3 text-xs font-semibold uppercase tracking-wider text-subtle">
+                        Выбери кейс
+                    </legend>
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                        {caseCatalog.map((item) => (
+                            <button
+                                key={item.id}
+                                type="button"
+                                aria-label={item.name}
+                                aria-pressed={item.id === caseData.id}
+                                className={`min-w-0 cursor-pointer rounded-xl border p-2 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${item.id === caseData.id ? 'border-accent bg-amber-400/10 text-accent forced-colors:outline-2 forced-colors:outline-[Highlight]' : 'border-line bg-inset text-muted hover:border-line-strong'}`}
+                                onClick={() => {
+                                    if (
+                                        pending ||
+                                        authBusy ||
+                                        phase === 'ready' ||
+                                        phase === 'spinning' ||
+                                        item.id === caseData.id
+                                    )
+                                        return;
+                                    if (requestIdRef.current) refreshAccount();
+                                    requestIdRef.current = null;
+                                    pendingAccountRef.current = null;
+                                    setResult(null);
+                                    setReel(null);
+                                    setPhase('idle');
+                                    setError(null);
+                                    suspendAudio();
+                                    onCaseChange(item);
+                                }}
+                            >
+                                <Image
+                                    src={item.image}
+                                    alt=""
+                                    width={96}
+                                    height={60}
+                                    unoptimized
+                                    className="mx-auto mb-1 h-12 w-full object-contain"
+                                />
+                                {item.name}
+                            </button>
+                        ))}
+                    </div>
+                    <p className="mt-2 text-xs text-subtle">
+                        5 открытий в сутки на все кейсы вместе
+                    </p>
+                </fieldset>
+            )}
+            <p className="text-sm font-semibold">{caseData.name}</p>
             {soundError && (
                 <p role="alert" className="mt-2 text-xs text-danger">
                     {soundError}
@@ -422,7 +496,7 @@ export function CasePlayground() {
                                         className="h-24 w-36 object-contain"
                                     />
                                     <span className="mt-2 max-w-full truncate text-xs font-semibold">
-                                        {item.name}
+                                        {itemLabel(item)}
                                     </span>
                                 </div>
                             ))}
@@ -434,8 +508,8 @@ export function CasePlayground() {
                 ) : (
                     <div className="flex h-full flex-col items-center justify-center">
                         <Image
-                            src={featuredCase.image}
-                            alt={featuredCase.name}
+                            src={caseData.image}
+                            alt={caseData.name}
                             width={170}
                             height={150}
                             unoptimized
@@ -455,7 +529,7 @@ export function CasePlayground() {
                             className="inline-block rounded-lg bg-slate-950 px-3 py-1 font-bold"
                             style={{ color: itemAccent(result) }}
                         >
-                            {result.name}
+                            {itemLabel(result)}
                         </p>
                         <p className="text-xs text-subtle">
                             {rareItemIds.has(result.id)
@@ -525,6 +599,8 @@ export function CasePlayground() {
             )}
             {account && (
                 <CollectionPanel
+                    key={caseData.id}
+                    caseData={caseData}
                     collection={account.collection}
                     remaining={account.remaining}
                     onRefresh={refreshAccount}

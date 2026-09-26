@@ -2,9 +2,9 @@ import { createHash, randomBytes, randomUUID } from 'node:crypto';
 
 import type { Sql, TransactionSql } from 'postgres';
 
-import { featuredCase } from '@/game/catalog';
+import { caseCatalog, type CaseDrop, findCase } from '@/game/catalog';
 
-export type CaseItem = (typeof featuredCase.drops)[number];
+export type CaseItem = CaseDrop;
 import { openVirtualCase } from '@/game/open-case';
 
 import { authenticateIdentity } from './identities';
@@ -12,16 +12,15 @@ import { authenticateIdentity } from './identities';
 const dailyLimit = 5;
 const sessionDays = 30;
 const maxSessionsPerUser = 5;
-const dropTableVersion = 'kilowatt-sim-v1';
 const knownDrops = new Map(
-    [...featuredCase.drops, ...featuredCase.rareDrops].map((drop) => [
-        drop.id,
-        drop,
-    ]),
+    caseCatalog
+        .flatMap((item) => [...item.drops, ...item.rareDrops])
+        .map((drop) => [drop.id, drop]),
 );
 
 export type CollectionEntry = {
     id: string;
+    caseId: string;
     itemId: string;
     item: CaseItem;
     openedAt: string;
@@ -109,12 +108,14 @@ export async function getCollection(
     const rows = await sql<
         {
             id: string;
+            case_id: string;
             item_id: string;
             item_snapshot: CaseItem | null;
             opened_at: Date;
         }[]
     >`
         select inventory_items.id::text as id,
+               openings.case_id,
                inventory_items.item_id,
                openings.item_snapshot,
                openings.opened_at
@@ -125,6 +126,7 @@ export async function getCollection(
     `;
     return rows.map((row) => ({
         id: row.id,
+        caseId: row.case_id,
         itemId: row.item_id,
         item: row.item_snapshot ??
             knownDrops.get(row.item_id) ?? {
@@ -145,7 +147,8 @@ export async function openCaseForUser(
     requestId: string,
     draw?: (maxExclusive: number) => number,
 ) {
-    if (caseId !== featuredCase.id) throw new Error('Неизвестный кейс');
+    const selectedCase = findCase(caseId);
+    if (!selectedCase) throw new Error('Неизвестный кейс');
     if (
         !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
             requestId,
@@ -198,7 +201,7 @@ export async function openCaseForUser(
                 (id, user_id, request_id, case_id, item_id, item_snapshot, drop_table_version)
             values
                 (${openingId}, ${userId}, ${requestId}, ${caseId},
-                 ${drop.id}, ${sql.json(drop)}, ${dropTableVersion})
+                 ${drop.id}, ${sql.json(drop)}, ${selectedCase.dropTableVersion})
         `;
         await tx`
             insert into inventory_items (id, opening_id, user_id, item_id)

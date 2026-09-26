@@ -10,6 +10,7 @@ const catalog = [...featuredCase.drops, ...featuredCase.rareDrops];
 function entries(items: typeof catalog): CollectionEntry[] {
     return items.map((item, index) => ({
         id: String(index),
+        caseId: featuredCase.id,
         itemId: item.id,
         item,
         openedAt: '2026-09-26T10:00:00.000Z',

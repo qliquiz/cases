@@ -1,15 +1,29 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 
 import { CasePlayground } from '@/app/case-playground';
 import { ThemePicker } from '@/app/theme-picker';
-import { featuredCase } from '@/game/catalog';
+import {
+    type CaseDefinition,
+    type CaseDrop,
+    featuredCase,
+    itemLabel,
+} from '@/game/catalog';
 import { simulatedChancePercent } from '@/game/simulation';
 
-type Item = (typeof featuredCase.drops)[number];
-
-function ItemCard({ item, rare = false }: { item: Item; rare?: boolean }) {
+function ItemCard({
+    item,
+    caseData,
+    rare = false,
+}: {
+    item: CaseDrop;
+    caseData: CaseDefinition;
+    rare?: boolean;
+}) {
     const accent = rare ? '#e4ae39' : item.accent;
-    const chance = simulatedChancePercent(featuredCase, item.id);
+    const chance = simulatedChancePercent(caseData, item.id);
 
     return (
         <div
@@ -26,7 +40,7 @@ function ItemCard({ item, rare = false }: { item: Item; rare?: boolean }) {
                     className="h-24 w-full object-contain"
                 />
             </div>
-            <p className="text-sm font-semibold">{item.name}</p>
+            <p className="text-sm font-semibold">{itemLabel(item)}</p>
             <p
                 className="mt-2 inline-block rounded-md bg-slate-950 px-2 py-1 text-xs"
                 style={{ color: accent }}
@@ -46,6 +60,7 @@ function ItemCard({ item, rare = false }: { item: Item; rare?: boolean }) {
 }
 
 export default function Home() {
+    const [selectedCase, setSelectedCase] = useState(featuredCase);
     return (
         <main className="mx-auto min-h-screen w-full max-w-6xl px-5 pb-16 pt-6 sm:px-8">
             <header className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
@@ -77,16 +92,16 @@ export default function Home() {
                         </span>
                     </h1>
                     <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                        Открой {featuredCase.name} и посмотри, какой предмет
+                        Открой {selectedCase.name} и посмотри, какой предмет
                         выпал бы в симуляции. Состав и изображения взяты из
                         каталога CS2. Платежей, выдачи скинов и призов нет.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3 text-sm text-muted">
                         <span className="rounded-full border border-line px-4 py-2">
-                            17 обычных предметов
+                            {selectedCase.drops.length} обычных предметов
                         </span>
                         <span className="rounded-full border border-line px-4 py-2">
-                            13 редких вариантов
+                            {selectedCase.rareDrops.length} редких вариантов
                         </span>
                         <span className="rounded-full border border-line px-4 py-2">
                             0 ₽ за открытие
@@ -98,33 +113,49 @@ export default function Home() {
                         приложения.
                     </p>
                 </div>
-                <CasePlayground />
+                <CasePlayground
+                    caseData={selectedCase}
+                    onCaseChange={setSelectedCase}
+                />
             </section>
 
-            <section className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
+            <section
+                aria-label="Содержимое выбранного кейса"
+                className="rounded-3xl border border-line bg-surface p-6 sm:p-8"
+            >
                 <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-subtle">
                         Содержимое кейса
                     </p>
                     <h2 className="mt-2 text-2xl font-bold">
-                        {featuredCase.name}
+                        {selectedCase.name}
                     </h2>
                     <p className="mt-2 text-sm text-subtle">
-                        17 обычных предметов и 13 вариантов редкого особого
-                        предмета
+                        {selectedCase.drops.length} обычных предметов и{' '}
+                        {selectedCase.rareDrops.length} вариантов редкого
+                        особого предмета
                     </p>
                 </div>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-                    {featuredCase.drops.map((item) => (
-                        <ItemCard key={item.id} item={item} />
+                    {selectedCase.drops.map((item) => (
+                        <ItemCard
+                            key={item.id}
+                            item={item}
+                            caseData={selectedCase}
+                        />
                     ))}
                 </div>
                 <h3 className="mt-9 text-lg font-bold">
                     Редкие особые предметы
                 </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-                    {featuredCase.rareDrops.map((item) => (
-                        <ItemCard key={item.id} item={item} rare />
+                    {selectedCase.rareDrops.map((item) => (
+                        <ItemCard
+                            key={item.id}
+                            item={item}
+                            caseData={selectedCase}
+                            rare
+                        />
                     ))}
                 </div>
             </section>

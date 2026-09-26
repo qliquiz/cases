@@ -25,6 +25,24 @@ test('виртуальное открытие Kilowatt Case выбирает п�
     }
 });
 
+test('Chroma и Spectrum выбирают обычные и редкие предметы из собственного состава', () => {
+    const cases = [
+        ['crate-4061', 'Glock-18 | Catacombs', '★ Bayonet | Marble Fade'],
+        ['crate-4089', 'AK-47 | Elite Build', '★ Bayonet | Marble Fade'],
+        [
+            'crate-4351',
+            'PP-Bizon | Jungle Slipstream',
+            '★ Bowie Knife | Marble Fade',
+        ],
+        ['crate-4403', 'Sawed-Off | Morris', '★ Bowie Knife | Marble Fade'],
+    ];
+    for (const [id, regular, rare] of cases) {
+        assert.equal(openVirtualCase(id, () => 0).name, regular);
+        const draws = [9999, 0];
+        assert.equal(openVirtualCase(id, () => draws.shift()!).name, rare);
+    }
+});
+
 test('индекс предмета внутри группы выбирается отдельно', () => {
     const draws = [0, 6];
     assert.equal(
