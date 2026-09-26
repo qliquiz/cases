@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 
 import Home from '../app/page';
+import { renderToStaticMarkup } from './render-ui';
 
 test('тема выбирается тройным переключателем с активным автоматическим режимом', () => {
     const html = renderToStaticMarkup(createElement(Home));

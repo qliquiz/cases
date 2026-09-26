@@ -65,7 +65,7 @@ export default function Home() {
         <main className="mx-auto min-h-screen w-full max-w-6xl px-5 pb-16 pt-6 sm:px-8">
             <SiteHeader active="cases" />
 
-            <section className="grid gap-10 py-14 md:grid-cols-[1fr_0.9fr] md:items-center md:py-20">
+            <section className="grid gap-10 py-14 md:grid-cols-[1fr_0.9fr] md:items-start md:py-20">
                 <div>
                     <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
                         Симулятор открытий CS2

@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 
 import Home from '../app/page';
+import { renderToStaticMarkup } from './render-ui';
 
 test('главная страница использует название CaseGo', () => {
     const html = renderToStaticMarkup(createElement(Home));

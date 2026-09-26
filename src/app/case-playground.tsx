@@ -1,5 +1,10 @@
 'use client';
 
+import {
+    type QueryClient,
+    useQuery,
+    useQueryClient,
+} from '@tanstack/react-query';
 import Image from 'next/image';
 import Script from 'next/script';
 import {
@@ -19,7 +24,17 @@ import {
 } from '@/app/actions';
 import { AuthPanel } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
+import {
+    accountKey,
+    accountQueryOptions,
+    leaderboardKey,
+} from '@/app/query-options';
 import { observeActivity } from '@/browser/activity';
+import {
+    announceSessionChange,
+    resetSessionCache,
+    sessionGeneration,
+} from '@/browser/query-cache';
 import {
     caseCatalog,
     type CaseDefinition,
@@ -43,6 +58,9 @@ type Account = NonNullable<Awaited<ReturnType<typeof getAccountState>>>;
 type AuthStatus = 'loading' | 'ready' | 'signed-out' | 'error';
 
 const cardWidth = 160;
+// Authentication is a one-time operation per browser app instance, not a
+// cacheable account read. An explicit logout stays signed out until reentry.
+const telegramBootstrapped = new WeakSet<QueryClient>();
 const cardStep = 176;
 const rareItemIds = new Set(
     caseCatalog.flatMap((caseData) =>
@@ -78,7 +96,8 @@ export function CasePlayground({
     const [phase, setPhase] = useState<Phase>('idle');
     const [error, setError] = useState<string | null>(null);
     const [soundError, setSoundError] = useState<string | null>(null);
-    const [account, setAccount] = useState<Account | null>(null);
+    const client = useQueryClient();
+    const generation = sessionGeneration(client);
     const [authBusy, setAuthBusy] = useState(false);
     const launch = useSyncExternalStore(
         subscribeLaunch,
@@ -94,7 +113,37 @@ export function CasePlayground({
             : authFlowError
               ? 'Не удалось завершить вход через Telegram. Попробуйте ещё раз или используйте email.'
               : null;
-    const [authStatus, setAuthStatus] = useState<AuthStatus>('loading');
+    const [miniReady, setMiniReady] = useState(false);
+    const [miniError, setMiniError] = useState(false);
+    const accountQuery = useQuery({
+        ...accountQueryOptions,
+        enabled:
+            launch !== null &&
+            (!isMiniApp || miniReady) &&
+            phase !== 'ready' &&
+            phase !== 'spinning',
+    });
+    const account = accountQuery.isError ? null : (accountQuery.data ?? null);
+    const authStatus: AuthStatus =
+        miniError || accountQuery.isError
+            ? 'error'
+            : accountQuery.isPending
+              ? 'loading'
+              : account
+                ? 'ready'
+                : 'signed-out';
+    const setAccount = useCallback(
+        (
+            next:
+                Account | null | ((current: Account | null) => Account | null),
+        ) => {
+            if (generation !== sessionGeneration(client)) return;
+            client.setQueryData<Account | null>(accountKey, (current) =>
+                typeof next === 'function' ? next(current ?? null) : next,
+            );
+        },
+        [client, generation],
+    );
     const [pending, startTransition] = useTransition();
     const viewportRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -120,48 +169,39 @@ export function CasePlayground({
         };
     }, []);
 
-    const bootstrap = useCallback(
-        (miniApp: boolean) => {
-            if (bootstrappedRef.current) return;
-            bootstrappedRef.current = true;
-            startTransition(async () => {
-                try {
-                    const webApp = window.Telegram?.WebApp;
-                    if (miniApp && !webApp?.initData)
-                        throw new Error('Нет данных Telegram');
-                    if (miniApp) webApp?.ready();
-                    const next = miniApp
-                        ? await startTelegramSession(webApp!.initData)
-                        : await getAccountState();
-                    if (!next) {
-                        setAuthStatus('signed-out');
-                        return;
-                    }
-                    setAccount(next);
-                    setAuthStatus('ready');
-                } catch {
-                    setAuthStatus('error');
+    const bootstrap = useCallback(() => {
+        if (bootstrappedRef.current) return;
+        bootstrappedRef.current = true;
+        startTransition(async () => {
+            try {
+                const webApp = window.Telegram?.WebApp;
+                if (!webApp?.initData) throw new Error('Нет данных Telegram');
+                webApp.ready();
+                if (!telegramBootstrapped.has(client)) {
+                    await startTelegramSession(webApp.initData);
+                    if (generation !== sessionGeneration(client)) return;
+                    telegramBootstrapped.add(client);
+                    announceSessionChange();
+                    await resetSessionCache(client);
+                    return;
                 }
-            });
-        },
-        [startTransition],
-    );
-
-    useEffect(() => {
-        if (launch && !isMiniApp) bootstrap(false);
-    }, [launch, isMiniApp, bootstrap]);
+                setMiniReady(true);
+            } catch {
+                setMiniError(true);
+            }
+        });
+    }, [client, generation, startTransition]);
 
     async function accountChanged() {
         setDismissedAuthError(true);
-        const next = await getAccountState();
-        setAccount(next);
-        setAuthStatus(next ? 'ready' : 'signed-out');
         setResult(null);
         setReel(null);
         setPhase('idle');
         setError(null);
         requestIdRef.current = null;
         pendingAccountRef.current = null;
+        announceSessionChange();
+        await resetSessionCache(client);
     }
 
     const suspendAudio = useCallback((delayMs = 0) => {
@@ -206,7 +246,7 @@ export function CasePlayground({
             );
         }
         suspendAudio(350);
-    }, [phase, reel, suspendAudio]);
+    }, [phase, reel, suspendAudio, setAccount]);
 
     useEffect(() => {
         if (phase !== 'spinning' || !reel) return;
@@ -293,13 +333,7 @@ export function CasePlayground({
     function refreshAccount() {
         startTransition(async () => {
             try {
-                const next = await getAccountState();
-                if (!next) {
-                    setAuthStatus('signed-out');
-                    setAccount(null);
-                    return;
-                }
-                setAccount(next);
+                await accountQuery.refetch({ throwOnError: true });
                 setError(null);
             } catch {
                 setError('Не удалось обновить лимит. Попробуйте ещё раз.');
@@ -312,7 +346,9 @@ export function CasePlayground({
             return;
         startTransition(async () => {
             try {
+                await client.cancelQueries({ queryKey: accountKey });
                 const next = await resetCaseLimit();
+                if (generation !== sessionGeneration(client)) return;
                 setAccount(next);
                 requestIdRef.current = null;
                 setError(null);
@@ -339,11 +375,23 @@ export function CasePlayground({
         setError(null);
         startTransition(async () => {
             try {
+                await client.cancelQueries({ queryKey: accountKey });
                 const opened = await openCase(
                     caseData.id,
                     requestIdRef.current!,
                 );
+                if (generation !== sessionGeneration(client)) return;
                 const selected = opened.drop;
+                void client.invalidateQueries({
+                    queryKey: leaderboardKey,
+                    refetchType: 'none',
+                });
+                // If the player leaves during the animation, the next visit
+                // must load the already-saved opening from the server.
+                void client.invalidateQueries({
+                    queryKey: accountKey,
+                    refetchType: 'none',
+                });
                 const nextReel = createReel(caseData, selected);
                 requestIdRef.current = null;
                 pendingAccountRef.current = {
@@ -404,9 +452,9 @@ export function CasePlayground({
                         window.dispatchEvent(
                             new Event('casego:telegram-ready'),
                         );
-                        bootstrap(true);
+                        bootstrap();
                     }}
-                    onError={() => setAuthStatus('error')}
+                    onError={() => setMiniError(true)}
                 />
             )}
             {onCaseChange && (

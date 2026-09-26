@@ -1,54 +1,46 @@
 'use client';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState, useTransition } from 'react';
 
-import type { LeaderboardSnapshot } from '@/server/leaderboard';
+import { leaderboardKey, leaderboardQueryOptions } from '@/app/query-options';
+import { sessionGeneration } from '@/browser/query-cache';
 
-import { loadLeaderboard, updateLeaderboardProfile } from './actions';
+import { updateLeaderboardProfile } from './actions';
 
-type Result =
-    { ok: true; data: LeaderboardSnapshot } | { ok: false; error: string };
 const count = (value: number) => value.toLocaleString('ru-RU');
 const buttonClass =
     'cursor-pointer rounded-xl bg-amber-400 px-4 py-3 text-sm font-bold text-slate-950 hover:bg-amber-300 disabled:cursor-wait disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
-export function LeaderboardScreen({ initial }: { initial: Result }) {
-    const [result, setResult] = useState(initial);
-    const [nickname, setNickname] = useState(
-        initial.ok ? (initial.data.mine?.nickname ?? '') : '',
-    );
+export function LeaderboardScreen() {
+    const client = useQueryClient();
+    const generation = sessionGeneration(client);
+    const query = useQuery(leaderboardQueryOptions);
+    const [nickname, setNickname] = useState<string | null>(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [pending, startTransition] = useTransition();
-    const data = result.ok ? result.data : null;
+    const data = query.data;
     const mine = data?.mine;
 
     function refresh() {
-        startTransition(async () => {
-            setError('');
-            setMessage('');
-            try {
-                const next = await loadLeaderboard();
-                setResult(next);
-                if (next.ok) setNickname(next.data.mine?.nickname ?? '');
-            } catch {
-                setError('Не удалось обновить рейтинг. Повторите позже.');
-            }
-        });
+        void query.refetch();
     }
     function save(value: string | null) {
         startTransition(async () => {
             setMessage('');
             setError('');
             try {
+                await client.cancelQueries({ queryKey: leaderboardKey });
                 const next = await updateLeaderboardProfile(value);
+                if (generation !== sessionGeneration(client)) return;
                 if (!next.ok) {
                     setError(next.error);
                     return;
                 }
-                setResult(next);
-                setNickname(next.data.mine?.nickname ?? '');
+                client.setQueryData(leaderboardKey, next.data);
+                setNickname(null);
                 setMessage(
                     value === null
                         ? 'Профиль скрыт. Коллекция сохранена.'
@@ -79,10 +71,14 @@ export function LeaderboardScreen({ initial }: { initial: Result }) {
                     </div>
                     <button
                         onClick={refresh}
-                        disabled={pending}
+                        disabled={pending || query.isFetching}
                         className="cursor-pointer rounded-xl border border-line px-4 py-3 text-sm font-semibold text-muted hover:bg-surface disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-accent"
                     >
-                        {pending ? 'Подождите…' : 'Обновить рейтинг'}
+                        {pending
+                            ? 'Подождите…'
+                            : query.isFetching
+                              ? 'Обновляем…'
+                              : 'Обновить рейтинг'}
                     </button>
                 </div>
                 <div className="mt-6 rounded-2xl border border-accent/30 bg-amber-400/10 p-4 text-sm leading-6 text-muted">
@@ -92,12 +88,19 @@ export function LeaderboardScreen({ initial }: { initial: Result }) {
                     учитываются; призов и реальной стоимости предметов нет.
                 </div>
             </section>
-            {!result.ok && (
+            {query.isPending && (
+                <p role="status" className="py-8 text-muted">
+                    Загружаем рейтинг…
+                </p>
+            )}
+            {query.isError && (
                 <p
                     role="alert"
                     className="rounded-2xl border border-danger/30 p-5 text-danger"
                 >
-                    {result.error}
+                    {data
+                        ? 'Не удалось обновить рейтинг. Показаны последние загруженные данные.'
+                        : 'Не удалось загрузить рейтинг. Попробуйте ещё раз.'}
                 </p>
             )}
             {error && (
@@ -224,7 +227,7 @@ export function LeaderboardScreen({ initial }: { initial: Result }) {
                                     className="mt-5"
                                     onSubmit={(event) => {
                                         event.preventDefault();
-                                        save(nickname);
+                                        save(nickname ?? mine.nickname ?? '');
                                     }}
                                 >
                                     <label
@@ -235,7 +238,7 @@ export function LeaderboardScreen({ initial }: { initial: Result }) {
                                     </label>
                                     <input
                                         id="public-nickname"
-                                        value={nickname}
+                                        value={nickname ?? mine.nickname ?? ''}
                                         onChange={(event) =>
                                             setNickname(event.target.value)
                                         }

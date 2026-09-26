@@ -1,7 +1,5 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
-
 import { database } from '@/server/db';
 import {
     getLeaderboard,
@@ -34,7 +32,6 @@ export async function updateLeaderboardProfile(nickname: string | null) {
                 error: 'Войдите в аккаунт на странице кейсов.',
             } as const;
         await saveLeaderboardNickname(database(), session.userId, nickname);
-        revalidatePath('/leaderboard');
         return {
             ok: true,
             data: await getLeaderboard(database(), session.userId),

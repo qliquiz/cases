@@ -33,7 +33,9 @@ export async function GET(request: Request) {
         stage = 'session';
         await establishSession(userId);
         jar.delete(telegramFlowCookieName);
-        return NextResponse.redirect(new URL('/', appOrigin()));
+        return NextResponse.redirect(
+            new URL('/?authSuccess=telegram', appOrigin()),
+        );
     } catch (error) {
         const failure = telegramFailure(error, stage);
         console.error('[telegram-login]', failure);
