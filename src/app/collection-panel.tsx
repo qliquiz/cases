@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
+import { observeActivity } from '@/browser/activity';
 import { featuredCase } from '@/game/catalog';
 import type { CollectionEntry } from '@/server/store';
 
@@ -21,6 +22,11 @@ export function CollectionPanel({
     refreshing?: boolean;
 }) {
     const [filter, setFilter] = useState<AlbumFilter>('all');
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    useEffect(
+        () => observeActivity('collection_view', headingRef.current),
+        [collection],
+    );
     const counts = new Map<
         string,
         { count: number; item: CollectionEntry['item'] }
@@ -66,7 +72,9 @@ export function CollectionPanel({
         >
             <div className="flex flex-wrap items-end justify-between gap-2">
                 <div>
-                    <h2 className="text-lg font-bold">Моя коллекция</h2>
+                    <h2 ref={headingRef} className="text-lg font-bold">
+                        Моя коллекция
+                    </h2>
                     <p className="text-xs text-subtle">
                         {featuredCase.name} · Общая для сайта и Telegram
                     </p>

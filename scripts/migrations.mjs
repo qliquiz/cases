@@ -10,6 +10,10 @@ const migrations = [
         '003-auth-flows',
         new URL('../db/migrations/003-auth-flows.sql', import.meta.url),
     ],
+    [
+        '004-analytics',
+        new URL('../db/migrations/004-analytics.sql', import.meta.url),
+    ],
 ];
 
 export async function migrate(sql) {

@@ -4,6 +4,7 @@ import { authenticateIdentity } from '../src/server/identities';
 import { chromium } from 'playwright';
 import postgres from 'postgres';
 import { createSession, getSession } from '../src/server/store';
+import { getAnalyticsReport } from '../src/server/analytics';
 
 const baseUrl = process.env.CASE_TEST_BASE_URL;
 const socket = process.env.TEST_PG_SOCKET;
@@ -37,6 +38,7 @@ await page.route('**/oauth.telegram.org/auth**', (route) =>
     route.fulfill({ status: 200, body: 'OAuth intercepted for test' }),
 );
 try {
+    const baseline = (await getAnalyticsReport(sql)).days.at(-1)!;
     await page.goto(baseUrl);
     await page
         .getByRole('button', { name: 'Получить код', exact: true })
@@ -67,12 +69,42 @@ try {
     await page.reload();
     await page.getByRole('button', { name: 'Выйти', exact: true }).waitFor();
     await page
+        .getByRole('heading', { name: 'Моя коллекция', exact: true })
+        .scrollIntoViewIfNeeded();
+    // Poll the public report while the best-effort browser request completes.
+    let viewed = false;
+    for (let attempt = 0; attempt < 50; attempt++) {
+        const day = (await getAnalyticsReport(sql)).days.at(-1)!;
+        if (day.collectionViewers === baseline.collectionViewers + 1) {
+            viewed = true;
+            break;
+        }
+        await page.waitForTimeout(100);
+    }
+    assert.equal(
+        viewed,
+        true,
+        'visible collection is recorded through the real route',
+    );
+    const viewedDay = (await getAnalyticsReport(sql)).days.at(-1)!;
+    assert.equal(viewedDay.activeUsers, baseline.activeUsers + 1);
+    await page
         .getByRole('button', { name: 'Открыть бесплатно', exact: true })
         .click();
     await page
         .getByRole('button', { name: 'Открыть ещё раз', exact: true })
         .waitFor();
     await page.getByText('4 из 5 открытий сегодня', { exact: false }).waitFor();
+    const openedDay = (await getAnalyticsReport(sql)).days.at(-1)!;
+    assert.equal(openedDay.firstOpeners, baseline.firstOpeners + 1);
+    assert.equal(openedDay.openings, baseline.openings + 1);
+    assert.equal(openedDay.activeUsers, baseline.activeUsers + 1);
+    await page.reload();
+    await page.getByRole('button', { name: 'Выйти', exact: true }).waitFor();
+    assert.equal(
+        (await getAnalyticsReport(sql)).days.at(-1)!.firstOpeners,
+        baseline.firstOpeners + 1,
+    );
     await page.getByRole('button', { name: 'Выйти', exact: true }).click();
     await page
         .getByRole('button', { name: 'Войти через Telegram', exact: true })
@@ -88,7 +120,7 @@ try {
     );
     assert.deepEqual(errors, []);
     console.log(
-        'Browser smoke passed: web without Telegram SDK, email form, authenticated opening, shared account panel, logout revocation, OAuth redirect.',
+        'Browser smoke passed: web without Telegram SDK, email form, authenticated opening, real analytics route/report, reload deduplication, logout revocation, OAuth redirect.',
     );
 } finally {
     if (userId) await sql`delete from app_users where id = ${userId}`;

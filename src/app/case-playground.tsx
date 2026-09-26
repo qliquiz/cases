@@ -14,6 +14,7 @@ import {
 import { getAccountState, openCase, startTelegramSession } from '@/app/actions';
 import { AuthPanel } from '@/app/auth-panel';
 import { CollectionPanel } from '@/app/collection-panel';
+import { observeActivity } from '@/browser/activity';
 import { featuredCase } from '@/game/catalog';
 import { createReel } from '@/game/reel';
 import {
@@ -85,6 +86,10 @@ export function CasePlayground() {
         Account,
         'remaining' | 'collection'
     > | null>(null);
+
+    useEffect(() => {
+        if (account) return observeActivity('visit');
+    }, [account]);
 
     useEffect(() => {
         return () => {

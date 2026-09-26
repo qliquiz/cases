@@ -17,7 +17,9 @@
         "test": "node --import tsx --test src/game/*.test.ts",
         "test:browser": "node --import tsx scripts/browser-smoke.mts",
         "test:theme": "node --import tsx scripts/theme-smoke.mts",
-        "test:collection": "node --import tsx scripts/collection-smoke.mts"
+        "test:collection": "node --import tsx scripts/collection-smoke.mts",
+        "test:analytics": "node --import tsx scripts/analytics-browser.mts",
+        "analytics:report": "node --import tsx scripts/analytics-report.mts"
     },
     "dependencies": {
         "@next/env": "16.3.6",
