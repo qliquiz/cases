@@ -25,6 +25,10 @@ const migrations = [
         '006-leaderboard',
         new URL('../db/migrations/006-leaderboard.sql', import.meta.url),
     ],
+    [
+        '007-crafting',
+        new URL('../db/migrations/007-crafting.sql', import.meta.url),
+    ],
 ];
 
 export async function migrate(sql) {

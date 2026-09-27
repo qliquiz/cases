@@ -2,7 +2,11 @@ import Link from 'next/link';
 
 import { ThemePicker } from '@/app/theme-picker';
 
-export function SiteHeader({ active }: { active: 'cases' | 'leaderboard' }) {
+export function SiteHeader({
+    active,
+}: {
+    active: 'cases' | 'craft' | 'leaderboard';
+}) {
     return (
         <header className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
             <Link
@@ -21,6 +25,7 @@ export function SiteHeader({ active }: { active: 'cases' | 'leaderboard' }) {
             >
                 {[
                     ['cases', '/', 'Кейсы'],
+                    ['craft', '/craft', 'Крафт'],
                     ['leaderboard', '/leaderboard', 'Рейтинг'],
                 ].map(([key, href, label]) => (
                     <Link

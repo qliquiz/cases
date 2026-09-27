@@ -24,6 +24,8 @@ export type CollectionEntry = {
     itemId: string;
     item: CaseItem;
     openedAt: string;
+    source?: 'opening' | 'craft';
+    consumedAt?: string | null;
 };
 
 function tokenHash(token: string) {
@@ -132,17 +134,22 @@ export async function getCollection(
             item_id: string;
             item_snapshot: CaseItem | null;
             opened_at: Date;
+            source: 'opening' | 'craft';
+            consumed_at: Date | null;
         }[]
     >`
         select inventory_items.id::text as id,
-               openings.case_id,
+               coalesce(openings.case_id, crafts.case_id) as case_id,
                inventory_items.item_id,
-               openings.item_snapshot,
-               openings.opened_at
+               coalesce(openings.item_snapshot, crafts.item_snapshot) as item_snapshot,
+               coalesce(openings.opened_at, crafts.created_at) as opened_at,
+               case when inventory_items.craft_id is null then 'opening' else 'craft' end as source,
+               inventory_items.consumed_at
         from inventory_items
-        join openings on openings.id = inventory_items.opening_id
+        left join openings on openings.id = inventory_items.opening_id
+        left join crafts on crafts.id = inventory_items.craft_id
         where inventory_items.user_id = ${userId}
-        order by openings.opened_at desc, inventory_items.id desc
+        order by coalesce(openings.opened_at, crafts.created_at) desc, inventory_items.id desc
     `;
     return rows.map((row) => ({
         id: row.id,
@@ -157,6 +164,8 @@ export async function getCollection(
                 accent: '#64748b',
             },
         openedAt: row.opened_at.toISOString(),
+        source: row.source,
+        consumedAt: row.consumed_at?.toISOString() ?? null,
     }));
 }
 

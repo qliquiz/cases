@@ -44,6 +44,19 @@ test('пустой альбом показывает все 30 недостаю�
     assert.match(html, /★ Kukri Knife/);
 });
 
+test('потраченная последняя копия остаётся в альбоме, но не считается доступной или дубликатом', () => {
+    const html = render([
+        {
+            ...entry(featuredCase.drops[0], 'spent'),
+            consumedAt: '2026-09-27T00:00:00Z',
+        },
+    ]);
+    assert.match(html, /aria-valuenow="1"/);
+    assert.match(html, /Открыт в альбоме · потрачен/);
+    assert.match(html, />Всего<\/dt><dd[^>]*>0<\/dd>/);
+    assert.match(html, />Дубликаты<\/dt><dd[^>]*>0<\/dd>/);
+});
+
 test('альбом выбранного кейса учитывает общий нож, но не чужое оружие', () => {
     const chroma = findCase('crate-4061')!;
     const html = renderToStaticMarkup(

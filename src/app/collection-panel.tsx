@@ -42,7 +42,7 @@ export function CollectionPanel({
     for (const entry of collection) {
         const prior = counts.get(entry.itemId);
         counts.set(entry.itemId, {
-            count: (prior?.count ?? 0) + 1,
+            count: (prior?.count ?? 0) + (entry.consumedAt ? 0 : 1),
             item: entry.item,
         });
     }
@@ -50,7 +50,11 @@ export function CollectionPanel({
     const owned = [...catalogIds].filter((id) => counts.has(id)).length;
     const total = catalogIds.size;
     const missing = total - owned;
-    const duplicates = collection.length - counts.size;
+    const available = collection.filter((x) => !x.consumedAt).length;
+    const duplicates = [...counts.values()].reduce(
+        (sum, x) => sum + Math.max(0, x.count - 1),
+        0,
+    );
     const archived = [...counts].filter(([id]) => !catalogIds.has(id));
     const percent = Math.floor((owned / total) * 100);
     const groups = [
@@ -118,7 +122,7 @@ export function CollectionPanel({
                     <div>
                         <dt className="text-subtle">Всего</dt>
                         <dd className="mt-1 text-base font-bold tabular-nums">
-                            {collection.length}
+                            {available}
                         </dd>
                     </div>
                     <div>
@@ -140,7 +144,9 @@ export function CollectionPanel({
                         : collection.length === 0
                           ? 'Открой кейс, чтобы начать коллекцию.'
                           : 'Каждый новый вид приближает к полному альбому.'}{' '}
-                    Повторы не увеличивают прогресс.
+                    Повторы не увеличивают прогресс. «Всего» и дубликаты —
+                    доступные копии. Потраченные в крафте виды остаются в
+                    альбоме навсегда.
                 </p>
             </div>
             <button
@@ -203,6 +209,7 @@ export function CollectionPanel({
                                         key={item.id}
                                         item={counts.get(item.id)?.item ?? item}
                                         count={counts.get(item.id)?.count ?? 0}
+                                        discovered={counts.has(item.id)}
                                         rare={group.rare}
                                     />
                                 ))}
@@ -222,7 +229,12 @@ export function CollectionPanel({
                     </p>
                     <ul className="grid max-h-72 grid-cols-2 gap-2 overflow-y-auto">
                         {archived.map(([id, { item, count }]) => (
-                            <AlbumCard key={id} item={item} count={count} />
+                            <AlbumCard
+                                key={id}
+                                item={item}
+                                count={count}
+                                discovered
+                            />
                         ))}
                     </ul>
                 </details>
@@ -234,16 +246,18 @@ export function CollectionPanel({
                             История открытий
                         </summary>
                         <ol className="mt-2 max-h-48 space-y-1 overflow-y-auto">
-                            {collection.map((entry) => (
-                                <li key={entry.id}>
-                                    {new Date(entry.openedAt).toLocaleString(
-                                        'ru-RU',
-                                    )}{' '}
-                                    — {itemLabel(entry.item)} ·{' '}
-                                    {findCase(entry.caseId)?.name ??
-                                        entry.caseId}
-                                </li>
-                            ))}
+                            {collection
+                                .filter((entry) => entry.source !== 'craft')
+                                .map((entry) => (
+                                    <li key={entry.id}>
+                                        {new Date(
+                                            entry.openedAt,
+                                        ).toLocaleString('ru-RU')}{' '}
+                                        — {itemLabel(entry.item)} ·{' '}
+                                        {findCase(entry.caseId)?.name ??
+                                            entry.caseId}
+                                    </li>
+                                ))}
                         </ol>
                     </details>
                 </>
@@ -260,14 +274,16 @@ function AlbumCard({
     item,
     count,
     rare = false,
+    discovered = count > 0,
 }: {
     item: CollectionEntry['item'];
     count: number;
     rare?: boolean;
+    discovered?: boolean;
 }) {
     return (
         <li
-            className={`min-w-0 overflow-hidden rounded-xl border bg-surface ${count ? 'border-line-strong' : 'border-dashed border-line'}`}
+            className={`min-w-0 overflow-hidden rounded-xl border bg-surface ${discovered ? 'border-line-strong' : 'border-dashed border-line'}`}
         >
             <div
                 className="relative flex h-20 items-center justify-center border-b-2 bg-slate-900"
@@ -279,7 +295,7 @@ function AlbumCard({
                         alt=""
                         width={120}
                         height={75}
-                        className={`h-16 w-full object-contain ${count ? '' : 'opacity-40 grayscale'}`}
+                        className={`h-16 w-full object-contain ${discovered ? '' : 'opacity-40 grayscale'}`}
                     />
                 )}
                 {count > 0 && (
@@ -295,7 +311,11 @@ function AlbumCard({
                 <p
                     className={`mt-1 text-[11px] ${count ? 'text-success' : 'text-subtle'}`}
                 >
-                    {count ? 'В коллекции' : 'Ещё не выпал'}
+                    {count
+                        ? 'В коллекции'
+                        : discovered
+                          ? 'Открыт в альбоме · потрачен'
+                          : 'Ещё не выпал'}
                 </p>
                 {count > 1 && (
                     <p className="mt-1 text-[11px] text-subtle">

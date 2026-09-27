@@ -32,14 +32,21 @@ export async function getLeaderboard(
 ): Promise<LeaderboardSnapshot> {
     // One statement gives top, own rank and population the same database snapshot.
     const rows = await sql<LeaderboardSnapshot[]>`
-        with stats as (
+        with acquisitions as (
+            select user_id, item_id from openings
+            union
+            select user_id, item_id from crafts
+        ), discoveries as (
+            select user_id, count(*)::int as unique_items from acquisitions group by user_id
+        ), stats as (
             select u.id, u.public_nickname as nickname,
-                   count(distinct o.item_id)::int as unique_items,
+                   coalesce(d.unique_items, 0)::int as unique_items,
                    count(o.id)::int as openings,
                    count(o.id) filter (where o.item_id = any(${rareIds}::text[]))::int as rare_drops
             from app_users u left join openings o on o.user_id = u.id
+            left join discoveries d on d.user_id = u.id
             where u.public_nickname is not null or u.id = ${viewerId ?? null}::uuid
-            group by u.id
+            group by u.id, d.unique_items
         ), ranked as (
             select *, rank() over (order by unique_items desc)::int as rank
             from stats where nickname is not null and openings > 0
